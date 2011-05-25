@@ -33,7 +33,7 @@ Ext.define('Athene.view.zanimanje.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj zanimanje', 
                         id: 'openZanimanjaForm'
                     }

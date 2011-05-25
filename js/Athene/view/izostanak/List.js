@@ -49,7 +49,7 @@ Ext.define('Athene.view.izostanak.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj izostanak', 
                         id: 'openIzostanakForm',
 						tooltip: {text:'Ovo je neki opis nečega'}
@@ -57,18 +57,18 @@ Ext.define('Athene.view.izostanak.List', {
                     {
                         xtype: 'splitbutton',
                         text: 'Predmet',
-						tooltip: {text:'Izaberite nešto'},
-						menu: {
-							items: [
-								{
-								text: 'Dodaj predmet',
-								id: 'openAdresaForm'
-								},
-								{
-								text: 'Popis predmeta'
-								}
-							]
-						}
+			tooltip: {text:'Izaberite nešto'},
+			menu: {
+			    items: [
+				{
+				    text: 'Dodaj predmet',
+				    id: 'openAdresaForm'
+				},
+				{
+				    text: 'Popis predmeta'
+				}
+			    ]
+			}
                     }
                 ]
             }

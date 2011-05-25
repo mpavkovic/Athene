@@ -1,4 +1,4 @@
-﻿Ext.define('Athene.view.nastavnisat.List', {
+Ext.define('Athene.view.nastavnisat.List', {
     extend: 'Ext.window.Window',
     alias: 'widget.nastavnisatlist',
     id: 'nastavnisatlist',
@@ -53,7 +53,7 @@
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj nastavni sat', 
                         id: 'openNastavniSatForm'
                     }

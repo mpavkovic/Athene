@@ -37,7 +37,7 @@ Ext.define('Athene.view.metodskajedinica.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj metodsku jedinicu', 
                         id: 'openMetodskaJedinicaForm'
                     }

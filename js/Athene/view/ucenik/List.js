@@ -129,7 +129,7 @@ Ext.define('Athene.view.ucenik.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj učenika', 
                         id: 'openUcenikForm'
                     }

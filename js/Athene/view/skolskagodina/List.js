@@ -80,7 +80,7 @@ Ext.define('Athene.view.skolskagodina.List', {
                         width: 20,
                         items: [
                             {
-                                icon: 'icons/blackboard_drawing.png',
+                                icon: 'img/icons/blackboard_drawing.png',
                                 tooltip: 'Nastavni plan'
                             }
                         ]
@@ -96,7 +96,7 @@ Ext.define('Athene.view.skolskagodina.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Nova školska godina', 
                         id: 'openSkGodForm'
                     }

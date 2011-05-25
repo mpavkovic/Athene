@@ -49,7 +49,7 @@ Ext.define('Athene.view.predmetrazrednogodjeljenja.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj predmet razrednog odjeljenja', 
                         id: 'openPredmetRazrednogOdjeljenjaForm'
                     }

@@ -61,7 +61,7 @@ Ext.define('Athene.view.skola.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj školu', 
                         id: 'openSkolaForm'
                     }

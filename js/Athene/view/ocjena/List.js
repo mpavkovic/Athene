@@ -53,7 +53,7 @@ Ext.define('Athene.view.ocjena.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj ocjenu', 
                         id: 'openOcjenaForm'
                     }

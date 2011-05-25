@@ -73,7 +73,7 @@ Ext.define('Athene.view.adresa.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj adresa', 
                         id: 'openAdresaForm'
                     }

@@ -45,7 +45,7 @@ Ext.define('Athene.view.najavaispita.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj najavaispita', 
                         id: 'openNajavaIspitaForm'
                     }

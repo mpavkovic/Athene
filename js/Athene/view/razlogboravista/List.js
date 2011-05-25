@@ -33,7 +33,7 @@ Ext.define('Athene.view.razlogboravista.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj razlog boravišta', 
                         id: 'openRazlogBoravistaForm'
                     }

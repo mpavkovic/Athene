@@ -37,7 +37,7 @@ Ext.define('Athene.view.predmetnacjelina.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj predmetnacjelina', 
                         id: 'openPredmetnaCjelinaForm'
                     }

@@ -33,7 +33,7 @@ Ext.define('Athene.view.vrstaputnika.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj vrstu putnika', 
                         id: 'openVrstaPutnikaForm'
                     }

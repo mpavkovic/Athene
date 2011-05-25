@@ -37,7 +37,7 @@ Ext.define('Athene.view.nastavnajedinica.List', {
                 items: [
                     {
                         xtype: 'button',
-                        icon: 'icons/add.png',
+                        icon: 'img/icons/add.png',
                         text: 'Dodaj nastavnu jedinicu', 
                         id: 'openNastavnaJedinicaForm'
                     }
