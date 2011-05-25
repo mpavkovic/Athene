@@ -31,7 +31,20 @@ Ext.define('Athene.view.adresa.Form', {
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
                         valueField: 'id',
-						name: 'ucenik_id'
+			name: 'ucenik_id',
+			
+			listConfig: {
+			    loadingText: 'Tražim...',
+	                    emptyText: 'Nema rezultata.',
+
+	                    // Custom rendering template for each item
+	                    getInnerTpl: function() {
+	                        return '<div class="search-item">' +
+	                            '<h3>{prezime} {ime}</h3>' +
+	                            'OIB: {oib}' +
+	                        '</div>';
+			    }
+			}
                     },
                     {
                         xtype: 'textfield',
