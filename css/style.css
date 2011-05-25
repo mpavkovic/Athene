@@ -1,0 +1,40 @@
+body, .x-border-layout-ct, .workspace {
+	 background: url(icons/back.jpg);
+}
+
+.x-grid-view {
+    background-color: #F9F7F7;
+}
+
+.helpwindow {
+     background-color: white;
+     padding: 5px;
+}
+
+.helpwindow h2 {
+     font-size: 16px;
+}
+
+
+/* OLD */
+h1.title {
+font-size: 24px;
+color: white;
+padding: 5px;
+}
+h1.title sub {
+font-size: 50%;
+}
+h1.title em {
+font-style: italic;
+}
+.header {
+background-color: #333;
+}
+#nav li {
+padding: 5px;
+                cursor: pointer;
+}
+#nav li:hover {
+background-color: #f3f3f3;
+}
