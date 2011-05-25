@@ -37,7 +37,7 @@ Ext.application({
 	'PredmetRazrednogOdjeljenja',
 	'Poteskoca',
 	'VrstaPutnika',
-	'Zanimanja',
+	'Zanimanje',
 	'Titula',
 	'KategorijaOcjena',
 	'SlobodnaAktivnost',

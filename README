@@ -1,1 +1,6 @@
-IS for Croatian elementary schools and highschools.
+Web-based IS for Croatian elementary schools and highschools.
+
+Used technologies:
+  * extjs javascript framework (http://docs.sencha.com/ext-js/4-0/)
+  * mysql database
+  * php backend

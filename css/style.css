@@ -1,5 +1,9 @@
-body, .x-border-layout-ct, .workspace {
-	 background: url(icons/back.jpg);
+body {
+    background: url(../img/bg.jpg);
+}
+
+.x-border-layout-ct, .workspace {
+    background-color: transparent;
 }
 
 .x-grid-view {
