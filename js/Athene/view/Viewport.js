@@ -7,10 +7,10 @@ Ext.define('Athene.view.Viewport', {
     // Define regions
     items: [
          // Header
-         {
+         /*{
             region: 'north',
             height: 100
-         },
+         },*/
          // Sidebar navigation
          {
             region: 'west',
