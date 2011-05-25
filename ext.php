@@ -7,6 +7,8 @@ error_reporting(E_ALL);
 
 set_include_path(get_include_path() . PATH_SEPARATOR . 'library/');
 
+session_start();
+
 include('database.php');
 require_once('FirePHPCore/FirePHP.class.php');
 $firephp = \FirePHP::getInstance(true);
@@ -109,11 +111,14 @@ if(isset($_GET)) {
         header('Content-Type: text/javascript');
         echo json_encode($menu->side($_GET['node']));
         die();
+    } else if(isset($_GET['logout'])) {
+        session_destroy();
+        die();
     }
 }
 
 if(isset($_POST) && !empty($_POST)) {
-    //var_dump($_POST);
+    //var_dump($_POST);   
     $response = new JsonResponse($_POST['extAction'], $_POST['extMethod'], null, $_POST['extTID']);
     $class = $_POST['extAction'];
     $actionClass = new $class($_POST);

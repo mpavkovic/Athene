@@ -12,6 +12,8 @@ class Model {
     
     protected $table;
     
+    protected $primaryKey = 'id';
+    
     public function __construct($fields = null) {
         $this->adapter = \Database::getInstance();
         if(isset($fields)) {
@@ -31,6 +33,11 @@ class Model {
     
     public function getAll() {
         return $this->adapter->query("SELECT * FROM " . $this->table);
+    }
+    
+    public function delete($idVal) {
+        $query = "DELETE FROM " . $this->table . ' WHERE ' . $this->primaryKey . " = '$idVal'";
+        return $this->adapter->query($query);
     }
     
 }

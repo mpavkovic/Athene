@@ -21,6 +21,7 @@ Ext.application({
     appFolder: 'js/Athene',
     
     controllers: [
+	'Main', // main controller, handles actions on viewport
         'Menu',
         'Razred',
         'SkolskaGodina',

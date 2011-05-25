@@ -92,7 +92,8 @@ Ext.define('Athene.view.mjesto.List', {
                     {
                         xtype: 'textfield',
                         id: 'listMjestoSearch',
-                        fieldLabel: 'Traži',
+                        fieldLabel: false,
+                        emptyText: 'traži...',
                         labelAlign: 'right'
                     },
                     {
