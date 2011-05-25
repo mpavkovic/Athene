@@ -1,4 +1,9 @@
 <?php
+
+    include('config.php');
+    include('database.php');
+    
+    session_start();
     $pageTitle = 'Athene';
 ?>
 <!DOCTYPE html> <!-- use html5 -->
@@ -22,7 +27,17 @@
     <!-- Load API -->
     <script type="text/javascript" src="api.php"></script>
     <!-- Load application -->
+    <?php
+        if(!$_SESSION['id']) {
+    ?>
+    <script type="text/javascript" src="js/login.js"></script>
+    <?php
+        } else {
+    ?>
     <script type="text/javascript" src="js/app.js"></script>
+    <?php
+        }
+    ?>
 </head>
 
 <body>
