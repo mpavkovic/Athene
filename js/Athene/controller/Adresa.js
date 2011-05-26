@@ -7,11 +7,17 @@ Ext.define('Athene.controller.Adresa', {
     ],
     
     stores: [
-        'Adresa'
+        'Adresa',
+        'Mjesto',
+        'RazlogBoravista',
+        'Ucenik'
     ],
     
     models: [
-        'Adresa'
+        'Adresa',
+        'Mjesto',
+        'RazlogBoravista',
+        'Ucenik'
     ],
     
     refs: [

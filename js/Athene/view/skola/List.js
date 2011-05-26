@@ -28,7 +28,10 @@ Ext.define('Athene.view.skola.List', {
                     },
                     {
                         text: 'Mjesto',
-                        dataIndex: 'mjesto_id'
+                        dataIndex: 'mjesto_id',
+                        renderer: function(value) {
+                            return Ext.getStore('Mjesto').getById(value).data.naziv;
+                        }
                     },
                     {
                         text: 'Ulica',

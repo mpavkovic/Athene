@@ -7,11 +7,13 @@
     ],
     
     stores: [
-        'Skola'
+        'Skola',
+        'Mjesto'
     ],
     
     models: [
-        'Skola'
+        'Skola',
+        'Mjesto'
     ],
     
     refs: [

@@ -20,7 +20,10 @@ Ext.define('Athene.view.adresa.List', {
                 columns: [
                     {
                         text: 'Učenik',
-                        dataIndex: 'ucenik_id'
+                        dataIndex: 'ucenik_id',
+                        renderer: function(value) {
+                            return Ext.getStore('Ucenik').getById(value).data.prezime;
+                        }
                     },
                     {
                         text: 'Tip adrese',
@@ -56,11 +59,17 @@ Ext.define('Athene.view.adresa.List', {
                     },
                     {
                         text: 'Mjesto',
-                        dataIndex: 'mjesto_id'
+                        dataIndex: 'mjesto_id',
+                        renderer: function(value) {
+                            return Ext.getStore('Mjesto').getById(value).data.naziv;
+                        }
                     },
                     {
                         text: 'Razlog boravišta',
-                        dataIndex: 'razlog_boravista_id'
+                        dataIndex: 'razlog_boravista_id',
+                        renderer: function(value) {
+                            return Ext.getStore('RazlogBoravista').getById(value).data.opis;
+                        }
                     }
                 ]
             }
