@@ -12,7 +12,19 @@ Ext.app.REMOTING_API = {
         "SkolskaGodina": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Ucitelj":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Drzava":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
-        "Mjesto":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "Mjesto":[
+            {
+                "name": "getAll",
+                "len":0
+            }, {
+                "name": "save",
+                "len":0,
+                "formHandler": true
+            }, {
+                name: "delete",
+                len: 1
+            }
+        ],
         "NacionalnaManjina":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "NastavniPlan":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Dogadjaj":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],

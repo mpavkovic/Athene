@@ -7,19 +7,21 @@ error_reporting(E_ALL);
 
 set_include_path(get_include_path() . PATH_SEPARATOR . 'library/');
 
+spl_autoload_register(function ($class) {
+    $classPath = 'lib' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+    include($classPath);
+});
+
 session_start();
 
 include('database.php');
-require_once('FirePHPCore/FirePHP.class.php');
-$firephp = \FirePHP::getInstance(true);
+
+// Debugger
+$debug = Debug::getInstance();
+
 ob_start();
 
-spl_autoload_register(function ($class) {
-    //var_dump($class);
-    $classPath = 'lib' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-    include($classPath);
-    //throw new \Exception('Unable to load ' . $class);
-});
+
 
 class JsonResponse {
     public $action, $method, $result, $tid, $type = 'rpc';
@@ -130,7 +132,9 @@ if(isset($_POST) && !empty($_POST)) {
 } else if(isset($HTTP_RAW_POST_DATA)) {
     header('Content-Type: text/javascript; charset=utf-8');
     $jsonRequest = json_decode($HTTP_RAW_POST_DATA);
-    $firephp->log($jsonRequest, 'JSON request');
+    //$firephp->log($jsonRequest, 'JSON request');
+    $debug->log('JSON request', $HTTP_RAW_POST_DATA, __FILE__, __LINE__);
+    
     $responses = array();
     if(is_array($jsonRequest)) {
         foreach($jsonRequest as $jr) {
@@ -149,7 +153,6 @@ if(isset($_POST) && !empty($_POST)) {
         $return = call_user_func(array($actionClass, $jsonRequest->method));
         $responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
     }
-    $firephp->log($responses, 'Response');
     echo implode(',', $responses);
 }
 

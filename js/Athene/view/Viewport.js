@@ -45,7 +45,35 @@ Ext.define('Athene.view.Viewport', {
             region: 'center',
             border: 0,
             bodyCls: 'workspace',
-            id: 'workspace'
+            id: 'workspace',
+            items: [
+               {
+                  xtype: 'window',
+                  autoShow: true,
+                  title: 'Debug',
+                  height: 200,
+                  width: 500,
+                  layout: 'fit',
+                  id: 'debugWindow',
+                  constrain: true,
+                  listeners: {
+                     afterrender: function(window) {
+                        console.log('Debug window rendered.');
+                        window.alignTo(this, 'br', [1, 5]);
+                     }
+                  },
+                  items: [
+                     {
+                        id: 'debugOutput',
+                        title: false,
+                        autoScroll: true,
+                        bodyStyle: 'padding: 5px',
+                        tpl: '<p>{data}</p>',
+                        tplWriteMode: 'append'
+                     }
+                  ]
+               }
+            ]
         }
     ]
 });

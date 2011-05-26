@@ -66,7 +66,13 @@ Ext.define('Athene.view.mjesto.List', {
                             {
                                 icon: 'img/icons/delete.png',
                                 tooltip: 'Izbriši',
-                                iconCls: 'deleteAction'
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var mjestoId = Ext.getStore('Mjesto').getAt(rowIndex).data.id;
+                                    Mjesto.delete(mjestoId, function(provider, response) {
+                                        console.log(provider, response);
+                                    })
+                                }
                             }
                         ]
                     }
