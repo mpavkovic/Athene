@@ -1,9 +1,9 @@
-Ext.define('Athene.view.user.List', {
+Ext.define('Athene.view.group.List', {
     extend: 'Ext.window.Window',
-    alias: 'widget.userlist',
-    id: 'userlist',
+    alias: 'widget.grouplist',
+    id: 'grouplist',
     
-    title: 'Popis korisnika',
+    title: 'Popis grupa',
     layout: 'fit',
     width: 600,
     minWidth: 600,
@@ -15,7 +15,7 @@ Ext.define('Athene.view.user.List', {
     tools: [
         {
             type: 'help',
-            id: 'helpUserList',
+            id: 'helpGroupList',
             qtip: 'Pomoć'
         }
     ],
@@ -24,22 +24,13 @@ Ext.define('Athene.view.user.List', {
         this.items = [
             {
                 xtype: 'grid',
-                id: 'usergrid',
+                id: 'groupgrid',
                 store: 'User',
                 forceFit: true,
                 columns: [
                     {
-                        text: 'Korisničko ime',
-                        dataIndex: 'username'
-                    },
-                    {
-                        text: 'Puno ime',
-                        dataIndex: 'last_name',
-                        tpl: '{last_name} {first_name}'
-                    },
-                    {
-                        text: 'E-mail',
-                        dataIndex: 'email'
+                        text: 'Naziv',
+                        dataIndex: 'name'
                     },
                     {
                         xtype: 'actioncolumn',
@@ -50,11 +41,11 @@ Ext.define('Athene.view.user.List', {
                                 tooltip: 'Izmijeni',
                                 iconCls: 'editAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    var view = Ext.widget('userform');
-                                    view.down('form').loadRecord(Ext.getStore('User').getAt(rowIndex));
-                                    view.down('#formUserSubmit').text = 'Spremi';
-                                    view.title = 'Izmijeni: ' + Ext.getStore('User').getAt(rowIndex).data.naziv;
-                                    view.renderTo = '#userlist';
+                                    var view = Ext.widget('groupform');
+                                    view.down('form').loadRecord(Ext.getStore('Group').getAt(rowIndex));
+                                    view.down('#formGroupSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Group').getAt(rowIndex).data.name;
+                                    view.renderTo = '#grouplist';
                                     view.modal = true; // Make window modal so the list is inacesible
                                     view.show();
                                 }
@@ -65,7 +56,7 @@ Ext.define('Athene.view.user.List', {
                                 tooltip: 'Izbriši',
                                 iconCls: 'deleteAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    var mjestoId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    var mjestoId = Ext.getStore('Group').getAt(rowIndex).data.id;
                                     Mjesto.delete(mjestoId, function(provider, response) {
                                         console.log(provider, response);
                                     })
@@ -88,8 +79,8 @@ Ext.define('Athene.view.user.List', {
                     {
                         xtype: 'button',
                         icon: 'img/icons/add.png',
-                        text: 'Dodaj korisnika', 
-                        id: 'openUserForm'
+                        text: 'Dodaj grupu', 
+                        id: 'openGroupForm'
                     },
                     /*'->',
                     {
@@ -111,3 +102,6 @@ Ext.define('Athene.view.user.List', {
         this.callParent(arguments);
     }
 });
+
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('grouplist', Athene.view.group.List);

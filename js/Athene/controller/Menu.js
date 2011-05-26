@@ -46,15 +46,19 @@ Ext.define('Athene.controller.Menu', {
                     if(record.data.leaf == true) {
                         _id = record.data.id;
                         _win = _id.substring(_id.lastIndexOf("/")+1);
-                        if(!Ext.Array.contains(regWindows, _win)) {
+                        /*if(!Ext.Array.contains(regWindows, _win)) {
                             Ext.Msg.alert("Error", "Unknown window id " + _win + ".");
                             return;
-                        }
+                        }*/
                         var view = Ext.WindowManager.get(_win);
                         if(view === undefined) {
-                            view = Ext.widget(_win);
-                            Ext.getCmp('workspace').add(view);
-                            view.show();
+			    if(Ext.ComponentManager.isRegistered(_win)) {
+				view = Ext.widget(_win);
+				Ext.getCmp('workspace').add(view);
+				view.show();
+			    } else {
+				console.error('Widget ' + _win + ' is not registered!');
+			    }
                         }
                     }
                 }

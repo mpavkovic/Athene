@@ -12,5 +12,6 @@
         'is_superuser',
         'last_login',
         'date_joined'
-    ]
+    ],
+    belongsTo: 'Group'
 });

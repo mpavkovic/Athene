@@ -1,29 +1,28 @@
-Ext.define('Athene.controller.User', {
+Ext.define('Athene.controller.Group', {
     extend: 'Ext.app.Controller',
     
     views: [
-        'user.List',
-        'user.Form'
+        'group.List',
+        'group.Form'
     ],
     
     stores: [
-        'User'
+        'Group'
     ],
     
     models: [
-        'User'
+        'Group'
     ],
        
     init: function() {	
         this.control({
-            '#usergrid': {
+            '#groupgrid': {
                 render: this.onGridRendered,
                 itemdblclick: this.edit
             },
-            '#openUserForm': {
+            '#openGroupForm': {
                 click: function() {
-                    var view = Ext.widget('userform');
-                    view.show();
+                    Ext.widget('groupform').show();
                 }
             },
 	    /*'#listMjestoSearch': {
@@ -34,7 +33,7 @@ Ext.define('Athene.controller.User', {
 		    this.getSearchField().reset();
 		}
 	    },*/
-	    '#helpUserList': {
+	    '#helpGroupList': {
                 click: this.help
             }
 	    /*'textfield': {
@@ -48,26 +47,26 @@ Ext.define('Athene.controller.User', {
     },
     
     onGridRendered: function() {
-        this.getUserStore().load();
+        this.getGroupStore().load();
     },
        
     edit: function(v, r) {
-        var view = Ext.widget('userform');
+        var view = Ext.widget('groupform');
         view.down('form').loadRecord(r);
-	view.down('#formUserSubmit').text = 'Spremi';
-	view.title = 'Izmijeni: ' + r.data.naziv;
-        view.renderTo = '#userlist';
+	view.down('#formGroupSubmit').text = 'Spremi';
+	view.title = 'Izmijeni: ' + r.data.name;
+        view.renderTo = '#grouplist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
     },
     
     help: function() {
         Ext.Ajax.request({
-            url: 'help/userlist.html',
+            url: 'help/grouplist.html',
             success: function(response) {
                 var view = Ext.widget('helpwindow');
                 view.update(response.responseText);
-                view.setTitle(view.title + 'Popis korisnika');
+                view.setTitle(view.title + 'Popis grupa');
                 view.show();
             },
             failure: function() {

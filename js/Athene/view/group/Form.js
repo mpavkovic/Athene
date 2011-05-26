@@ -1,9 +1,9 @@
-Ext.define('Athene.view.user.Form', {
+Ext.define('Athene.view.group.Form', {
     extend: 'Ext.window.Window',
-    alias: 'widget.userform',
-    id: 'userform',
+    alias: 'widget.groupform',
+    id: 'groupform',
     
-    title: 'Novi korisnik',
+    title: 'Nova grupa',
     layout: 'fit',
     width: 300,
     height: 260,
@@ -21,36 +21,20 @@ Ext.define('Athene.view.user.Form', {
 		defaultType: 'textfield',
                 
                 api: {
-                    submit: User.save
+                    submit: Group.save
                 },
     
                 items: [
                     {
-                        name: 'username',
-                        fieldLabel: 'Korisničko ime',
+                        name: 'name',
+                        fieldLabel: 'Naziv',
                         allowBlank: false
-                    },
-		    {
-			name: 'first_name',
-			fieldLabel: 'Ime'
-		    },
-		    {
-			name: 'last_name',
-			fieldLabel: 'Prezime'
-		    },
-		    {
-			name: 'email',
-			fieldLabel: 'E-mail'
-		    },
-		    {
-			name: 'password',
-			fieldLabel: 'Lozinka'
-		    }
+                    }
                 ],
                 buttons: [
                     {
                         text: 'Dodaj',
-			id: 'formUserSubmit',
+			id: 'formGroupSubmit',
                         handler: function() {
                             this.up('form').getForm().submit();
                         }

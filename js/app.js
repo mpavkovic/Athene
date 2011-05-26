@@ -54,7 +54,8 @@ Ext.application({
 	'NajavaIspita',
 	'Adresa',
 	'Izostanak',
-	'User'
+	'User',
+	'Group'
     ],
     
     // This function is called when application is initialized
