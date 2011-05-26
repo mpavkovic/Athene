@@ -27,7 +27,8 @@ var regWindows = [
 	'nastavnisatlist',
 	'najavaispitalist',
 	'adresalist',
-	'izostanaklist'
+	'izostanaklist',
+	'userlist'
 ];
 
 Ext.define('Athene.controller.Menu', {
