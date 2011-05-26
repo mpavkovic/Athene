@@ -53,7 +53,8 @@ Ext.application({
 	'NastavniSat',
 	'NajavaIspita',
 	'Adresa',
-	'Izostanak'
+	'Izostanak',
+	'User'
     ],
     
     // This function is called when application is initialized

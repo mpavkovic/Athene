@@ -47,7 +47,16 @@ Ext.app.REMOTING_API = {
         "NastavniSat":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "NajavaIspita":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Adresa":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
-        "Izostanak":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}]
+        "Izostanak":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        
+        "User": [{
+            name: "getAll",
+            len: 0
+        },{
+            name: "save",
+            len: 0,
+            formHandler: true
+        }]
     }
 };';
 
