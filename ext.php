@@ -82,7 +82,7 @@ class Menu {
                 (object)array('text' => 'Predmet razrednog odjeljenja', 'id' => 'sidemenu/imenik/predmetrazrednogodjeljenjalist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Poteškoće', 'id' => 'sidemenu/imenik/poteskocalist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Vrsta putnika', 'id' => 'sidemenu/imenik/vrstaputnikalist', 'leaf' => true, 'cls' => 'file'),
-                (object)array('text' => 'Zanimanja', 'id' => 'sidemenu/imenik/zanimanjalist', 'leaf' => true, 'cls' => 'file'),
+                (object)array('text' => 'Zanimanja', 'id' => 'sidemenu/imenik/zanimanjelist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Titula', 'id' => 'sidemenu/imenik/titulalist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Kategorija ocjena', 'id' => 'sidemenu/imenik/kategorijaocjenalist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Slobodna aktivnost', 'id' => 'sidemenu/imenik/slobodnaaktivnostlist', 'leaf' => true, 'cls' => 'file'),

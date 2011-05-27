@@ -14,8 +14,8 @@ Ext.define('Athene.view.zanimanje.List', {
         this.items = [
             {
                 xtype: 'grid',
-                id: 'zanimanjagrid',
-                store: 'Zanimanja',
+                id: 'zanimanjegrid',
+                store: 'Zanimanje',
                 forceFit: true,
                 columns: [
                     {
@@ -35,7 +35,7 @@ Ext.define('Athene.view.zanimanje.List', {
                         xtype: 'button',
                         icon: 'img/icons/add.png',
                         text: 'Dodaj zanimanje', 
-                        id: 'openZanimanjaForm'
+                        id: 'openZanimanjeForm'
                     }
                 ]
             }
@@ -44,3 +44,5 @@ Ext.define('Athene.view.zanimanje.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('zanimanjelist', Athene.view.zanimanje.List);

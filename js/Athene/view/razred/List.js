@@ -83,3 +83,5 @@ Ext.define('Athene.view.razred.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('razredlist', Athene.view.razred.List);

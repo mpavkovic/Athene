@@ -3,7 +3,7 @@
     model: 'Athene.model.Zanimanje',
     proxy: {
         type: 'direct',
-        directFn: Zanimanja.getAll
+        directFn: Zanimanje.getAll
     },
     sorters: [
         {

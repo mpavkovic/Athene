@@ -52,3 +52,5 @@ Ext.define('Athene.view.dogadjaj.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('dogadjajlist', Athene.view.dogadjaj.List);

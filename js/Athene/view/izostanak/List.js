@@ -77,3 +77,5 @@ Ext.define('Athene.view.izostanak.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('izostanaklist', Athene.view.izostanak.List);

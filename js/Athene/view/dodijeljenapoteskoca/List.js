@@ -54,7 +54,7 @@ Ext.define('Athene.view.dodijeljenapoteskoca.List', {
                     {
                         xtype: 'button',
                         icon: 'img/icons/add.png',
-                        text: 'Dodaj dodijeljenapoteskoca', 
+                        text: 'Dodaj dodijeljenu poteškoću', 
                         id: 'openDodijeljenaPoteskocaForm'
                     }
                 ]
@@ -64,3 +64,5 @@ Ext.define('Athene.view.dodijeljenapoteskoca.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('dodijeljenapoteskocalist', Athene.view.dodijeljenapoteskoca.List);

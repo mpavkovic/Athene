@@ -44,3 +44,5 @@ Ext.define('Athene.view.nacionalnamanjina.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('nacionalnamanjinalist', Athene.view.nacionalnamanjina.List);

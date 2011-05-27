@@ -114,3 +114,4 @@ Ext.define('Athene.view.user.List', {
 });
 
 Ext.ComponentManager.registerType('userlist', Athene.view.user.List);
+
