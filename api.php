@@ -33,7 +33,7 @@ Ext.app.REMOTING_API = {
         "Predmet":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "PredmetRazrednogOdjeljenja":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
 		"Poteskoca":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
-        "Zanimanja":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "Zanimanje":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Titula":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "KategorijaOcjena":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "SlobodnaAktivnost":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],

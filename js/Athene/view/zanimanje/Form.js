@@ -20,7 +20,7 @@ Ext.define('Athene.view.zanimanje.Form', {
                 },
                 
                 api: {
-                    submit: Zanimanja.save
+                    submit: Zanimanje.save
                 },
     
                 items: [

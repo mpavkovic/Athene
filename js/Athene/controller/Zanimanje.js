@@ -13,8 +13,16 @@ Ext.define('Athene.controller.Zanimanje', {
     models: [
         'Zanimanje'
     ],
-       
-    init: function() {        
+    
+    refs: [
+        {
+            ref: 'list',
+            selector: '#zanimanjegrid'
+        }
+    ],
+    
+    init: function() {
+        
         this.control({
             '#zanimanjegrid': {
                 render: this.onGridRendered,
@@ -30,13 +38,13 @@ Ext.define('Athene.controller.Zanimanje', {
     },
     
     onGridRendered: function() {
-        this.getZanimanjeStore().load();
+        this.getList().store.load();
     }, 
     
     edit: function(v, r) {
         var view = Ext.widget('zanimanjeform');
         view.down('form').loadRecord(r);
-        view.renderTo = '#zanimanjalist';
+        view.renderTo = '#zanimanjelist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
     }

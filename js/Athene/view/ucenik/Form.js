@@ -21,7 +21,7 @@ Ext.define('Athene.view.ucenik.Form', {
     title: 'Novi učenik',
     layout: 'fit',
     width: 350,
-    height: 355,
+    height: 375,
     constrain: true,
        
     initComponent: function() {
@@ -42,7 +42,7 @@ Ext.define('Athene.view.ucenik.Form', {
                 items: [
 							{
 								xtype: 'panel',
-								title: 'Tab 1',
+								title: 'Osnovni podaci',
 								height: 180,
 								items: [
 											{
@@ -72,10 +72,19 @@ Ext.define('Athene.view.ucenik.Form', {
 											{
 												xtype: 'datefield',
 												name: 'datum',
-												fieldLabel: 'Datum',
+												fieldLabel: 'Datum rođenja',
 												format: 'd.m.Y.',
 												submitFormat: 'Y-m-d',
 												allowBlank: false
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikMjestoRod',
+												store: 'Mjesto',
+												fieldLabel: 'Mjesto rođenja',
+												displayField: 'naziv',
+												valueField: 'id',
+												name: 'mjesto_id'
 											},
 											{
 												xtype: 'combo',
@@ -96,12 +105,30 @@ Ext.define('Athene.view.ucenik.Form', {
 												displayField: 'naziv',
 												valueField: 'abbr',
 												name: 'sportas'
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikNarodnost',
+												store: 'Narodnost',
+												fieldLabel: 'Narodnost',
+												displayField: 'naziv',
+												valueField: 'id',
+												name: 'narodnost_id'
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikNacionalnaManj',
+												store: 'NacionalnaManjina',
+												fieldLabel: 'Nacionalna Manjina',
+												displayField: 'naziv',
+												valueField: 'id',
+												name: 'nacionalna_manjina_id'
 											}
 									]
 							},
 							{
 								xtype: 'panel',
-								title: 'Tab 2',
+								title: 'Podaci o roditeljima',
 								items:	[
 											{
 												xtype: 'textfield',
@@ -132,12 +159,30 @@ Ext.define('Athene.view.ucenik.Form', {
 												name: 'majka_djevojacko',
 												fieldLabel: 'Majka djevojačko',
 												allowBlank: false
-											}
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikOtacZani',
+												store: 'Zanimanje',
+												fieldLabel: 'Zanimanje oca',
+												displayField: 'naziv',
+												valueField: 'id',
+												name: 'otac_zanimanje_id'
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikMajkaZani',
+												store: 'Zanimanje',
+												fieldLabel: 'Zanimanje majke',
+												displayField: 'naziv',
+												valueField: 'id',
+												name: 'majka_zanimanje_id'
+											},
 										]
 							},
 							{
 								xtype: 'panel',
-								title: 'Tab 3',
+								title: 'Ostali podaci',
 								items:	[
 											{
 												xtype: 'textfield',
@@ -154,7 +199,7 @@ Ext.define('Athene.view.ucenik.Form', {
 											{
 												xtype: 'datefield',
 												name: 'smb_datum_od',
-												fieldLabel: 'Datum od',
+												fieldLabel: 'SMB datum od',
 												format: 'd.m.Y.',
 												submitFormat: 'Y-m-d',
 												allowBlank: false
@@ -162,7 +207,7 @@ Ext.define('Athene.view.ucenik.Form', {
 											{
 												xtype: 'datefield',
 												name: 'smb_datum_do',
-												fieldLabel: 'Datum do',
+												fieldLabel: 'SMB datum do',
 												format: 'd.m.Y.',
 												submitFormat: 'Y-m-d',
 												allowBlank: false
@@ -178,34 +223,33 @@ Ext.define('Athene.view.ucenik.Form', {
 												name: 'hospitant'
 											},
 											{
-												xtype: 'textfield',
-												name: 'ime',
-												fieldLabel: 'Ime',
-												allowBlank: false
-											},
-											{
-												xtype: 'textfield',
-												name: 'prezime',
-												fieldLabel: 'Prezime',
-												allowBlank: false
-											},
-											{
-												xtype: 'datefield',
-												name: 'datum',
-												fieldLabel: 'Datum',
-												format: 'd.m.Y.',
-												submitFormat: 'Y-m-d',
-												allowBlank: false
-											},
-											{
 												xtype: 'combo',
-												id: 'comboUcenikSpol',
-												fieldLabel: 'Spol',
-												store: odabir_spol,
+												id: 'comboUcenikStranac',
+												fieldLabel: 'Stranac',
+												store: odabir_da_ne,
 												queryMode: 'local',
 												displayField: 'naziv',
 												valueField: 'abbr',
-												name: 'spol'
+												name: 'stranac'
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikSkolovanjeIZRH',
+												fieldLabel: 'Školovanje izvan RH',
+												store: odabir_da_ne,
+												queryMode: 'local',
+												displayField: 'naziv',
+												valueField: 'abbr',
+												name: 'skolovanje_izvan_rh'
+											},
+											{
+												xtype: 'combo',
+												id: 'comboUcenikVrstaPutnika',
+												store: 'VrstaPutnika',
+												fieldLabel: 'Vrsta putnika',
+												displayField: 'naziv',
+												valueField: 'id',
+												name: 'vrsta_putnika_id'
 											}
 										]
 							}
