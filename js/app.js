@@ -24,11 +24,11 @@ Ext.application({
     
     controllers: [
 	'Main', // main controller, handles actions on viewport
-        'Menu',
-        'Razred',
-        'SkolskaGodina',
-        'Ucenik',
-        'Ucitelj',
+	'Menu',
+	'Razred',
+	'SkolskaGodina',
+	'Ucenik',
+	'Ucitelj',
 	'Drzava',
 	'Mjesto',
 	'NacionalnaManjina',

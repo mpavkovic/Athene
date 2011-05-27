@@ -34,6 +34,12 @@ Ext.define('Athene.controller.NastavniSat', {
                     var view = Ext.widget('nastavnisatform');
                     view.show();
                 }
+            },
+            '#openNastavniSatGrid': {
+                click: function() {
+                    var view = Ext.widget('nastavnisatlist');
+                    view.show();
+                }
             }
         });
     },

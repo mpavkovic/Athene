@@ -20,9 +20,9 @@ body {
 }
 
 body.login h1 {
-    background:transparent url(../img/logo.png) no-repeat;
-    height: 75px;
-    width: 307px;
+    background:transparent url(../img/osz_logo.png) no-repeat;
+    height: 170px;
+    width: 150px;
     margin: 100px auto 0;
     text-indent: -3000px;
     white-space: nowrap;

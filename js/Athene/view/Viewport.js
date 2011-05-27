@@ -1,4 +1,4 @@
-Ext.define('Athene.view.Viewport', {
+﻿Ext.define('Athene.view.Viewport', {
    extend: 'Ext.container.Viewport',
    layout: {
         type: 'border',
@@ -23,7 +23,33 @@ Ext.define('Athene.view.Viewport', {
                         icon: 'img/icons/lock_open.png',
                         text: 'Odjava',
                         id: 'logout'
-                     }
+                     },
+					{
+						xtype: 'tbtext',
+						margin: '0px 5px 0px 10px',
+						html: '<b>Najčešće korišteno:</b>'
+					},
+                    {
+                        xtype: 'button',
+						icon: 'img/icons/ucenici.png',
+                        text: 'Učenici',
+						id: 'openUcenikGrid',
+						tooltip: {text:'Popis učenika'},
+                    },
+                    {
+                        xtype: 'button',
+						icon: 'img/icons/razredi.png',
+                        text: 'Razredi',
+						id: 'openRazredGrid',
+						tooltip: {text:'Popis razreda'},
+                    },
+                    {
+                        xtype: 'button',
+						icon: 'img/icons/nastavni_sat.png',
+                        text: 'Nastavni sat',
+						id: 'openNastavniSatGrid',
+						tooltip: {text:'Popis razreda'},
+                    }
                   ]
                }
             ]

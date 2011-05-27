@@ -36,6 +36,11 @@ Ext.define('Athene.controller.Razred', {
                     view.show();
                 }
             },
+            '#openRazredGrid': {
+                click: function() {
+                    Ext.widget('razredlist').show();
+                }
+            },
             '#filterRazredBySkGod': {
                 change: this.filter
             },

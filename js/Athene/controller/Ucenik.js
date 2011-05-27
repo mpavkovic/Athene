@@ -34,7 +34,12 @@ Ext.define('Athene.controller.Ucenik', {
                     var view = Ext.widget('ucenikform');
                     view.show();
                 }
-            }
+            },
+            '#openUcenikGrid': {
+                click: function() {
+                    Ext.widget('uceniklist').show();
+                }
+            },
         });
     },
     
