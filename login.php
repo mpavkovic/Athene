@@ -21,6 +21,7 @@ if(isset($_POST)) {
     
     // Login
     $_SESSION['id'] = $r[0]->id;
+    $_SESSION['username'] = $r[0]->username;
     echo '{ success: true }';
 }
 

@@ -15,9 +15,10 @@ Ext.define('Athene.view.Viewport', {
             items: [
                {
                   xtype: 'toolbar',
-                  items: [{
-                        text: 'Test'
-                     }, '->',
+                  items: ['->', {
+                        xtype: 'tbtext',
+                        html: 'Ulogirani ste kao: <b>' + USERNAME + '</b>'
+                     },
                      {
                         icon: 'img/icons/lock_open.png',
                         text: 'Odjava',

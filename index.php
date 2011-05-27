@@ -37,6 +37,9 @@
     <?php
         } else {
     ?>
+    <script type="text/javascript">
+        var USERNAME = '<?php echo $_SESSION['username']; ?>';
+    </script>
     <script type="text/javascript" src="js/app.js"></script>
     <?php
         }
