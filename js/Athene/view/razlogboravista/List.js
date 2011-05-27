@@ -44,3 +44,5 @@ Ext.define('Athene.view.razlogboravista.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('razlogboravistalist', Athene.view.razlogboravista.List);

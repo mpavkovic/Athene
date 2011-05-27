@@ -60,3 +60,5 @@ Ext.define('Athene.view.predmetrazrednogodjeljenja.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('predmetrazrednogodjeljenjalist', Athene.view.predmetrazrednogodjeljenja.List);

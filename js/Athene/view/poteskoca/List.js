@@ -45,3 +45,5 @@ Ext.define('Athene.view.poteskoca.List', {
         this.callParent(arguments);
     }
 });
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('poteskocalist', Athene.view.poteskoca.List);

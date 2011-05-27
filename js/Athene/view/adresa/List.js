@@ -93,3 +93,6 @@ Ext.define('Athene.view.adresa.List', {
         this.callParent(arguments);
     }
 });
+
+// Register custom xtype so we can use it in menu
+Ext.ComponentManager.registerType('adresalist', Athene.view.adresa.List);
