@@ -55,7 +55,8 @@ Ext.application({
 	'Adresa',
 	'Izostanak',
 	'User',
-	'Group'
+	'Group',
+	'Help'
     ],
     
     // This function is called when application is initialized
@@ -94,4 +95,7 @@ Ext.onReady(function() {
 	    }
 	});
     }
+    
+    // Setup CKEDITOR
+    CKEDITOR.config.toolbar = 'Basic';
 });

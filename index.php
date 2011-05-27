@@ -19,6 +19,9 @@
     <!-- Include custom stylesheets -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     
+    <!-- Load CKEditor -->
+    <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
+    
     <!-- Uncomment for production environment -->
     <!--<script type="text/javascript" src="js/ext/ext-all.js"></script>-->
     <script type="text/javascript" src="js/ext/ext-all-debug.js"></script>
@@ -40,6 +43,13 @@
     ?>
 </head>
 
-<body>
+<body <?php if(!$_SESSION['id']) { echo 'class="login"'; } ?>>
+    <?php
+        if(!$_SESSION['id']) {
+    ?>
+    <h1>Athene BETA</h1>
+    <?php
+        }
+    ?>
 </body>
 </html>

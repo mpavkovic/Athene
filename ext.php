@@ -101,6 +101,7 @@ class Menu {
                 (object)array('text' => 'Korisnici', 'id' => 'sidemenu/admin/userlist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Grupe', 'id' => 'sidemenu/admin/grouplist', 'leaf' => true, 'cls' => 'file'),
                 (object)array('text' => 'Postavke', 'id' => 'sidemenu/admin/settings', 'leaf' => true, 'iconCls' => 'settingIcon'),
+                (object)array('text' => 'Help', 'id' => 'sidemenu/admin/helplist', 'leaf' => true),
             );
         }
     }

@@ -19,6 +19,15 @@ body {
      font-size: 16px;
 }
 
+body.login h1 {
+    background:transparent url(../img/logo.png) no-repeat;
+    height: 75px;
+    width: 307px;
+    margin: 100px auto 0;
+    text-indent: -3000px;
+    white-space: nowrap;
+}
+
 
 /* OLD */
 h1.title {

@@ -4,7 +4,7 @@ Ext.onReady(function() {
         url: 'login.php',
         title: 'Prijava',
         bodyPadding: 5,
-        style: 'margin: 200px auto;',
+        style: 'margin: 20px auto;',
         width: 350,
         layout: 'anchor',
         defaults: {
@@ -15,13 +15,22 @@ Ext.onReady(function() {
             {
                 fieldLabel: 'Korisničko ime',
                 name: 'username',
-                allowBlank: false
+                allowBlank: false,
+                maskRe: /[a-zA-Z0-9_]/i,
+                msgTarget: 'under',
+                regex: /[a-zA-Z0-9_]{6,20}/i,
+                regexText: 'Korisničko ime nije validno!'
             },
             {
                 fieldLabel: 'Lozinka',
                 inputType: 'password',
                 name: 'password',
-                allowBlank: false
+                allowBlank: false,
+                msgTarget: 'under'
+            },
+            {
+                fieldLabel: 'Zapamti me',
+                xtype: 'checkbox'
             }
         ],
         buttons: [
@@ -39,7 +48,10 @@ Ext.onReady(function() {
                             },
                             failure: function(form, action) {
                                 obj = Ext.JSON.decode(action.response.responseText);
-                                Ext.Msg.alert('Greška', obj.errors.reason);
+                                Ext.Msg.alert('Greška', obj.errors.reason, function() {
+                                    form.reset();
+                                    form.findField('username').focus();
+                                });
                             }
                         })
                     }

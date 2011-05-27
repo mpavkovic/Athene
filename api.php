@@ -65,6 +65,15 @@ Ext.app.REMOTING_API = {
             name: "save",
             len: 0,
             formHandler: true
+        }],
+        
+        "Help": [{
+            name: "getAll",
+            len: 0
+        },{
+            name: "save",
+            len: 0,
+            formHandler: true
         }]
     }
 };';
