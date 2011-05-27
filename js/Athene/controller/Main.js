@@ -2,7 +2,8 @@ Ext.define('Athene.controller.Main', {
     extend: 'Ext.app.Controller',
     
     views: [
-        'Viewport'
+        'Viewport',
+        'PopupMessage'
     ],
     
     

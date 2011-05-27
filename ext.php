@@ -123,7 +123,7 @@ if(isset($_GET)) {
 if(isset($_POST) && !empty($_POST)) {
     //var_dump($_POST);   
     $response = new JsonResponse($_POST['extAction'], $_POST['extMethod'], null, $_POST['extTID']);
-    $class = $_POST['extAction'];
+    $class = 'Athene\\Model\\' . $_POST['extAction'];
     $actionClass = new $class($_POST);
     $return = call_user_func(array($actionClass, $_POST['extMethod']));
   

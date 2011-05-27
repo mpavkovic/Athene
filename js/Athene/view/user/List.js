@@ -11,6 +11,7 @@ Ext.define('Athene.view.user.List', {
     minHeight: 300,
     maximizable: true,
     constrain: true,
+    closeAction: 'hide',
     
     tools: [
         {
@@ -111,3 +112,5 @@ Ext.define('Athene.view.user.List', {
         this.callParent(arguments);
     }
 });
+
+Ext.ComponentManager.registerType('userlist', Athene.view.user.List);

@@ -93,3 +93,5 @@ Ext.define('Athene.view.adresa.List', {
         this.callParent(arguments);
     }
 });
+
+Ext.ComponentManager.registerType('adresalist', Athene.view.adresa.List);

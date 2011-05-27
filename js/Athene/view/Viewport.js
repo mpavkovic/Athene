@@ -73,7 +73,12 @@ Ext.define('Athene.view.Viewport', {
                         tplWriteMode: 'append'
                      }
                   ]
-               }
+               }/*,
+               {
+                  //region: 'north',
+                  xtype: 'popupmessage',
+                  //style: 'position: absolute; right: 0;'
+               }*/
             ]
         }
     ]
