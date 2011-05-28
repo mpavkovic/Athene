@@ -10,6 +10,7 @@ Ext.define('Athene.view.nastavniplan.Form', {
     constrain: true,
        
     initComponent: function() {
+	var me = this;
         this.items = [
             {
                 xtype: 'form',
@@ -34,6 +35,12 @@ Ext.define('Athene.view.nastavniplan.Form', {
                     }
                 ],
                 buttons: [
+		    {
+			text: 'Odustani',
+			handler: function() {
+			   me.close();
+			}
+		    },
                     {
                         text: 'Dodaj',
                         handler: function() {

@@ -20,6 +20,7 @@ Ext.define('Athene.view.ocjena.Form', {
     constrain: true,
        
     initComponent: function() {
+	var me = this;
         this.items = [
             {
                 xtype: 'form',
@@ -90,6 +91,12 @@ Ext.define('Athene.view.ocjena.Form', {
                     }
                 ],
                 buttons: [
+		    {
+			text: 'Odustani',
+			handler: function() {
+			   me.close();
+			}
+		    },
                     {
                         text: 'Dodaj',
                         handler: function() {

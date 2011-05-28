@@ -25,6 +25,7 @@ Ext.define('Athene.view.ucenik.Form', {
     constrain: true,
        
     initComponent: function() {
+	var me = this;
         this.items = [
             {
                 xtype: 'tabpanel',
@@ -268,6 +269,12 @@ Ext.define('Athene.view.ucenik.Form', {
 							}
 						],
                 buttons: [
+		    {
+			text: 'Odustani',
+			handler: function() {
+			   me.close();
+			}
+		    },
                     {
                         text: 'Dodaj',
                         handler: function() {

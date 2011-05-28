@@ -10,6 +10,7 @@ Ext.define('Athene.view.drzava.Form', {
     constrain: true,
        
     initComponent: function() {
+        var me = this;
         this.items = [
             {
                 xtype: 'form',
@@ -40,6 +41,12 @@ Ext.define('Athene.view.drzava.Form', {
                     }
                 ],
                 buttons: [
+                    {
+			text: 'Odustani',
+			handler: function() {
+			   me.close();
+			}
+		    },
                     {
                         text: 'Dodaj',
                         handler: function() {
