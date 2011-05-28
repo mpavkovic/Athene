@@ -15,15 +15,7 @@
             items: [
                {
                   xtype: 'toolbar',
-                  items: ['->', {
-                        xtype: 'tbtext',
-                        html: 'Ulogirani ste kao: <b>' + USERNAME + '</b>'
-                     },
-                     {
-                        icon: 'img/icons/lock_open.png',
-                        text: 'Odjava',
-                        id: 'logout'
-                     },
+                  items: ['->',
 					{
 						xtype: 'tbtext',
 						margin: '0px 5px 0px 10px',
@@ -49,7 +41,16 @@
                         text: 'Nastavni sat',
 						id: 'openNastavniSatGrid',
 						tooltip: {text:'Popis razreda'},
-                    }
+                    },
+					{
+                        xtype: 'tbtext',
+                        html: 'Ulogirani ste kao: <b>' + USERNAME + '</b>'
+                     },
+                     {
+                        icon: 'img/icons/lock_open.png',
+                        text: 'Odjava',
+                        id: 'logout'
+                     }
                   ]
                }
             ]

@@ -9,6 +9,14 @@ Ext.define('Athene.view.adresa.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+	
+    tools: [
+        {
+            type: 'help',
+            id: 'helpAdresaList',
+            qtip: 'Pomoć'
+        }
+    ],
     
     initComponent: function() {
         this.items = [
