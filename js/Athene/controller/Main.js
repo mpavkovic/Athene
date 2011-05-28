@@ -22,8 +22,26 @@ Ext.define('Athene.controller.Main', {
                     });
                     window.location.reload();
                 }
+            },
+			'#openPomocForm': {
+                click: this.help
             }
         });
+    },
+	
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/index.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Pomoć pri korištenju aplikacije');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
     
 });

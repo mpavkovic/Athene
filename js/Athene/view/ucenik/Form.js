@@ -9,8 +9,8 @@ var odabir_da_ne = Ext.create('Ext.data.Store', {
 var odabir_spol = Ext.create('Ext.data.Store', {
     fields: ['abbr','naziv'],
     data : [
-        {"abbr":"1", "naziv":"Muško"},
-        {"abbr":"0", "naziv":"Žensko"}
+        {"abbr":"M", "naziv":"Muško"},
+        {"abbr":"Z", "naziv":"Žensko"}
     ]
 });
 Ext.define('Athene.view.ucenik.Form', {

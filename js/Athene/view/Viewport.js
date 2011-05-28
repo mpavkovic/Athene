@@ -42,6 +42,13 @@
 						id: 'openNastavniSatGrid',
 						tooltip: {text:'Popis razreda'},
                     },
+                    {
+                        xtype: 'button',
+						icon: 'img/icons/help.png',
+                        text: 'Pomoć',
+						id: 'openPomocForm',
+						tooltip: {text:'Kako koristiti aplikaciju'},
+                    },
 					{
                         xtype: 'tbtext',
                         html: 'Ulogirani ste kao: <b>' + USERNAME + '</b>'
@@ -49,7 +56,7 @@
                      {
                         icon: 'img/icons/lock_open.png',
                         text: 'Odjava',
-                        id: 'logout'
+                        id: 'logout',
                      }
                   ]
                }

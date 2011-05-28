@@ -39,84 +39,20 @@ Ext.define('Athene.view.ucenik.List', {
                         dataIndex: 'datum_rodjenja'
                     },
                     {
+                        text: 'Mjesto rođenja',
+                        dataIndex: 'mjesto_rodjenja_id'
+                    },
+                    {
                         text: 'Spol',
                         dataIndex: 'spol'
-                    },
-                    {
-                        text: 'Otac ime nom',
-                        dataIndex: 'otac_ime_nom'
-                    },
-                    {
-                        text: 'Otac ime gen',
-                        dataIndex: 'otac_ime_gen'
-                    },
-                    {
-                        text: 'Majka ime nom',
-                        dataIndex: 'majka_ime_nom'
-                    },
-                    {
-                        text: 'Majka ime gen',
-                        dataIndex: 'Majka_ime_gen'
-                    },
-                    {
-                        text: 'Majka djevojačko',
-                        dataIndex: 'majka_djevojacko'
-                    },
-                    {
-                        text: 'Stranac',
-                        dataIndex: 'stranac'
-                    },
-                    {
-                        text: 'Školovanje izvan RH',
-                        dataIndex: 'skolovanje_izvan_rh'
                     },
                     {
                         text: 'Sportaš',
                         dataIndex: 'sportas'
                     },
                     {
-                        text: 'Broj domovnice',
-                        dataIndex: 'broj_domovnice'
-                    },
-                    {
-                        text: 'SMB',
-                        dataIndex: 'smb'
-                    },
-                    {
-                        text: 'SMB datum od',
-                        dataIndex: 'smb_datum_od'
-                    },
-                    {
-                        text: 'SMB datum do',
-                        dataIndex: 'smb_datum_do'
-                    },
-                    {
-                        text: 'Hospitant',
-                        dataIndex: 'hospitant'
-                    },
-                    {
-                        text: 'Mjesto rođenja',
-                        dataIndex: 'mjesto_rodjenja_id'
-                    },
-                    {
-                        text: 'Narodnost',
-                        dataIndex: 'narodnost_id'
-                    },
-                    {
-                        text: 'Nacionalna manjina',
-                        dataIndex: 'nacionalna_manjina_id'
-                    },
-                    {
                         text: 'Vrsta putnika',
                         dataIndex: 'vrsta_putnika_id'
-                    },
-                    {
-                        text: 'Otac zanimanje',
-                        dataIndex: 'otac_zanimanje_id'
-                    },
-                    {
-                        text: 'Majka zanimanje',
-                        dataIndex: 'majka_zanimanje_id'
                     }
                 ]
             }
