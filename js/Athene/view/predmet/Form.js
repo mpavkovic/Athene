@@ -41,7 +41,8 @@ Ext.define('Athene.view.predmet.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 100
                     },
                     {
                         xtype: 'textfield',
@@ -63,7 +64,8 @@ Ext.define('Athene.view.predmet.Form', {
                         xtype: 'textfield',
                         name: 'previdjen_broj_sati',
                         fieldLabel: 'Predviđen broj sati',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 11
                     }
                 ],
                 buttons: [

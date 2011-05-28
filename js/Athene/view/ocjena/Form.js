@@ -42,7 +42,8 @@ Ext.define('Athene.view.ocjena.Form', {
 						queryMode: 'local',
 						displayField: 'naziv',
 						valueField: 'abbr',
-						name: 'ocjena'
+						name: 'ocjena',
+						maxLength: 2
                     },
                     {
                         xtype: 'combo',

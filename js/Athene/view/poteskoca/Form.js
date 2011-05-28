@@ -28,7 +28,8 @@
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 200
                     }
                 ],
                 buttons: [

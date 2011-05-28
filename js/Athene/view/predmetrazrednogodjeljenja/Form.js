@@ -72,7 +72,8 @@ Ext.define('Athene.view.predmetrazrednogodjeljenja.Form', {
                         xtype: 'textfield',
                         name: 'realiziran_broj_sati',
                         fieldLabel: 'Realiziran broj sati',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 11
                     }
                 ],
                 buttons: [

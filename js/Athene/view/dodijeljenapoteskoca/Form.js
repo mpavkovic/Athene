@@ -62,13 +62,15 @@ Ext.define('Athene.view.dodijeljenapoteskoca.Form', {
                         xtype: 'textfield',
                         name: 'klasa',
                         fieldLabel: 'Klasa',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 200
                     },
                     {
                         xtype: 'textfield',
                         name: 'urudzbeni_broj',
                         fieldLabel: 'Uruđbeni broj',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 200
                     }
                 ],
                 buttons: [

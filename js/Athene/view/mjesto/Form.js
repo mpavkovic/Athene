@@ -28,7 +28,8 @@ Ext.define('Athene.view.mjesto.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 200
                     },
                     {
                         xtype: 'combo',

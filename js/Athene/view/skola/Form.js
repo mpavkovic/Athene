@@ -28,13 +28,15 @@ Ext.define('Athene.view.skola.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 200
                     },
                     {
                         xtype: 'textfield',
                         name: 'ravnatelj',
                         fieldLabel: 'Ime ravnatelja',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 100
                     },
                     {
                         xtype: 'combo',
@@ -49,38 +51,44 @@ Ext.define('Athene.view.skola.Form', {
                         xtype: 'textfield',
                         name: 'ulica',
                         fieldLabel: 'Ulica',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 100
                     },
                     {
                         xtype: 'textfield',
                         name: 'broj',
                         fieldLabel: 'Broj',
-                        allowBlank: false
+                        allowBlank: false,
+			vtype: 'alphanum'
                     },
                     {
                         xtype: 'textfield',
                         name: 'telefon',
                         fieldLabel: 'Telefon',
-                        allowBlank: true
+                        allowBlank: true,
+			maxLength: 30
                     },
                     {
                         xtype: 'textfield',
                         name: 'fax',
                         fieldLabel: 'Fax',
-                        allowBlank: true
+                        allowBlank: true,
+			maxLength: 30
                     },
                     {
                         xtype: 'textfield',
                         name: 'email',
 						vtype: 'email',
                         fieldLabel: 'Email',
-                        allowBlank: true
+                        allowBlank: true,
+			maxLength: 255
                     },
                     {
                         xtype: 'textfield',
                         name: 'web',
                         fieldLabel: 'Web sjedište',
-                        allowBlank: true
+                        allowBlank: true,
+			maxLength: 255
                     }
 
 

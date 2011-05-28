@@ -28,26 +28,30 @@ Ext.define('Athene.view.ucitelj.Form', {
                         xtype: 'textfield',
                         name: 'ime',
                         fieldLabel: 'Ime',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 50
                     },
                     {
                         xtype: 'textfield',
                         name: 'prezime',
                         fieldLabel: 'Prezime',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 50
                     },
                     {
                         xtype: 'textfield',
                         name: 'telefon',
                         fieldLabel: 'Telefon',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 20
                     },
                     {
                         xtype: 'textfield',
                         name: 'email',
                         fieldLabel: 'Email',
                         vtype: 'email',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 255
                     }
                 ],
                 buttons: [

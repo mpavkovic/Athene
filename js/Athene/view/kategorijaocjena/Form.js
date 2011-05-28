@@ -28,7 +28,8 @@ Ext.define('Athene.view.kategorijaocjena.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 250
                     }
                 ],
                 buttons: [
