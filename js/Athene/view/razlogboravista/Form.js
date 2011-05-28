@@ -30,7 +30,8 @@ Ext.define('Athene.view.razlogboravista.Form', {
                         fieldLabel: 'Opis',
                         allowBlank: false,
 						grow: true,
-						anchor: '100%'
+						anchor: '100%',
+						maxLength: 100
                     }
                 ],
                 buttons: [

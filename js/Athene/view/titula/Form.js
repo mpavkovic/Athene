@@ -28,7 +28,8 @@ Ext.define('Athene.view.titula.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 20
                     }
                 ],
                 buttons: [

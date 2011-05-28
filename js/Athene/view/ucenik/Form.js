@@ -49,25 +49,31 @@ Ext.define('Athene.view.ucenik.Form', {
 												xtype: 'textfield',
 												name: 'oib',
 												fieldLabel: 'OIB',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 11,
+												minLength: 11
 											},
 											{
 												xtype: 'textfield',
 												name: 'jmbg',
 												fieldLabel: 'JMBG',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 13,
+												minLength: 13
 											},
 											{
 												xtype: 'textfield',
 												name: 'ime',
 												fieldLabel: 'Ime',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'textfield',
 												name: 'prezime',
 												fieldLabel: 'Prezime',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'datefield',
@@ -134,31 +140,36 @@ Ext.define('Athene.view.ucenik.Form', {
 												xtype: 'textfield',
 												name: 'otac_ime_nom',
 												fieldLabel: 'Otac ime nominativ',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'textfield',
 												name: 'otac_ime_gen',
 												fieldLabel: 'Otac ime genitiv',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'textfield',
 												name: 'majka_ime_nom',
 												fieldLabel: 'Majka ime nominativ',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'textfield',
 												name: 'majka_ime_gen',
 												fieldLabel: 'Majka ime genitiv',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'textfield',
 												name: 'majka_djevojacko',
 												fieldLabel: 'Majka djevojačko',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 50
 											},
 											{
 												xtype: 'combo',
@@ -194,7 +205,8 @@ Ext.define('Athene.view.ucenik.Form', {
 												xtype: 'textfield',
 												name: 'smb',
 												fieldLabel: 'SMB',
-												allowBlank: false
+												allowBlank: false,
+												maxLength: 100
 											},
 											{
 												xtype: 'datefield',
@@ -209,8 +221,8 @@ Ext.define('Athene.view.ucenik.Form', {
 												name: 'smb_datum_do',
 												fieldLabel: 'SMB datum do',
 												format: 'd.m.Y.',
-												submitFormat: 'Y-m-d',
-												allowBlank: false
+												submitFormat: 'Y-m-d'
+												// allowBlank: false
 											},
 											{
 												xtype: 'combo',
@@ -220,7 +232,8 @@ Ext.define('Athene.view.ucenik.Form', {
 												queryMode: 'local',
 												displayField: 'naziv',
 												valueField: 'abbr',
-												name: 'hospitant'
+												name: 'hospitant',
+												maxLength: 11
 											},
 											{
 												xtype: 'combo',

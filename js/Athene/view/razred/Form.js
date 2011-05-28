@@ -41,7 +41,8 @@ Ext.define('Athene.view.razred.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 30	
                     },
                     {
                         xtype: 'combo',
@@ -76,13 +77,15 @@ Ext.define('Athene.view.razred.Form', {
                         xtype: 'textfield',
                         name: 'klasa',
                         fieldLabel: 'Klasa',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 200
                     },
                     {
                         xtype: 'textfield',
                         name: 'urudzbeni_broj',
                         fieldLabel: 'Uruđbeni broj',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 200
                     }
                 ],
                 buttons: [

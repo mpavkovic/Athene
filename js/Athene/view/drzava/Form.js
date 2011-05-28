@@ -28,13 +28,15 @@ Ext.define('Athene.view.drzava.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 100
                     },
                     {
                         xtype: 'textfield',
                         name: 'drzavljanstvo',
                         fieldLabel: 'Državljanstvo',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 100
                     }
                 ],
                 buttons: [

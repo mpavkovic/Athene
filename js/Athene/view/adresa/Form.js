@@ -50,13 +50,15 @@ Ext.define('Athene.view.adresa.Form', {
                         xtype: 'textfield',
                         name: 'tip_adrese',
                         fieldLabel: 'Tip adrese',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 100
                     },
                     {
                         xtype: 'textfield',
                         name: 'ulica',
                         fieldLabel: 'Ulica',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 100
                     },
                     {
                         xtype: 'textfield',
@@ -77,26 +79,29 @@ Ext.define('Athene.view.adresa.Form', {
                         name: 'datum_do',
                         fieldLabel: 'Datum do',
                         format: 'd.m.Y.',
-                        submitFormat: 'Y-m-d',
-                        allowBlank: false
+                        submitFormat: 'Y-m-d'
+                        //allowBlank: false
                     },
                     {
                         xtype: 'textfield',
                         name: 'telefon',
                         fieldLabel: 'Telefon',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 30
                     },
                     {
                         xtype: 'textfield',
                         name: 'mobitel',
                         fieldLabel: 'Mobitel',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 30
                     },
                     {
                         xtype: 'textfield',
                         name: 'stanuje_s',
                         fieldLabel: 'Stanuje s',
-                        allowBlank: false
+                        allowBlank: false,
+			maxLength: 30
                     },
                     {
                         xtype: 'combo',

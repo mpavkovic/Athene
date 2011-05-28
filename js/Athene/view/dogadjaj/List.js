@@ -20,7 +20,8 @@ Ext.define('Athene.view.dogadjaj.List', {
                 columns: [
                     {
                         text: 'Naziv',
-                        dataIndex: 'naziv'
+                        dataIndex: 'naziv',
+			maxLength: 200
                     },
                     {
                         text: 'Opis',

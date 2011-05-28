@@ -28,7 +28,8 @@ Ext.define('Athene.view.narodnost.Form', {
                         xtype: 'textfield',
                         name: 'naziv',
                         fieldLabel: 'Naziv',
-                        allowBlank: false
+                        allowBlank: false,
+                        maxLength: 100
                     }
                 ],
                 buttons: [

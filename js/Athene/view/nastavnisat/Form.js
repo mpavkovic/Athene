@@ -73,7 +73,8 @@ Ext.define('Athene.view.nastavnisat.Form', {
                         fieldLabel: 'Napomena',
                         allowBlank: false,
 						grow: true,
-						anchor: '100%'
+						anchor: '100%',
+						maxLength: 250
                     },
                 ],
                 buttons: [

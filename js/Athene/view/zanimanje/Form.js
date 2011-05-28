@@ -30,7 +30,8 @@ Ext.define('Athene.view.zanimanje.Form', {
                         fieldLabel: 'Naziv',
                         allowBlank: false,
 						grow: true,
-						anchor: '100%'
+						anchor: '100%',
+						maxLength: 100
                     }
                 ],
                 buttons: [
