@@ -39,8 +39,15 @@ Ext.define('Athene.view.PopupMessage', {
         }
     },
     
-    popup: function(message) {
-        this.html = message;
+    popup: function(m) {
+        if(typeof m == 'string') {
+            this.html = m;
+        } else {
+            this.html = m.message;
+            if(m.icon !== undefined) {
+                this.bodyStyle += 'background-image: url(\'' + m.icon + '\'); background-repeat: no-repeat; background-position: 5px 5px; padding-left: 25px !important;';
+            }
+        }
         this.show();
     }
 });

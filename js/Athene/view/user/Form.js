@@ -10,6 +10,7 @@ Ext.define('Athene.view.user.Form', {
     constrain: true,
        
     initComponent: function() {
+	var me = this;
         this.items = [
             {
                 xtype: 'form',
@@ -48,11 +49,36 @@ Ext.define('Athene.view.user.Form', {
 		    }
                 ],
                 buttons: [
+		    {
+			text: 'Odustani',
+			align: 'left',
+			handler: function() {
+			    me.close();
+			}
+		    },
+		    {
+			xtype: 'tbfill'
+		    },
                     {
                         text: 'Dodaj',
 			id: 'formUserSubmit',
+			scope: me,
                         handler: function() {
-                            this.up('form').getForm().submit();
+			    //console.log(me.down('form'));
+                            me.down('form').getForm().submit({
+				success: function(form, action) {
+				    //Ext.Msg.alert('Success', action.result.msg);
+				    Ext.widget('popupmessage').popup('Korisnik uspješno dodan.');
+				    me.close();
+				},
+	                        failure: function(form, action) {
+				    //Ext.Msg.alert('Failed', action.result.msg);
+				    Ext.widget('popupmessage').popup({
+					message: action.result.message,
+					icon: 'img/icons/exclamation.png'
+				    });
+	                        }
+			    })
                         }
                     }
                 ]

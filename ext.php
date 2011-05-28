@@ -38,6 +38,20 @@ class JsonResponse {
     }
 }
 
+class SubmitResponse extends JsonResponse {
+    
+    public $success = false;
+    public $message = '';
+    
+    public function __toString() {
+        return json_encode((object)array(
+            'success' => $this->success,
+            'message' => $this->message
+        ));
+    }
+    
+}
+
 class FailureReponse {
     
     protected $success = false;
@@ -127,8 +141,15 @@ if(isset($_POST) && !empty($_POST)) {
     $actionClass = new $class($_POST);
     $return = call_user_func(array($actionClass, $_POST['extMethod']));
   
-    $reponse->return = $return;
-          
+    if($return === 0 || $return === false || $return instanceof Error) {
+        $response->result->success = false;
+        if($return instanceof Error) {
+            $response->result->message = $return->__toString();
+        }
+    } else {
+        $response->result->success = true;
+    }
+    
     echo $response;
 } else if(isset($HTTP_RAW_POST_DATA)) {
     header('Content-Type: text/javascript; charset=utf-8');
@@ -141,8 +162,22 @@ if(isset($_POST) && !empty($_POST)) {
         foreach($jsonRequest as $jr) {
             $class = 'Athene\\Model\\' . $jr->action;
             $actionClass = new $class;
-            $return = call_user_func(array($actionClass, $jr->method));
-            $responses[] = new JsonResponse($jr->action, $jr->method, $return, $jr->tid);
+            if(isset($jr->data)) {
+                $return = call_user_func_array(array($actionClass, $jr->method), $jr->data);
+            } else {
+                $return = call_user_func(array($actionClass, $jr->method));
+            }
+            if(is_bool($return)) {
+                $rreturn = new \stdClass();
+                if($return === true) {
+                    $rreturn->success = true;
+                } else {
+                    $rreturn->success = false;
+                }
+                $responses[] = new JsonResponse($jr->action, $jr->method, $rreturn, $jr->tid);
+            } else {
+                $responses[] = new JsonResponse($jr->action, $jr->method, $return, $jr->tid);
+            }
         }
     } else {
         $class = 'Athene\\Model\\' . $jsonRequest->action;
@@ -151,8 +186,23 @@ if(isset($_POST) && !empty($_POST)) {
         } catch(\Exception $e) {
             return $e->getMessage();
         }
-        $return = call_user_func(array($actionClass, $jsonRequest->method));
-        $responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
+        if(isset($jsonRequest->data)) {
+            $return = call_user_func_array(array($actionClass, $jsonRequest->method), $jsonRequest->data);
+        } else {
+            $return = call_user_func(array($actionClass, $jsonRequest->method));
+        }
+        if(is_bool($return)) {
+            $rreturn = new \stdClass();
+            if($return === true) {
+                $rreturn->success = true;
+            } else {
+                $rreturn->success = false;
+            }
+            $responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $rreturn, $jsonRequest->tid);
+        } else {
+            $responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
+        }
+        //$responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
     }
     echo implode(',', $responses);
 }

@@ -56,6 +56,9 @@ Ext.app.REMOTING_API = {
             name: "save",
             len: 0,
             formHandler: true
+        },{
+            name: "delete",
+            len: 1
         }],
         
         "Group": [{

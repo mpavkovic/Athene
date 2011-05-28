@@ -36,7 +36,7 @@ class Database {
         array_walk($data, function(&$val) { $val = "'" . $val . "'"; });
         // TODO: Make SQL escape
         $query = 'INSERT INTO ' . $table . '(' . implode(',', array_keys($data)) . ') VALUES (' . implode(',', $data) . ')';
-        $this->exec($query);
+        return $this->exec($query);
     }
     
 }

@@ -28,7 +28,7 @@ class Model {
     }
     
     public function save() {
-        $this->adapter->insert($this->table, $this->fields);
+        return $this->adapter->insert($this->table, $this->fields);
     }
     
     public function getAll() {
@@ -37,7 +37,10 @@ class Model {
     
     public function delete($idVal) {
         $query = "DELETE FROM " . $this->table . ' WHERE ' . $this->primaryKey . " = '$idVal'";
-        return $this->adapter->query($query);
+        if($this->adapter->exec($query) == 0) {
+            return false;
+        }
+        return true;
     }
     
 }

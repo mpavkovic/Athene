@@ -13,6 +13,17 @@ Ext.define('Athene.controller.User', {
     models: [
         'User'
     ],
+    
+    refs: [
+        {
+            ref: 'list',
+            selector: '#usergrid'
+        },
+	{
+	    ref: 'searchField',
+	    selector: '#listUserSearch'
+	}
+    ],
        
     init: function() {	
         this.control({
@@ -26,14 +37,14 @@ Ext.define('Athene.controller.User', {
                     view.show();
                 }
             },
-	    /*'#listMjestoSearch': {
+	    '#listUserSearch': {
 		change: this.filterGrid
 	    },
-	    '#listMjestoClearFilter': {
+	    '#listUserClearFilter': {
 		click: function() {
 		    this.getSearchField().reset();
 		}
-	    },*/
+	    },
 	    '#helpUserList': {
                 click: this.help
             }
@@ -50,12 +61,17 @@ Ext.define('Athene.controller.User', {
     onGridRendered: function() {
         this.getUserStore().load();
     },
+    
+    filterGrid: function(item, newValue, oldValue) {
+	this.getList().store.clearFilter();
+	this.getList().store.filter('username', newValue);
+    },
        
     edit: function(v, r) {
         var view = Ext.widget('userform');
         view.down('form').loadRecord(r);
 	view.down('#formUserSubmit').text = 'Spremi';
-	view.title = 'Izmijeni: ' + r.data.naziv;
+	view.title = 'Izmijeni: ' + r.data.username;
         view.renderTo = '#userlist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();

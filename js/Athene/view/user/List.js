@@ -34,6 +34,7 @@ Ext.define('Athene.view.user.List', {
                         dataIndex: 'username'
                     },
                     {
+                        xtype: 'templatecolumn',
                         text: 'Puno ime',
                         dataIndex: 'last_name',
                         tpl: '{last_name} {first_name}'
@@ -41,6 +42,10 @@ Ext.define('Athene.view.user.List', {
                     {
                         text: 'E-mail',
                         dataIndex: 'email'
+                    },
+                    {
+                        text: 'Grupa',
+                        dataIndex: 'group_id'
                     },
                     {
                         xtype: 'actioncolumn',
@@ -54,7 +59,7 @@ Ext.define('Athene.view.user.List', {
                                     var view = Ext.widget('userform');
                                     view.down('form').loadRecord(Ext.getStore('User').getAt(rowIndex));
                                     view.down('#formUserSubmit').text = 'Spremi';
-                                    view.title = 'Izmijeni: ' + Ext.getStore('User').getAt(rowIndex).data.naziv;
+                                    view.title = 'Izmijeni: ' + Ext.getStore('User').getAt(rowIndex).data.username;
                                     view.renderTo = '#userlist';
                                     view.modal = true; // Make window modal so the list is inacesible
                                     view.show();
@@ -66,9 +71,13 @@ Ext.define('Athene.view.user.List', {
                                 tooltip: 'Izbriši',
                                 iconCls: 'deleteAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    var mjestoId = Ext.getStore('User').getAt(rowIndex).data.id;
-                                    Mjesto.delete(mjestoId, function(provider, response) {
+                                    var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
                                         console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
                                     })
                                 }
                             }
@@ -92,10 +101,10 @@ Ext.define('Athene.view.user.List', {
                         text: 'Dodaj korisnika', 
                         id: 'openUserForm'
                     },
-                    /*'->',
+                    '->',
                     {
                         xtype: 'textfield',
-                        id: 'listMjestoSearch',
+                        id: 'listUserSearch',
                         fieldLabel: false,
                         emptyText: 'traži...',
                         labelAlign: 'right'
@@ -103,8 +112,8 @@ Ext.define('Athene.view.user.List', {
                     {
                         xtype: 'button',
                         icon: 'img/icons/cancel.png',
-                        id: 'listMjestoClearFilter'
-                    }*/
+                        id: 'listUserClearFilter'
+                    }
                 ]
             }
         ]

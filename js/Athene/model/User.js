@@ -13,5 +13,8 @@
         'last_login',
         'date_joined'
     ],
-    belongsTo: 'Group'
+    hasMany: {
+        model: 'Group',
+        name: 'groups'
+    }
 });
