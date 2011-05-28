@@ -18,6 +18,10 @@ Ext.define('Athene.controller.Mjesto', {
     
     refs: [
         {
+            ref: 'window',
+            selector: '#mjestolist'
+        },
+        {
             ref: 'list',
             selector: '#mjestogrid'
         },
@@ -27,9 +31,7 @@ Ext.define('Athene.controller.Mjesto', {
 	}
     ],
     
-    init: function() {
-        this.getDrzavaStore().load();
-	
+    init: function() {	
         this.control({
             '#mjestogrid': {
                 render: this.onGridRendered,
@@ -66,12 +68,20 @@ Ext.define('Athene.controller.Mjesto', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-	//this.getMjestoStore().load();
-        this.getList().store.load();
-	// Load drzave also
-	//Ext.StoreMgr.get('')
-	console.log(this.getMjestoStore().count());
+        this.getDrzavaStore().load({
+            scope: this,
+            callback: function(records, operation, success) {
+                if(success) {
+                    this.getMjestoStore().load();
+                } else {
+                    Ext.widget('notification').popup({
+                        message: 'Nemogu učitati popis mjesta!',
+                        icon: 'img/icons/exclamation.png'
+                    });
+                    this.getWindow().close();
+                }
+            }
+        });
     },
     
     filterGrid: function(item, newValue, oldValue) {

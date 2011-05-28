@@ -11,6 +11,7 @@ Ext.define('Athene.view.mjesto.List', {
     minHeight: 300,
     maximizable: true,
     constrain: true,
+    closeAction: 'hide',
     
     tools: [
         {

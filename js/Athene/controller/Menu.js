@@ -20,7 +20,7 @@ Ext.define('Athene.controller.Menu', {
 				view = Ext.widget(_win);
 				Ext.getCmp('workspace').add(view);
 				view.show();
-				Ext.widget('popupmessage').popup('Otvoren prozor ' + _win);
+				Ext.widget('notification').popup('Otvoren prozor ' + _win);
 			    } else {
 				console.error('Widget ' + _win + ' is not registered!');
 			    }

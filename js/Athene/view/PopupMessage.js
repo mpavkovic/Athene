@@ -1,6 +1,6 @@
 Ext.define('Athene.view.PopupMessage', {
     extend: 'Ext.window.Window',
-    alias: 'widget.popupmessage',
+    alias: 'widget.notification',
     //id: 'popupmessage',
     
     //preventHeader: true,
