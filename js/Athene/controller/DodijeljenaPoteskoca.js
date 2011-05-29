@@ -7,11 +7,13 @@ Ext.define('Athene.controller.DodijeljenaPoteskoca', {
     ],
     
     stores: [
-        'DodijeljenaPoteskoca'
+        'DodijeljenaPoteskoca',
+        'Poteskoca'
     ],
     
     models: [
-        'DodijeljenaPoteskoca'
+        'DodijeljenaPoteskoca',
+        'Poteskoca'
     ],
     
     refs: [
@@ -38,7 +40,20 @@ Ext.define('Athene.controller.DodijeljenaPoteskoca', {
     },
     
     onGridRendered: function() {
-        this.getList().store.load();
+        this.getPoteskocaStore().load({
+            scope: this,
+            callback: function(records, operation, success) {
+                if(success) {
+                    this.getDodijeljenaPoteskocaStore().load();
+                } else {
+                    Ext.widget('notification').popup({
+                        message: 'Nemogu učitati dodijeljene poteskoce!',
+                        icon: 'img/icons/exclamation.png'
+                    });
+                    this.getWindow().close();
+                }
+            }
+        });
     }, 
     
     edit: function(v, r) {
