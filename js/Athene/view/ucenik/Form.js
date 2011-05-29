@@ -1,24 +1,3 @@
-Ext.apply(Ext.form.field.VTypes, {
-    jmbg:  function(v) {
-	return /^[0-9]{13}$/.test(v);
-    },
-     oib:  function(v) {
-	return /^[0-9]{11}$/.test(v);
-    },
-    num: function(v){
-	return /^[0-9]+$/.test(v);
-    },
-    
-    jmbgText: 'Jmbg se sastoji od 13 brojeva',
-    oibText: 'OIB se sastoji od 11 brojeva',
-    numText: 'Ovo polje dozvoljava samo brojeve',
-    jmbgMask: /[0-9]/i,
-    oibMask: /[0-9]/i,
-     numMask: /[0-9]/i
-    
-});
-
-
 var odabir_da_ne = Ext.create('Ext.data.Store', {
     fields: ['abbr','naziv'],
     data : [
@@ -50,7 +29,7 @@ Ext.define('Athene.view.ucenik.Form', {
         this.items = [
             {
                 xtype: 'tabpanel',
-				bodyPadding: 5,
+		bodyPadding: 5,
                 activeTab: 0,
                 layout: 'anchor',
                 defaults: {
@@ -62,76 +41,76 @@ Ext.define('Athene.view.ucenik.Form', {
                 },
     
                 items: [
-							{
-								xtype: 'panel',
-								title: 'Osnovni podaci',
-								height: 180,
-								items: [
-											{
-												xtype: 'textfield',
-												name: 'oib',
-												fieldLabel: 'OIB',
-												allowBlank: false,
-												vtype: 'oib'
-											},
-											{
-												xtype: 'textfield',
-												name: 'jmbg',
-												fieldLabel: 'JMBG',
-												allowBlank: false,
-												vtype: 'jmbg'
-											},
-											{
-												xtype: 'textfield',
-												name: 'ime',
-												fieldLabel: 'Ime',
-												allowBlank: false,
-												maxLength: 50
-											},
-											{
-												xtype: 'textfield',
-												name: 'prezime',
-												fieldLabel: 'Prezime',
-												allowBlank: false,
-												maxLength: 50
-											},
-											{
-												xtype: 'datefield',
-												name: 'datum',
-												fieldLabel: 'Datum rođenja',
-												format: 'd.m.Y.',
-												submitFormat: 'Y-m-d',
-												allowBlank: false
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikMjestoRod',
-												store: 'Mjesto',
-												fieldLabel: 'Mjesto rođenja',
-												displayField: 'naziv',
-												valueField: 'id',
-												name: 'mjesto_id'
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikSpol',
-												fieldLabel: 'Spol',
-												store: odabir_spol,
-												queryMode: 'local',
-												displayField: 'naziv',
-												valueField: 'abbr',
-												name: 'spol'
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikSportas',
-												fieldLabel: 'Sportaš',
-												store: odabir_da_ne,
-												queryMode: 'local',
-												displayField: 'naziv',
-												valueField: 'abbr',
-												name: 'sportas'
-											},
+		    {
+			xtype: 'panel',
+			title: 'Osnovni podaci',
+			height: 180,
+			items: [
+			    {
+				xtype: 'textfield',
+				name: 'oib',
+				fieldLabel: 'OIB',
+				allowBlank: false,
+				vtype: 'oib'
+			    },
+			    {
+				xtype: 'textfield',
+				name: 'jmbg',
+				fieldLabel: 'JMBG',
+				allowBlank: false,
+				vtype: 'jmbg'
+			    },
+			    {
+				xtype: 'textfield',
+				name: 'ime',
+				fieldLabel: 'Ime',
+				allowBlank: false,
+				maxLength: 50
+			    },
+			    {
+				xtype: 'textfield',
+				name: 'prezime',
+				fieldLabel: 'Prezime',
+				allowBlank: false,
+				maxLength: 50
+			    },
+			    {
+				xtype: 'datefield',
+				name: 'datum',
+				fieldLabel: 'Datum rođenja',
+				format: 'd.m.Y.',
+				submitFormat: 'Y-m-d',
+				allowBlank: false
+			    },
+			    {
+				xtype: 'combo',
+				id: 'comboUcenikMjestoRod',
+				store: 'Mjesto',
+				fieldLabel: 'Mjesto rođenja',
+				displayField: 'naziv',
+				valueField: 'id',
+				name: 'mjesto_id'
+			    },
+			    {
+				xtype: 'combo',
+				id: 'comboUcenikSpol',
+				fieldLabel: 'Spol',
+			        store: odabir_spol,
+				queryMode: 'local',
+				displayField: 'naziv',
+				valueField: 'abbr',
+				name: 'spol'
+			    },
+			    {
+				xtype: 'combo',
+				id: 'comboUcenikSportas',
+				fieldLabel: 'Sportaš',
+				store: odabir_da_ne,
+				queryMode: 'local',
+				displayField: 'naziv',
+				valueField: 'abbr',
+				name: 'sportas'
+			    },
 											{
 												xtype: 'combo',
 												id: 'comboUcenikNarodnost',
