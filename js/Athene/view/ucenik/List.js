@@ -73,7 +73,7 @@ Ext.define('Athene.view.ucenik.List', {
                         xtype: 'button',
                         icon: 'img/icons/refresh.png',
                         text: 'Osvježi',
-                        id: 'refreshZanimanjeList'
+                        id: 'refreshUcenikList'
                     },
                     '->',
                     {

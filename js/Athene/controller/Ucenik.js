@@ -42,6 +42,9 @@ Ext.define('Athene.controller.Ucenik', {
             },
             '#listUcenikSearch': {
                 change: this.filter
+            },
+            '#refreshUcenikList': {
+                click: this.refreshData
             }
         });
     },
@@ -72,5 +75,9 @@ Ext.define('Athene.controller.Ucenik', {
             this.getUcenikStore().filter('prezime', newValue);
         }
         //console.log(new RegExp("^" + value, "i"));
+    },
+    
+    refreshData: function() {
+        this.getUcenikStore().load();
     }
 })
