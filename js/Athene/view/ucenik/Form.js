@@ -1,3 +1,24 @@
+Ext.apply(Ext.form.field.VTypes, {
+    jmbg:  function(v) {
+	return /^[0-9]{13}$/.test(v);
+    },
+     oib:  function(v) {
+	return /^[0-9]{11}$/.test(v);
+    },
+    num: function(v){
+	return /^[0-9]+$/.test(v);
+    },
+    
+    jmbgText: 'Jmbg se sastoji od 13 brojeva',
+    oibText: 'OIB se sastoji od 11 brojeva',
+    numText: 'Ovo polje dozvoljava samo brojeve',
+    jmbgMask: /[0-9]/i,
+    oibMask: /[0-9]/i,
+     numMask: /[0-9]/i
+    
+});
+
+
 var odabir_da_ne = Ext.create('Ext.data.Store', {
     fields: ['abbr','naziv'],
     data : [
@@ -51,16 +72,14 @@ Ext.define('Athene.view.ucenik.Form', {
 												name: 'oib',
 												fieldLabel: 'OIB',
 												allowBlank: false,
-												maxLength: 11,
-												minLength: 11
+												vtype: 'oib'
 											},
 											{
 												xtype: 'textfield',
 												name: 'jmbg',
 												fieldLabel: 'JMBG',
 												allowBlank: false,
-												maxLength: 13,
-												minLength: 13
+												vtype: 'jmbg'
 											},
 											{
 												xtype: 'textfield',
