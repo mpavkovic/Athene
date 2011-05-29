@@ -111,16 +111,10 @@ Ext.define('Athene.view.mjesto.List', {
                 ]
             },
             {
-                xtype: 'toolbar',
+                xtype: 'pagingtoolbar',
+                store: 'Mjesto',
                 dock: 'bottom',
-                align: 'right',
-                items: [
-                    '->',
-                    {
-                        xtype: 'tbtext',
-                        text: 'Ukupno redova: '
-                    }
-                ]
+                displayInfo: true
             }
         ]
         

@@ -3,7 +3,10 @@
     model: 'Athene.model.Drzava',
     proxy: {
         type: 'direct',
-        directFn: Drzava.getAll
+        directFn: Drzava.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

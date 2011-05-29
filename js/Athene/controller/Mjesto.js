@@ -68,18 +68,10 @@ Ext.define('Athene.controller.Mjesto', {
     },
     
     onGridRendered: function() {
-        this.getDrzavaStore().load({
-            scope: this,
-            callback: function(records, operation, success) {
-                if(success) {
-                    this.getMjestoStore().load();
-                } else {
-                    Ext.widget('notification').popup({
-                        message: 'Nemogu učitati popis mjesta!',
-                        icon: 'img/icons/exclamation.png'
-                    });
-                    this.getWindow().close();
-                }
+        this.getMjestoStore().load({
+            params: {
+                start: 0,
+                limit: 20
             }
         });
     },

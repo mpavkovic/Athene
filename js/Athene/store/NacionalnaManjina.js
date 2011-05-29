@@ -3,7 +3,10 @@
     model: 'Athene.model.NacionalnaManjina',
     proxy: {
         type: 'direct',
-        directFn: NacionalnaManjina.getAll
+        directFn: NacionalnaManjina.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

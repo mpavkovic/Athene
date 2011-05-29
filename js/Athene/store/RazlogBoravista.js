@@ -3,7 +3,10 @@
     model: 'Athene.model.RazlogBoravista',
     proxy: {
         type: 'direct',
-        directFn: RazlogBoravista.getAll
+        directFn: RazlogBoravista.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {
