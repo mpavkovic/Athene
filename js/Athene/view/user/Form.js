@@ -46,6 +46,20 @@ Ext.define('Athene.view.user.Form', {
 		    {
 			name: 'password',
 			fieldLabel: 'Lozinka'
+		    },
+		    {
+			xtype: 'combo',
+			multiSelect: true,
+			fieldLabel: 'Grupe',
+			store: 'Group',
+			displayField: 'name',
+			valueField: 'id',
+			value: '1',
+			listeners: {
+			    render: function(v,a,r) {
+				console.log(v,a,r);
+			    }
+			}
 		    }
                 ],
                 buttons: [

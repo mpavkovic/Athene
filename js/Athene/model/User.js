@@ -11,10 +11,7 @@
         'is_active',
         'is_superuser',
         'last_login',
-        'date_joined'
-    ],
-    hasMany: {
-        model: 'Group',
-        name: 'groups'
-    }
+        'date_joined',
+        'groups'
+    ]
 });

@@ -1,11 +1,20 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 include('config.php');
-include('database.php');
+include('lib/Sirius/Autoload.php');
 
 session_start();
 
-$db = Database::getInstance();
+$autoload = new \Sirius\Autoload(APP_PATH . '/lib');
+$db = new \Sirius\Storage\Database\Mysql(array(
+    'user'  => DB_USER,
+    'password'  => DB_PASS,
+    'database'  => DB_NAME
+));
+
 
 if(isset($_POST)) {
     header('Content-Type: text/javascript; charset=utf-8');

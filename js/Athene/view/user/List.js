@@ -45,7 +45,16 @@ Ext.define('Athene.view.user.List', {
                     },
                     {
                         text: 'Grupa',
-                        dataIndex: 'group_id'
+                        dataIndex: 'groups',
+                        renderer: function(value, p, r) {
+                            var _groups = r.data.groups;
+                            var groups = new Array();
+                            //console.log(r.data.groups);
+                            for(var i = 0; i < _groups.length; i++) {
+                                groups.push(_groups[i].name);
+                            }
+                            return groups.join(',');
+                        }
                     },
                     {
                         xtype: 'actioncolumn',

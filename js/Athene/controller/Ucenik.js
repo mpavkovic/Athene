@@ -39,13 +39,18 @@ Ext.define('Athene.controller.Ucenik', {
                 click: function() {
                     Ext.widget('uceniklist').show();
                 }
-            },
+            }
         });
     },
     
     onGridRendered: function() {
         console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
+        this.getUcenikStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {

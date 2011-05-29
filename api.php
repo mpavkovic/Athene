@@ -5,7 +5,7 @@ Ext.app.REMOTING_API = {
     "url":"ext.php",
     "type":"remoting",
     "actions":{
-		"Ucenik": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+		"Ucenik": [{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
 		"Mjesto":[{ "name":"listMjesto", "len":0 }],
         "Menu": [{"name":"side", "len":0}],
         "Razred": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
