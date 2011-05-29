@@ -3,18 +3,13 @@ Ext.define('Athene.store.SkolskaGodina', {
     model: 'Athene.model.SkolskaGodina', // Must be full path to model
     proxy: {
         type: 'direct',
-        directFn: SkolskaGodina.getAll
+        directFn: SkolskaGodina.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: {
         property: 'godina',
         direction: 'DESC'
-    },
-    /*load: function() {
-        console.log('Data is being loaded...');
-        console.log();
-        this.each(function(record) {
-            console.log(record);
-        })
-        //this.callParent(arguments);
-    }*/
+    }
 });

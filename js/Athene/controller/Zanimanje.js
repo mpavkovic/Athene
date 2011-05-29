@@ -33,6 +33,9 @@ Ext.define('Athene.controller.Zanimanje', {
                     var view = Ext.widget('zanimanjeform');
                     view.show();
                 }
+            },
+            '#refreshZanimanjeList': {
+                click: this.refreshData
             }
         });
     },
@@ -47,5 +50,9 @@ Ext.define('Athene.controller.Zanimanje', {
         view.renderTo = '#zanimanjelist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    
+    refreshData: function() {
+        this.getZanimanjeStore().load();
     }
 })

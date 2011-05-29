@@ -10,7 +10,9 @@ class Ucenik extends Model {
         array(
             'key' => 'mjesto_rodjenja_id',
             'table' => 'osz_mjesto',
-            'fields' => array('naziv', 'mjesto_rodjenja')
+            'fields' => array(
+                array('naziv', 'mjesto_rodjenja')
+            )
         )
     );
     

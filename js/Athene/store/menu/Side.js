@@ -14,5 +14,9 @@ Ext.define('Athene.store.menu.Side', {
     sorters: [{
         property: 'text',
         direction: 'ASC'
-    }],
+        /*sortType: function(value) {
+            console.log(value);
+            return 1;
+        }*/
+    }]
 });

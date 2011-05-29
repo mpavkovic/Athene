@@ -39,6 +39,12 @@ Ext.define('Athene.controller.Ucenik', {
                 click: function() {
                     Ext.widget('uceniklist').show();
                 }
+            },
+            '#listUcenikSearch': {
+                change: this.filter
+            },
+            '#refreshUcenikList': {
+                click: this.refreshData
             }
         });
     },
@@ -60,5 +66,18 @@ Ext.define('Athene.controller.Ucenik', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    
+    filter: function(field, newValue, oldValue) {
+        //console.log(value)
+        this.getUcenikStore().clearFilter(false);
+        if(newValue != '') {
+            this.getUcenikStore().filter('prezime', newValue);
+        }
+        //console.log(new RegExp("^" + value, "i"));
+    },
+    
+    refreshData: function() {
+        this.getUcenikStore().load();
     }
 })

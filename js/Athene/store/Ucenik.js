@@ -10,5 +10,9 @@ Ext.define('Athene.store.Ucenik', {
         }
     },
     //idProperty: 'oib',
-    totalProperty: 'total'
+    totalProperty: 'total',
+    filters: {
+        property: 'prezime'
+    },
+    remoteFilter: true
 });

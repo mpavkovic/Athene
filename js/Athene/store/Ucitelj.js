@@ -3,7 +3,10 @@ Ext.define('Athene.store.Ucitelj', {
     model: 'Athene.model.Ucitelj',
     proxy: {
         type: 'direct',
-        directFn: Ucitelj.getAll
+        directFn: Ucitelj.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

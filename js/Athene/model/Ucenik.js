@@ -20,6 +20,7 @@ Ext.define('Athene.model.Ucenik', {
         'smb_datum_od',
         'smb_datum_do',
         'hospitant',
+        'mjesto_rodjenja',
         'mjesto_rodjenja_id',
         'narodnost_id',
         'nacionalna_manjina_id',

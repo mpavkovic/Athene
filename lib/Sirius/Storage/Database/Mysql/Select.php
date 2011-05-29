@@ -13,6 +13,8 @@ class Select extends Statement {
     
     private $joins = array();
     
+    private $filters = array();
+    
     public function __construct($params) {
         
         if(is_array($params)) {
@@ -39,31 +41,42 @@ class Select extends Statement {
         return $this;
     }
     
+    public function filter($field, $value) {
+        //var_dump($field, $value);
+        $this->filters[] = array($field, $value);
+    }
+    
     public function join($params) {
         
         $this->joins[] = $params;
-        
+
         return $this;
     }
     
     public function __toString() {
-        $query = 'SELECT ';
+        $query = 'SELECT {select_fields}';
+        $selectFields = '';
         if(empty($this->fields)) {
             if(isset($this->alias)) {
-                $query .= $this->alias . '.*';
+                $selectFields .= $this->alias . '.*';
             } else {
-                $query .= '*';
+                $selectFields .= $this->table . '.*';
             }
         } else {
             $fields = $this->fields;
             if(isset($this->alias)) {
-                array_walk($fields, function(&$f) {
-                    $f = $this->alias . '.' . $f;
+                $self = $this;
+                array_walk($fields, function(&$f) use ($self) {
+                    $f = $self->alias . '.' . $f;
                 });
             }
-            $query .= implode(',', $fields);
+            $selectFields .= implode(',', $fields);
         }
         $query .= ' FROM ' . $this->table;
+        // ALIAS
+        if(isset($this->alias)) {
+            $query .= ' AS ' . $this->alias;
+        }
         
         // JOINs
         if(!empty($this->joins)) {
@@ -75,6 +88,24 @@ class Select extends Statement {
                     $query .= $this->table;
                 }
                 $query .= '.' . $join['key'] . ' = ' . $join['table'] . '.id';
+                if(isset($join['fields'])) {
+                    foreach($join['fields'] as $field) {
+                        $selectFields .= ', ' . $join['table'] . '.' . $field[0] . ' AS ' . $field[1];
+                    }
+                }
+            }
+        }
+        
+        // FILTERS
+        if(!empty($this->filters)) {
+            $query .= ' WHERE ';
+            foreach($this->filters as $filter) {
+                if(isset($this->alias)) {
+                    $query .= $this->alias . '.';
+                } else {
+                    $query .= $this->table . '.';
+                }
+                $query .= $filter[0] . ' LIKE \'' . $filter[1] . '%\'';
             }
         }
         
@@ -86,7 +117,16 @@ class Select extends Statement {
             }
             $query .= $this->limitCount;
         }
+        
+        $query = str_replace('{select_fields}', $selectFields, $query);
+        
         return $query;
+    }
+    
+    public function __get($propety) {
+        if(in_array($propety, array('table', 'alias'))) {
+            return $this->$propety;
+        }
     }
     
 }
