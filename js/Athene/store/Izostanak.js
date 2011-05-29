@@ -3,7 +3,10 @@
     model: 'Athene.model.Izostanak',
     proxy: {
         type: 'direct',
-        directFn: Izostanak.getAll
+        directFn: Izostanak.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

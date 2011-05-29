@@ -3,7 +3,10 @@
     model: 'Athene.model.VrstaPutnika',
     proxy: {
         type: 'direct',
-        directFn: VrstaPutnika.getAll
+        directFn: VrstaPutnika.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

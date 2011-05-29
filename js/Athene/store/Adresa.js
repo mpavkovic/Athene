@@ -3,7 +3,10 @@
     model: 'Athene.model.Adresa',
     proxy: {
         type: 'direct',
-        directFn: Adresa.getAll
+        directFn: Adresa.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

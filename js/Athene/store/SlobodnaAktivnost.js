@@ -3,7 +3,10 @@
     model: 'Athene.model.SlobodnaAktivnost',
     proxy: {
         type: 'direct',
-        directFn: SlobodnaAktivnost.getAll
+        directFn: SlobodnaAktivnost.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

@@ -3,7 +3,10 @@
     model: 'Athene.model.User',
     proxy: {
         type: 'direct',
-        directFn: User.getAll
+        directFn: User.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

@@ -3,7 +3,10 @@
     model: 'Athene.model.Dogadjaj',
     proxy: {
         type: 'direct',
-        directFn: Dogadjaj.getAll
+        directFn: Dogadjaj.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

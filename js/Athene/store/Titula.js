@@ -3,7 +3,10 @@
     model: 'Athene.model.Titula',
     proxy: {
         type: 'direct',
-        directFn: Titula.getAll
+        directFn: Titula.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

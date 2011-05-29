@@ -3,7 +3,10 @@
     model: 'Athene.model.DodijeljenaPoteskoca',
     proxy: {
         type: 'direct',
-        directFn: DodijeljenaPoteskoca.getAll
+        directFn: DodijeljenaPoteskoca.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

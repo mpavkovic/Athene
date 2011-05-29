@@ -3,7 +3,10 @@
     model: 'Athene.model.NajavaIspita',
     proxy: {
         type: 'direct',
-        directFn: NajavaIspita.getAll
+        directFn: NajavaIspita.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

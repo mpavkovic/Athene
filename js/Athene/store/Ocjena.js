@@ -3,7 +3,10 @@
     model: 'Athene.model.Ocjena',
     proxy: {
         type: 'direct',
-        directFn: Ocjena.getAll
+        directFn: Ocjena.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

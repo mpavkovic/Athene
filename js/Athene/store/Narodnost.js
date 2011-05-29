@@ -3,7 +3,10 @@
     model: 'Athene.model.Narodnost',
     proxy: {
         type: 'direct',
-        directFn: Narodnost.getAll
+        directFn: Narodnost.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

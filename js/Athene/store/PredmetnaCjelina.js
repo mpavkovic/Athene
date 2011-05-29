@@ -3,7 +3,10 @@
     model: 'Athene.model.PredmetnaCjelina',
     proxy: {
         type: 'direct',
-        directFn: PredmetnaCjelina.getAll
+        directFn: PredmetnaCjelina.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

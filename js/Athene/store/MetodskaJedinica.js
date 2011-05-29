@@ -3,7 +3,10 @@
     model: 'Athene.model.MetodskaJedinica',
     proxy: {
         type: 'direct',
-        directFn: MetodskaJedinica.getAll
+        directFn: MetodskaJedinica.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {

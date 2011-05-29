@@ -3,6 +3,9 @@
     model: 'Athene.model.PredmetRazrednogOdjeljenja',
     proxy: {
         type: 'direct',
-        directFn: PredmetRazrednogOdjeljenja.getAll
+        directFn: PredmetRazrednogOdjeljenja.getAll,
+        reader: {
+            root: 'data'
+        }
     }
 });

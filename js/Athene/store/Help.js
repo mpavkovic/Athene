@@ -3,7 +3,10 @@ Ext.define('Athene.store.Help', {
     model: 'Athene.model.Help',
     proxy: {
         type: 'direct',
-        directFn: Help.getAll
+        directFn: Help.getAll,
+        reader: {
+            root: 'data'
+        }
     },
     sorters: [
         {
