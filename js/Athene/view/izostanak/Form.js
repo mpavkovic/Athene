@@ -61,7 +61,7 @@ Ext.define('Athene.view.izostanak.Form', {
                         store: 'Ucenik',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
-                        valueField: 'id',
+                        valueField: 'oib',
 						name: 'ucenik_id'
 						},
 						{
@@ -82,26 +82,15 @@ Ext.define('Athene.view.izostanak.Form', {
                         allowBlank: false
 						},
 						{
-						xtype      : 'fieldcontainer',
-						fieldLabel : 'Opravdano',
-						defaultType: 'radiofield',
-						defaults: {
-							flex: 1
-						},
-						layout: 'hbox',
-						items: [
-							{
-								boxLabel  : 'Da',
-								name      : 'opravdano',
-								inputValue: '1',
-								id        : 'radio1'
-							}, {
-								boxLabel  : 'Ne',
-								name      : 'opravdano',
-								inputValue: '0',
-								id        : 'radio2'
-							}
-						]
+							xtype: 'combo',
+							id: 'comboIzostanakOpravdano',
+							fieldLabel: 'Opravdano',
+							store: odabir_da_ne,
+							queryMode: 'local',
+							displayField: 'naziv',
+							valueField: 'abbr',
+							name: 'opravdano',
+							maxLength: 11
 						},
 						{
                         xtype: 'textareafield',
@@ -112,43 +101,7 @@ Ext.define('Athene.view.izostanak.Form', {
 						anchor: '100%'
 						}
 					]
-                },{
-                     title:'Podaci o roditelju'
- 
-                    // fields
-                    ,items:[{
-                        // combo
-                         name:'combo1'
-                        ,fieldLabel:'Combo 1'
-                        ,value:3
-                        ,xtype:'combo'
-                        ,store:[
-                             [1, 'Item 1']
-                            ,[2, 'Item 2']
-                            ,[3, 'Item 3']
-                            ,[4, 'Item 4']
-                        ]
-                        ,mode:'local'
-                        ,triggerAction:'all'
-                        ,hiddenName:'combo1'
-                        ,width:120
-                    },{
-                        // date
-                         name:'date1'
-                        ,fieldLabel:'Date 1'
-                        ,xtype:'datefield'
-                        ,listeners:{
-                            focus:{fn:function() {
-                                if(this.menu == null){
-                                    this.menu = new Ext.menu.DateMenu();
-                                }
-                                if(!this.menu.isVisible()) {
-                                    this.onTriggerClick();
-                                }
-                            }}
-                        }
-                    }]
-                },
+                }
 				]
             }
 				],

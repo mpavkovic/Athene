@@ -1,3 +1,7 @@
+var rowEditing = Ext.create('Ext.grid.plugin.RowEditing', {
+        clicksToMoveEditor: 1,
+        autoCancel: false
+    });
 Ext.define('Athene.view.user.List', {
     extend: 'Ext.window.Window',
     alias: 'widget.userlist',
@@ -7,8 +11,8 @@ Ext.define('Athene.view.user.List', {
     layout: 'fit',
     width: 600,
     minWidth: 600,
-    height: 300,
-    minHeight: 300,
+    height: 250,
+    minHeight: 250,
     maximizable: true,
     constrain: true,
     closeAction: 'hide',
@@ -29,23 +33,41 @@ Ext.define('Athene.view.user.List', {
                 store: 'User',
                 forceFit: true,
                 columns: [
+					Ext.create('Ext.grid.RowNumberer'),
                     {
                         text: 'Korisničko ime',
-                        dataIndex: 'username'
+                        dataIndex: 'username',
+						editor: {
+							// defaults to textfield if no xtype is supplied
+							allowBlank: false
+						}
                     },
                     {
                         xtype: 'templatecolumn',
                         text: 'Puno ime',
+						flex: 1,
                         dataIndex: 'last_name',
-                        tpl: '{last_name} {first_name}'
+                        tpl: '{last_name} {first_name}',
+						editor: {
+							// defaults to textfield if no xtype is supplied
+							allowBlank: false
+						}
                     },
                     {
                         text: 'E-mail',
-                        dataIndex: 'email'
+                        dataIndex: 'email',
+						editor: {
+							allowBlank: false,
+							vtype: 'email'
+						}
                     },
                     {
                         text: 'Grupa',
-                        dataIndex: 'group_id'
+                        dataIndex: 'group_id',
+						editor: {
+							// defaults to textfield if no xtype is supplied
+							allowBlank: false
+						}
                     },
                     {
                         xtype: 'actioncolumn',
@@ -84,6 +106,8 @@ Ext.define('Athene.view.user.List', {
                         ]
                     }
                 ],
+				plugins: [rowEditing],
+				columnLines: true,
                 viewConfig: {
                     stripeRows: true
                 }
