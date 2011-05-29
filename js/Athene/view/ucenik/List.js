@@ -2,7 +2,6 @@ Ext.define('Athene.view.ucenik.List', {
     extend: 'Ext.window.Window',
     alias: 'widget.uceniklist',
     id: 'uceniklist',
-    
     title: 'Popis Učenika',
     layout: 'fit',
     width: 950,
