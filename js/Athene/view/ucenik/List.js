@@ -53,6 +53,43 @@ Ext.define('Athene.view.ucenik.List', {
                     {
                         text: 'Spol',
                         dataIndex: 'spol'
+                    },
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    console.log(Ext.getStore('Ucenik').getAt(rowIndex));
+                                    var view = Ext.widget('ucenikform');
+                                    view.down('form').loadRecord(Ext.getStore('Ucenik').getAt(rowIndex));
+                                    view.down('#formUcenikSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Ucenik').getAt(rowIndex).data.oib;
+                                    view.renderTo = '#uceniklist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
                 ]
             }

@@ -12,6 +12,7 @@ session_start();
 
 $autoload = new \Sirius\Autoload(APP_PATH . '/lib');
 $database = new \Sirius\Storage\Database\Mysql(array(
+    'host'  => DB_HOST,
     'user'  => DB_USER,
     'password'  => DB_PASS,
     'database'  => DB_NAME

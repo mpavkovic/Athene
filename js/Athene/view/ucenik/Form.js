@@ -27,117 +27,117 @@ Ext.define('Athene.view.ucenik.Form', {
     initComponent: function() {
 	var me = this;
         this.items = [
-            {
-                xtype: 'tabpanel',
-				bodyPadding: 5,
-                activeTab: 0,
+	    {
+		xtype: 'form',
                 layout: 'anchor',
                 defaults: {
                     anchor: '100%'
-                },
+		},
+            items: [{
+                xtype: 'tabpanel',
+		bodyPadding: 5,
+                activeTab: 0,
+
                 
                 api: {
                     submit: Ucenik.save
                 },
     
-                items: [
-							{
-								xtype: 'panel',
-								title: 'Osnovni podaci',
-								height: 180,
-								items: [
-											{
-												xtype: 'textfield',
-												name: 'oib',
-												fieldLabel: 'OIB',
-												allowBlank: false,
-												maxLength: 11,
-												minLength: 11
-											},
-											{
-												xtype: 'textfield',
-												name: 'jmbg',
-												fieldLabel: 'JMBG',
-												allowBlank: false,
-												maxLength: 13,
-												minLength: 13
-											},
-											{
-												xtype: 'textfield',
-												name: 'ime',
-												fieldLabel: 'Ime',
-												allowBlank: false,
-												maxLength: 50
-											},
-											{
-												xtype: 'textfield',
-												name: 'prezime',
-												fieldLabel: 'Prezime',
-												allowBlank: false,
-												maxLength: 50
-											},
-											{
-												xtype: 'datefield',
-												name: 'datum',
-												fieldLabel: 'Datum rođenja',
-												format: 'd.m.Y.',
-												submitFormat: 'Y-m-d',
-												allowBlank: false
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikMjestoRod',
-												store: 'Mjesto',
-												fieldLabel: 'Mjesto rođenja',
-												displayField: 'naziv',
-												valueField: 'id',
-												name: 'mjesto_id'
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikSpol',
-												fieldLabel: 'Spol',
-												store: odabir_spol,
-												queryMode: 'local',
-												displayField: 'naziv',
-												valueField: 'abbr',
-												name: 'spol'
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikSportas',
-												fieldLabel: 'Sportaš',
-												store: odabir_da_ne,
-												queryMode: 'local',
-												displayField: 'naziv',
-												valueField: 'abbr',
-												name: 'sportas'
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikNarodnost',
-												store: 'Narodnost',
-												fieldLabel: 'Narodnost',
-												displayField: 'naziv',
-												valueField: 'id',
-												name: 'narodnost_id'
-											},
-											{
-												xtype: 'combo',
-												id: 'comboUcenikNacionalnaManj',
-												store: 'NacionalnaManjina',
-												fieldLabel: 'Nacionalna Manjina',
-												displayField: 'naziv',
-												valueField: 'id',
-												name: 'nacionalna_manjina_id'
-											}
-									]
-							},
-							{
-								xtype: 'panel',
-								title: 'Podaci o roditeljima',
-								items:	[
-											{
+                items: [{
+		    xtype: 'panel',
+		    title: 'Osnovni podaci',
+		    height: 180,
+		    items: [{
+			xtype: 'textfield',
+			name: 'oib',
+			fieldLabel: 'OIB',
+			allowBlank: false,
+			maxLength: 11,
+			minLength: 11
+		    },
+		    {
+			xtype: 'textfield',
+			name: 'jmbg',
+			fieldLabel: 'JMBG',
+			allowBlank: false,
+			maxLength: 13,
+			minLength: 13
+		    },
+		    {
+			xtype: 'textfield',
+			name: 'ime',
+			fieldLabel: 'Ime',
+			allowBlank: false,
+			maxLength: 50
+		    },
+		    {
+			xtype: 'textfield',
+			name: 'prezime',
+			fieldLabel: 'Prezime',
+			allowBlank: false,
+			maxLength: 50
+		    },
+		    {
+			xtype: 'datefield',
+			name: 'datum',
+			fieldLabel: 'Datum rođenja',
+			format: 'd.m.Y.',
+			submitFormat: 'Y-m-d',
+			allowBlank: false
+		    },
+		    {
+			xtype: 'combo',
+			id: 'comboUcenikMjestoRod',
+			store: 'Mjesto',
+			fieldLabel: 'Mjesto rođenja',
+			displayField: 'naziv',
+			valueField: 'id',
+			name: 'mjesto_id'
+		    },
+		    {
+			xtype: 'combo',
+			id: 'comboUcenikSpol',
+			fieldLabel: 'Spol',
+			store: odabir_spol,
+			queryMode: 'local',
+			displayField: 'naziv',
+			valueField: 'abbr',
+			name: 'spol'
+		    },
+		    {
+			xtype: 'combo',
+			id: 'comboUcenikSportas',
+			fieldLabel: 'Sportaš',
+			store: odabir_da_ne,
+			queryMode: 'local',
+			displayField: 'naziv',
+			valueField: 'abbr',
+			name: 'sportas'
+		    },
+		    {
+			xtype: 'combo',
+			id: 'comboUcenikNarodnost',
+			store: 'Narodnost',
+			fieldLabel: 'Narodnost',
+			displayField: 'naziv',
+			valueField: 'id',
+			name: 'narodnost_id'
+		    },
+		    {
+			xtype: 'combo',
+			id: 'comboUcenikNacionalnaManj',
+			store: 'NacionalnaManjina',
+			fieldLabel: 'Nacionalna Manjina',
+			displayField: 'naziv',
+			valueField: 'id',
+			name: 'nacionalna_manjina_id'
+		    }
+		]
+	    },
+	    {
+		xtype: 'panel',
+		title: 'Podaci o roditeljima',
+		items:	[{
 												xtype: 'textfield',
 												name: 'otac_ime_nom',
 												fieldLabel: 'Otac ime nominativ',
@@ -282,7 +282,8 @@ Ext.define('Athene.view.ucenik.Form', {
                         }
                     }
                 ]
-            }
+            }]
+	    }
         ];
         this.callParent(arguments);
     }
