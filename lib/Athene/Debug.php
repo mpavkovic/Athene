@@ -2,6 +2,8 @@
 
 namespace Athene;
 
+use Sirius\Storage\Database\Mysql;
+
 class Debug {
     
     private static $instance = null;
@@ -16,7 +18,7 @@ class Debug {
     }
     
     public function __construct() {
-        $this->adapter = \Database::getInstance();
+        $this->adapter = Mysql::getInstance();
     }
     
     public function log($title, $message, $file, $line) {

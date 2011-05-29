@@ -45,14 +45,6 @@ Ext.define('Athene.view.ucenik.List', {
                     {
                         text: 'Spol',
                         dataIndex: 'spol'
-                    },
-                    {
-                        text: 'Sportaš',
-                        dataIndex: 'sportas'
-                    },
-                    {
-                        text: 'Vrsta putnika',
-                        dataIndex: 'vrsta_putnika_id'
                     }
                 ]
             }
@@ -68,8 +60,21 @@ Ext.define('Athene.view.ucenik.List', {
                         icon: 'img/icons/add.png',
                         text: 'Dodaj učenika', 
                         id: 'openUcenikForm'
+                    },
+                    '->',
+                    {
+                        xtype: 'textfield',
+                        emptyText: 'traži...',
+                        id: 'listUcenikSearch',
+                        fieldLabel: false
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'Ucenik',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

@@ -63,11 +63,24 @@ Ext.define('Athene.view.user.List', {
                     },
                     {
                         text: 'Grupa',
+<<<<<<< HEAD
                         dataIndex: 'group_id',
 						editor: {
 							// defaults to textfield if no xtype is supplied
 							allowBlank: false
 						}
+=======
+                        dataIndex: 'groups',
+                        renderer: function(value, p, r) {
+                            var _groups = r.data.groups;
+                            var groups = new Array();
+                            //console.log(r.data.groups);
+                            for(var i = 0; i < _groups.length; i++) {
+                                groups.push(_groups[i].name);
+                            }
+                            return groups.join(',');
+                        }
+>>>>>>> 4f81e83b0b2a2a1da2bca470e0e8896675a9d5eb
                     },
                     {
                         xtype: 'actioncolumn',

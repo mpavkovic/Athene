@@ -7,11 +7,13 @@ Ext.define('Athene.controller.NastavnaJedinica', {
     ],
     
     stores: [
-        'NastavnaJedinica'
+        'NastavnaJedinica',
+        'NastavniPlan'
     ],
     
     models: [
-        'NastavnaJedinica'
+        'NastavnaJedinica',
+        'NastavniPlan'
     ],
     
     refs: [
@@ -39,8 +41,20 @@ Ext.define('Athene.controller.NastavnaJedinica', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
+        this.getNastavniPlanStore().load({
+            scope: this,
+            callback: function(records, operation, success) {
+                if(success) {
+                    this.getNastavnaJedinicaStore().load();
+                } else {
+                    Ext.widget('notification').popup({
+                        message: 'Nemogu učitati nastavnu jedinicu!',
+                        icon: 'img/icons/exclamation.png'
+                    });
+                    this.getWindow().close();
+                }
+            }
+        });
     }, 
     
     edit: function(v, r) {

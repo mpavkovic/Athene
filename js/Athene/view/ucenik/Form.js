@@ -28,8 +28,14 @@ Ext.define('Athene.view.ucenik.Form', {
 	var me = this;
         this.items = [
             {
+<<<<<<< HEAD
                 xtype: 'form',
                 bodyPadding: 5,
+=======
+                xtype: 'tabpanel',
+		bodyPadding: 5,
+                activeTab: 0,
+>>>>>>> 4f81e83b0b2a2a1da2bca470e0e8896675a9d5eb
                 layout: 'anchor',
                 defaults: {
                     anchor: '100%'
@@ -40,6 +46,7 @@ Ext.define('Athene.view.ucenik.Form', {
                 },
     
                 items: [
+<<<<<<< HEAD
 {
                  xtype:'tabpanel'
                 ,activeItem:0
@@ -136,6 +143,82 @@ Ext.define('Athene.view.ucenik.Form', {
 												valueField: 'abbr',
 												name: 'sportas'
 											},
+=======
+		    {
+			xtype: 'panel',
+			title: 'Osnovni podaci',
+			height: 180,
+			items: [
+			    {
+				xtype: 'textfield',
+				name: 'oib',
+				fieldLabel: 'OIB',
+				allowBlank: false,
+				vtype: 'oib',
+				minLength : 11,
+				enforceMaxLength: true
+			    },
+			    {
+				xtype: 'textfield',
+				name: 'jmbg',
+				fieldLabel: 'JMBG',
+				allowBlank: false,
+				vtype: 'jmbg',
+				minLength : 13,
+				enforceMaxLength: true
+			    },
+			    {
+				xtype: 'textfield',
+				name: 'ime',
+				fieldLabel: 'Ime',
+				allowBlank: false,
+				maxLength: 50
+			    },
+			    {
+				xtype: 'textfield',
+				name: 'prezime',
+				fieldLabel: 'Prezime',
+				allowBlank: false,
+				maxLength: 50
+			    },
+			    {
+				xtype: 'datefield',
+				name: 'datum',
+				fieldLabel: 'Datum rođenja',
+				format: 'd.m.Y.',
+				submitFormat: 'Y-m-d',
+				allowBlank: false
+			    },
+			    {
+				xtype: 'combo',
+				id: 'comboUcenikMjestoRod',
+				store: 'Mjesto',
+				fieldLabel: 'Mjesto rođenja',
+				displayField: 'naziv',
+				valueField: 'id',
+				name: 'mjesto_id'
+			    },
+			    {
+				xtype: 'combo',
+				id: 'comboUcenikSpol',
+				fieldLabel: 'Spol',
+			        store: odabir_spol,
+				queryMode: 'local',
+				displayField: 'naziv',
+				valueField: 'abbr',
+				name: 'spol'
+			    },
+			    {
+				xtype: 'combo',
+				id: 'comboUcenikSportas',
+				fieldLabel: 'Sportaš',
+				store: odabir_da_ne,
+				queryMode: 'local',
+				displayField: 'naziv',
+				valueField: 'abbr',
+				name: 'sportas'
+			    },
+>>>>>>> 4f81e83b0b2a2a1da2bca470e0e8896675a9d5eb
 											{
 												xtype: 'combo',
 												id: 'comboUcenikNarodnost',

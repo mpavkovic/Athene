@@ -5,22 +5,22 @@ namespace Athene;
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-set_include_path(get_include_path() . PATH_SEPARATOR . 'library/');
-
-spl_autoload_register(function ($class) {
-    $classPath = 'lib' . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-    include($classPath);
-});
+include('config.php');
+include('lib/Sirius/Autoload.php');
 
 session_start();
 
-include('database.php');
+$autoload = new \Sirius\Autoload(APP_PATH . '/lib');
+$database = new \Sirius\Storage\Database\Mysql(array(
+    'user'  => DB_USER,
+    'password'  => DB_PASS,
+    'database'  => DB_NAME
+));
 
 // Debugger
 $debug = Debug::getInstance();
 
 ob_start();
-
 
 
 class JsonResponse {
@@ -31,6 +31,10 @@ class JsonResponse {
         $this->method = $method;
         $this->result = $result;
         $this->tid = $tid;
+    }
+    
+    public function __set($property, $value) {
+        $this->$property = $value;
     }
     
     public function __toString() {
@@ -198,10 +202,19 @@ if(isset($_POST) && !empty($_POST)) {
             } else {
                 $rreturn->success = false;
             }
-            $responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $rreturn, $jsonRequest->tid);
+            $response = new JsonResponse($jsonRequest->action, $jsonRequest->method, $rreturn, $jsonRequest->tid);
         } else {
-            $responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
+            $xrd = (object)array(
+                'total' => $actionClass->count(),
+                'data' => $return
+            );
+            $response = new JsonResponse($jsonRequest->action, $jsonRequest->method, $xrd, $jsonRequest->tid);
+            //var_dump($jsonRequest->data[0]-);
+            /*if(isset($jsonRequest->data[0]->page)) {
+                $response->total = $actionClass->count();
+            }*/
         }
+        $responses[] = $response;
         //$responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
     }
     echo implode(',', $responses);

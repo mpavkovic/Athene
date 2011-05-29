@@ -3,9 +3,5 @@ Ext.define('Athene.model.Group', {
     fields: [
         'id',
         'name'
-    ],
-    hasMany: {
-        model: 'Group',
-        name: 'groups'
-    }
+    ]
 });
