@@ -2,6 +2,8 @@
 
 namespace Sirius\Storage\Database;
 
+use Athene\Debug;
+
 class Mysql extends Database {
     
     const DEFAULT_HOST = 'localhost';
@@ -54,6 +56,7 @@ class Mysql extends Database {
     }
     
     public function query($query) {
+        Debug::getInstance()->log('Query', $query, __FILE__, __LINE__);
         $return = array();
         foreach($this->conn->query($query, \PDO::FETCH_ASSOC) as $r) {
             $return[] = (object)$r;

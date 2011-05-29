@@ -33,9 +33,9 @@ class Model {
     }
     
     public function save() {
-        if($this->fields->id) {
+        /*if($this->fields['id']) {
             $query = $this->adapter->update();
-        }
+        }*/
         
         return $this->adapter->insert($this->table, $this->fields);
     }

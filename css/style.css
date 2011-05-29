@@ -28,6 +28,11 @@ body.login h1 {
     white-space: nowrap;
 }
 
+div.debugMessage {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+}
+
 
 /* OLD */
 h1.title {

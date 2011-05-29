@@ -81,16 +81,26 @@ class Select extends Statement {
         // JOINs
         if(!empty($this->joins)) {
             foreach($this->joins as $join) {
-                $query .= ' JOIN ' . $join['table'] . ' ON ';
+                if(isset($join['alias'])) {
+                    $t = $join['alias'];
+                } else {
+                    $t = $join['table'];
+                }
+                
+                $query .= ' JOIN ' . $join['table'];
+                if(isset($join['alias'])) {
+                    $query .= ' AS ' . $join['alias'];
+                }
+                $query .= ' ON ';
                 if(isset($this->alias)) {
                     $query .= $this->alias;
                 } else {
                     $query .= $this->table;
                 }
-                $query .= '.' . $join['key'] . ' = ' . $join['table'] . '.id';
+                $query .= '.' . $join['key'] . ' = ' . $t . '.id';
                 if(isset($join['fields'])) {
                     foreach($join['fields'] as $field) {
-                        $selectFields .= ', ' . $join['table'] . '.' . $field[0] . ' AS ' . $field[1];
+                        $selectFields .= ', ' . $t . '.' . $field[0] . ' AS ' . $field[1];
                     }
                 }
             }

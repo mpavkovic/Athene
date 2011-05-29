@@ -103,7 +103,7 @@
                         title: false,
                         autoScroll: true,
                         bodyStyle: 'padding: 5px',
-                        tpl: '<p>{data}</p>',
+                        tpl: '{data}',
                         tplWriteMode: 'append'
                      }
                   ]

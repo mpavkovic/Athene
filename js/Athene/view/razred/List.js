@@ -68,15 +68,6 @@ Ext.define('Athene.view.razred.List', {
                         fieldLabel: 'Školska godina',
                         displayField: 'godina',
                         valueField: 'godina'
-                    },
-                    '->',
-                    {
-                        xtype: 'combo',
-                        id: 'filterRazredByRazrednik',
-                        store: 'Ucitelj',
-                        fieldLabel: 'Razrednik',
-                        displayField: 'prezime',
-                        valueField: 'id'
                     }
                 ]
             }

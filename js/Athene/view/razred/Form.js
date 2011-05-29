@@ -48,14 +48,13 @@ Ext.define('Athene.view.razred.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboRazredRazred',
-						fieldLabel: 'Razred',
-						store: popis_razreda,
-						queryMode: 'local',
-						displayField: 'naziv',
-						valueField: 'abbr',
-						name: 'razred'
+			fieldLabel: 'Razred',
+			store: popis_razreda,
+			queryMode: 'local',
+			displayField: 'naziv',
+			valueField: 'abbr',
+			name: 'razred'
                     },
-					
                     {
                         xtype: 'combo',
                         id: 'comboRazredGodina',
@@ -63,7 +62,7 @@ Ext.define('Athene.view.razred.Form', {
                         fieldLabel: 'Šk. godina',
                         displayField: 'godina',
                         valueField: 'godina',
-						name: 'skolska_godina_id'
+			name: 'skolska_godina_id'
                     },
                     {
                         xtype: 'combo',
@@ -72,7 +71,18 @@ Ext.define('Athene.view.razred.Form', {
                         fieldLabel: 'Razrednik',
                         displayField: 'prezime',
                         valueField: 'id',
-						name: 'razrednik_id'
+			name: 'razrednik_id',
+			listConfig: {
+			    loadingText: 'Tražim...',
+	                    emptyText: 'Nema rezultata.',
+
+	                    // Custom rendering template for each item
+	                    getInnerTpl: function() {
+	                        return '<div class="search-item">' +
+	                            '<h3>{prezime} {ime}</h3>' +
+	                        '</div>';
+			    }
+			}
                     },
                     {
                         xtype: 'textfield',
@@ -98,8 +108,28 @@ Ext.define('Athene.view.razred.Form', {
 		    },
                     {
                         text: 'Dodaj',
+                        scope: me,
                         handler: function() {
-                            this.up('form').getForm().submit();
+                            me.down('form').getForm().submit({
+				success: function(form, action) {    
+				    Ext.widget('notification').popup('Razredno odjeljenje uspješno dodano.');
+				    var RazredRecord = Ext.data.Record.create(['id', 'naziv', 'razred', 'skolska_godina_id', 'razrednik_id', 'klasa', 'urudzbeni_broj']);
+				    //console.log(form);
+				    //var r = new RazredRecord();
+				    //me.down('form').getForm().updateRecord(r);
+				    //console.log(r);
+				    //Ext.getStore('Razred').add(r);
+				    //ds.PartnersCombo.add(myrec);
+				    //me.down('form').getForm().reset();
+				    
+				},
+	                        failure: function(form, action) {
+				    Ext.widget('notification').popup({
+					message: action.result.message,
+					icon: 'img/icons/exclamation.png'
+				    });
+	                        }
+			    })
                         }
                     }
                 ]

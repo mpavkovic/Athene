@@ -30,9 +30,9 @@ Ext.define('Athene.view.zanimanje.Form', {
                         name: 'naziv',
                         fieldLabel: 'Naziv',
                         allowBlank: false,
-						grow: true,
-						anchor: '100%',
-						maxLength: 100
+			grow: true,
+			anchor: '100%',
+			maxLength: 100
                     }
                 ],
                 buttons: [
@@ -44,8 +44,25 @@ Ext.define('Athene.view.zanimanje.Form', {
 		    },
                     {
                         text: 'Dodaj',
+                        scope: me,
                         handler: function() {
-                            this.up('form').getForm().submit();
+                            me.down('form').getForm().submit({
+				success: function(form, action) {    
+				    Ext.widget('notification').popup('Zanimanje uspješno dodano.');
+				    // Create a new record from form data
+				    var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Zanimanje');
+				    // Add new record to store
+				    Ext.getStore('Zanimanje').add(r);
+				    // Resort
+				    Ext.getStore('Zanimanje').sort();
+				},
+	                        failure: function(form, action) {
+				    Ext.widget('notification').popup({
+					message: action.result.message,
+					icon: 'img/icons/exclamation.png'
+				    });
+	                        }
+			    })
                         }
                     }
                 ]

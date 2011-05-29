@@ -25,8 +25,20 @@ Ext.define('Athene.view.ucitelj.List', {
                     {
                         text: 'Prezime',
                         dataIndex: 'prezime'
+                    },
+		    {
+                        text: 'Ime',
+                        dataIndex: 'ime'
+                    },
+		    {
+                        text: 'Titual (prefix)',
+                        dataIndex: 'titula_prefix'
+                    },
+		    {
+                        text: 'Titula (sufix)',
+                        dataIndex: 'titula_sufix'
                     }
-				]
+		]
             }
         ];
         

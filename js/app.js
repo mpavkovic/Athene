@@ -85,13 +85,13 @@ Ext.onReady(function() {
 	Ext.Direct.on('debug', function(e) {
 	    var debugData = '';
 	    for(var i=0; i < e.data.length; i++) {
-		debugData += '<div><b>' + e.data[i].title + '</b> (' + e.data[i].time + ')<br />' + e.data[i].message + '</div>';
+		debugData += '<div class="debugMessage"><b>' + e.data[i].title + '</b> (' + e.data[i].time + ')<br />' + e.data[i].message + '</div>';
 	    }
 	    if(debugData.length > 0) {
 		Ext.getCmp('debugOutput').update({
 		    data: debugData
 		});
-	        Ext.getCmp('debugOutput').body.scroll('b', 100000, true);
+	        //Ext.getCmp('debugOutput').body.scroll('b', 100000, true);
 	    }
 	});
     }

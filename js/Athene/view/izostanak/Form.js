@@ -24,101 +24,88 @@ Ext.define('Athene.view.izostanak.Form', {
                     submit: Izostanak.save
                 },
     
-                items: [
-{
-                 xtype:'tabpanel'
-                ,activeItem:0
-                ,border:false
- 
-                // this line is necessary for anchoring to work at
-                // lower level containers and for full height of tabs
-                ,anchor:'100% 100%'
- 
-                // only fields from an active tab are submitted
-                // if the following line is not persent
-                ,deferredRender:false
- 
-                // tabs
-                ,defaults:{
-                    labelWidth:80
-                    ,defaultType:'textfield'
-                    ,bodyStyle:'padding:5px'
- 
-                    // as we use deferredRender:false we mustn't
-                    // render tabs into display:none containers
-                    ,hideMode:'offsets'
-                }
-                ,items:[{
-                     title:'Opće informacije'
-                    ,autoScroll:true
-                    ,defaults:{anchor:'-20'}
- 
-                    // fields
-                    ,items:[
-						{
+                items: [{
+		    xtype: 'combo',
+		    id: 'comboRazred',
+		    store: 'Razred',
+		    fieldLabel: 'Razred',
+		    displayField: 'naziv',
+		    valueField: 'id',
+		    name: 'razred'
+		},
+		{
                         xtype: 'combo',
                         id: 'comboIzostanakUcenik',
                         store: 'Ucenik',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
                         valueField: 'oib',
-						name: 'ucenik_id'
-						},
-						{
+			name: 'ucenik_id',
+			
+			listConfig: {
+			    loadingText: 'Tražim...',
+	                    emptyText: 'Nema rezultata.',
+
+	                    // Custom rendering template for each item
+	                    getInnerTpl: function() {
+	                        return '<div class="search-item">' +
+	                            '<h3>{prezime} {ime}</h3>' +
+	                            'OIB: {oib}' +
+	                        '</div>';
+			    }
+			}
+		    },
+		    {
                         xtype: 'combo',
                         id: 'comboIzostanakPredRazOdj',
                         store: 'PredmetRazrednogOdjeljenja',
                         fieldLabel: 'Predmet razrednog odjeljenja',
                         displayField: 'predmet_id',
                         valueField: 'id',
-						name: 'predmet_id'
-						},
-						{
-                        xtype: 'datefield',
+			name: 'predmet_id'
+		    },
+		    {
+		        xtype: 'datefield',
                         name: 'datum',
                         fieldLabel: 'Datum',
                         format: 'd.m.Y.',
                         submitFormat: 'Y-m-d',
                         allowBlank: false
-						},
-						{
-							xtype: 'combo',
-							id: 'comboIzostanakOpravdano',
-							fieldLabel: 'Opravdano',
-							store: odabir_da_ne,
-							queryMode: 'local',
-							displayField: 'naziv',
-							valueField: 'abbr',
-							name: 'opravdano',
-							maxLength: 11
-						},
-						{
+		    },
+		    {
+			xtype: 'combo',
+			id: 'comboIzostanakOpravdano',
+			fieldLabel: 'Opravdano',
+			store: odabir_da_ne,
+			queryMode: 'local',
+			displayField: 'naziv',
+			valueField: 'abbr',
+			name: 'opravdano',
+			maxLength: 11
+		    },
+		    {
                         xtype: 'textareafield',
                         name: 'opravdanje',
                         fieldLabel: 'Opravdanje',
                         allowBlank: false,
-						grow: true,
-						anchor: '100%'
-						}
-					]
-                }
-				]
-            }
-				],
-                buttons: [
+			grow: true,
+			anchor: '100%'
+		    }
+		],
+		buttons: [
 		    {
 			text: 'Odustani',
 			handler: function() {
-			   me.close();
+			    me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
-                ]
+		    {
+		        text: 'Dodaj',
+		        handler: function() {
+			    this.up('form').getForm().submit();
+			}
+	            }
+		]
             }
         ];
         
