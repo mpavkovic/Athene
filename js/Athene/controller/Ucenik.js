@@ -39,7 +39,7 @@ Ext.define('Athene.controller.Ucenik', {
                 click: function() {
                     Ext.widget('uceniklist').show();
                 }
-            },
+            }
         });
     },
     

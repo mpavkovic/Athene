@@ -24,7 +24,10 @@ Ext.define('Athene.view.dodijeljenapoteskoca.List', {
                     },
                     {
                         text: 'Vrsta poteškoće',
-                        dataIndex: 'vrsta_poteskoce_id'
+                        dataIndex: 'vrsta_poteskoce_id',
+                        renderer: function(value) {
+                            return Ext.getStore('Poteskoca').getById(value).data.naziv;
+                        }
                     },
                     {
                         text: 'Datum od',

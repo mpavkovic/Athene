@@ -41,9 +41,21 @@
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        this.getMjestoStore().load({
+            scope: this,
+            callback: function(records, operation, success) {
+                if(success) {
+                    this.getSkolaStore().load();
+                } else {
+                    Ext.widget('notification').popup({
+                        message: 'Nemogu učitati popis škola!',
+                        icon: 'img/icons/exclamation.png'
+                    });
+                    this.getWindow().close();
+                }
+            }
+        });
+    },
     
     edit: function(v, r) {
         var view = Ext.widget('skolaform');
