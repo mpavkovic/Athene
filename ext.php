@@ -178,10 +178,15 @@ if(isset($_POST) && !empty($_POST)) {
                 } else {
                     $rreturn->success = false;
                 }
-                $responses[] = new JsonResponse($jr->action, $jr->method, $rreturn, $jr->tid);
+                $response = new JsonResponse($jr->action, $jr->method, $rreturn, $jr->tid);
             } else {
-                $responses[] = new JsonResponse($jr->action, $jr->method, $return, $jr->tid);
+                $xrd = (object)array(
+                    'total' => $actionClass->count($jr->data),
+                    'data' => $return
+                );
+                $response = new JsonResponse($jr->action, $jr->method, $xrd, $jr->tid);
             }
+            $responses[] = $response;
         }
     } else {
         $class = 'Athene\\Model\\' . $jsonRequest->action;
@@ -205,7 +210,7 @@ if(isset($_POST) && !empty($_POST)) {
             $response = new JsonResponse($jsonRequest->action, $jsonRequest->method, $rreturn, $jsonRequest->tid);
         } else {
             $xrd = (object)array(
-                'total' => $actionClass->count(),
+                'total' => $actionClass->count($jsonRequest->data),
                 'data' => $return
             );
             $response = new JsonResponse($jsonRequest->action, $jsonRequest->method, $xrd, $jsonRequest->tid);

@@ -3,6 +3,7 @@
 namespace Athene\Model;
 
 use Sirius\Storage\Database\Mysql;
+use Athene\Debug;
 
 class Model {
     
@@ -43,9 +44,12 @@ class Model {
         //var_dump($params); die();
         //$selectFiedls = array('*')
         $query = $this->adapter->select($this->table);
-                    /*'table' => $this->table,
+        
+        /*$query = $this->adapter->select(array(
+                    'table' => $this->table,
+                    'alias' => 'u',
                     'fields' => array('oib', 'jmbg')
-                ));*/
+        ));*/
         
         if(!empty($this->foreignKeys)) {
             foreach($this->foreignKeys as $fk) {
@@ -57,6 +61,11 @@ class Model {
         //echo $query;
         if(isset($params->page)) {
             $query->limit($params->start, $params->limit);
+        }
+        
+        //var_dump($params);
+        if(isset($params->filter)) {
+            $query->filter('prezime', $params->filter[0]->value);
         }
         //echo $query;
         return $this->adapter->query($query);
@@ -85,8 +94,13 @@ class Model {
         return true;
     }
     
-    public function count() {
+    public function count($params = null) {
         $query = "SELECT COUNT(*) AS total FROM " . $this->table;
+        Debug::getInstance()->log('Params for total', var_export($params, true), __FILE__, __LINE__);
+        if(isset($params[0]->filter)) {
+            $query .= ' WHERE ' . $params[0]->filter[0]->property . ' LIKE \'' . $params[0]->filter[0]->value . '%\'';
+        }
+        Debug::getInstance()->log('Count query', $query, __FILE__, __LINE__);
         $r = $this->adapter->query($query);
         return intval($r[0]->total);
     }

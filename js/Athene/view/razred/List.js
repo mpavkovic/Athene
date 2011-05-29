@@ -32,8 +32,10 @@ Ext.define('Athene.view.razred.List', {
                         text: 'Šk. godina'
                     },
                     {
+                        xtype: 'templatecolumn',
                         dataIndex: 'razrednik_id',
-                        text: 'Razrednik'
+                        text: 'Razrednik',
+                        tpl: '{razrednik_ime} {razrednik_prezime}'
                     },
                     {
                         dataIndex: 'klasa',

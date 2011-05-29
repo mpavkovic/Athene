@@ -36,6 +36,12 @@ Ext.define('Athene.view.zanimanje.List', {
                         icon: 'img/icons/add.png',
                         text: 'Dodaj zanimanje', 
                         id: 'openZanimanjeForm'
+                    },
+                    {
+                        xtype: 'button',
+                        icon: 'img/icons/refresh.png',
+                        text: 'Osvježi',
+                        id: 'refreshZanimanjeList'
                     }
                 ]
             }

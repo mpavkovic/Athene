@@ -25,7 +25,7 @@ class Debug {
         $this->adapter->insert('debug', array(
             'time'  => date('Y-m-d H:i:s'),
             'title' => $title,
-            'message'   => $message,
+            'message'   => mysql_escape_string($message),
             'file'  => $file,
             'line'  => $line
         ));

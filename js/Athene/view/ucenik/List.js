@@ -3,7 +3,7 @@ Ext.define('Athene.view.ucenik.List', {
     alias: 'widget.uceniklist',
     id: 'uceniklist',
     
-    title: 'Popis Učenika',
+    title: 'Popis učenika',
     layout: 'fit',
     width: 950,
     height: 300,
@@ -36,11 +36,19 @@ Ext.define('Athene.view.ucenik.List', {
                     },
                     {
                         text: 'Datum rođenja',
-                        dataIndex: 'datum_rodjenja'
+                        dataIndex: 'datum_rodjenja',
+                        renderer: function(value) {
+                            try {
+                                return Ext.Date.format(Ext.Date.parse(value, 'Y-m-d'), 'd.m.Y.');
+                            } catch (e) {
+                                Ext.Msg.alert("Error", "Error during date conversion: " + e);
+                            }
+                            return '#error';
+                        }
                     },
                     {
                         text: 'Mjesto rođenja',
-                        dataIndex: 'mjesto_rodjenja_id'
+                        dataIndex: 'mjesto_rodjenja'
                     },
                     {
                         text: 'Spol',
@@ -60,6 +68,12 @@ Ext.define('Athene.view.ucenik.List', {
                         icon: 'img/icons/add.png',
                         text: 'Dodaj učenika', 
                         id: 'openUcenikForm'
+                    },
+                    {
+                        xtype: 'button',
+                        icon: 'img/icons/refresh.png',
+                        text: 'Osvježi',
+                        id: 'refreshZanimanjeList'
                     },
                     '->',
                     {
