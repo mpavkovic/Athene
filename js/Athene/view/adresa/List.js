@@ -31,7 +31,7 @@ Ext.define('Athene.view.adresa.List', {
                         dataIndex: 'ucenik_id',
                         renderer: function(value) {
                             return Ext.getStore('Ucenik').getById(value).data.prezime;
-                        }
+                    }
                     },
                     {
                         text: 'Tip adrese',

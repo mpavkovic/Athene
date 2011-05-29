@@ -11,5 +11,5 @@ Ext.define('Athene.view.Help', {
     height: 300,
     maximizable: true,
     constrain: true,
-    
+	autoScroll:true
 });

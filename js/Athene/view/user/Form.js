@@ -82,12 +82,12 @@ Ext.define('Athene.view.user.Form', {
                             me.down('form').getForm().submit({
 				success: function(form, action) {
 				    //Ext.Msg.alert('Success', action.result.msg);
-				    Ext.widget('popupmessage').popup('Korisnik uspješno dodan.');
-				    me.close();
+					me.down('form').getForm().reset();
+					Ext.widget('notification').popup('Korisnik uspješno dodan.');
 				},
 	                        failure: function(form, action) {
 				    //Ext.Msg.alert('Failed', action.result.msg);
-				    Ext.widget('popupmessage').popup({
+				    Ext.widget('notification').popup({
 					message: action.result.message,
 					icon: 'img/icons/exclamation.png'
 				    });

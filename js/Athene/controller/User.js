@@ -29,7 +29,7 @@ Ext.define('Athene.controller.User', {
         this.control({
             '#usergrid': {
                 render: this.onGridRendered,
-                itemdblclick: this.edit
+                //itemdblclick: this.edit
             },
             '#openUserForm': {
                 click: function() {
@@ -60,6 +60,7 @@ Ext.define('Athene.controller.User', {
     
     onGridRendered: function() {
         this.getUserStore().load();
+		
     },
     
     filterGrid: function(item, newValue, oldValue) {
