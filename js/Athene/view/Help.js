@@ -7,7 +7,7 @@ Ext.define('Athene.view.Help', {
     layout: 'fit',
     bodyCls: 'helpwindow',
     padding: 5,
-    width: 600,
+    width: 670,
     height: 300,
     maximizable: true,
     constrain: true,

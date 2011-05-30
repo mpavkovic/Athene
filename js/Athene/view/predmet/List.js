@@ -9,6 +9,14 @@ Ext.define('Athene.view.predmet.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+		
+    tools: [
+        {
+            type: 'help',
+            id: 'helpPredmet',
+            qtip: 'Pomoć'
+        }
+    ],
     
     initComponent: function() {
         this.items = [

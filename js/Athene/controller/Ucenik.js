@@ -45,6 +45,9 @@ Ext.define('Athene.controller.Ucenik', {
             },
             '#refreshUcenikList': {
                 click: this.refreshData
+            },
+			'#helpUcenik': {
+                click: this.help
             }
         });
     },
@@ -79,5 +82,20 @@ Ext.define('Athene.controller.Ucenik', {
     
     refreshData: function() {
         this.getUcenikStore().load();
+    },
+
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/ucenici.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Popis učenika');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
 })

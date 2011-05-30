@@ -9,6 +9,14 @@ Ext.define('Athene.view.dogadjaj.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+	
+	tools: [
+        {
+            type: 'help',
+            id: 'helpDogadjaji',
+            qtip: 'Pomoć'
+        }
+    ],
     
     initComponent: function() {
         this.items = [

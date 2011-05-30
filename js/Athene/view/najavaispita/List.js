@@ -9,6 +9,14 @@ Ext.define('Athene.view.najavaispita.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+	
+	tools: [
+        {
+            type: 'help',
+            id: 'helpNajavaIspita',
+            qtip: 'Pomoæ'
+        }
+    ],
     
     initComponent: function() {
         this.items = [

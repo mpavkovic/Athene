@@ -38,6 +38,9 @@ Ext.define('Athene.controller.Ucitelj', {
                 submit: function() {
                     console.log("Submiting form...");
                 }
+            },
+			'#helpUcitelj': {
+                click: this.help
             }
         });
     },
@@ -45,5 +48,20 @@ Ext.define('Athene.controller.Ucitelj', {
     onGridRendered: function() {
         console.log('Grid is rendered, loading data...');
         this.getList().store.load();
+    },
+	
+	help: function() {
+        Ext.Ajax.request({
+            url: 'help/ucitelj.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Učitelji');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
 });

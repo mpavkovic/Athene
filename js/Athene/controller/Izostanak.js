@@ -33,6 +33,9 @@ Ext.define('Athene.controller.Izostanak', {
                     var view = Ext.widget('izostanakform');
                     view.show();
                 }
+            },
+			'#helpIzostanak': {
+                click: this.help
             }
         });
     },
@@ -47,5 +50,20 @@ Ext.define('Athene.controller.Izostanak', {
         view.renderTo = '#izostanaklist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/izostanci.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Izostanci');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu uèitati pomoæ za zatraženu stavku.");
+            }
+        })
     }
 })

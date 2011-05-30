@@ -9,6 +9,14 @@ Ext.define('Athene.view.ocjena.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+
+	tools: [
+        {
+            type: 'help',
+            id: 'helpOcjena',
+            qtip: 'Pomoæ'
+        }
+    ],
     
     initComponent: function() {
         this.items = [

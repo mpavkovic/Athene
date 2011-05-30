@@ -34,6 +34,9 @@ Ext.define('Athene.controller.NajavaIspita', {
                     var view = Ext.widget('najavaispitaform');
                     view.show();
                 }
+            },
+			'#helpNajavaIspita': {
+                click: this.help
             }
         });
     },
@@ -50,5 +53,20 @@ Ext.define('Athene.controller.NajavaIspita', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/najavaispita.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Najava ispita');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
 })

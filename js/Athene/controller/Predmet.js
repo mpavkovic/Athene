@@ -1,4 +1,4 @@
-﻿Ext.define('Athene.controller.Predmet', {
+Ext.define('Athene.controller.Predmet', {
     extend: 'Ext.app.Controller',
     
     views: [
@@ -34,6 +34,9 @@
                     var view = Ext.widget('predmetform');
                     view.show();
                 }
+            },
+			'#helpPredmet': {
+                click: this.help
             }
         });
     },
@@ -50,5 +53,20 @@
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/predmet.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Predmeti');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
 })
