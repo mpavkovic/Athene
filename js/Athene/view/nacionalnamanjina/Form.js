@@ -6,7 +6,7 @@ Ext.define('Athene.view.nacionalnamanjina.Form', {
     title: 'Nova nacionalna manjina',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 90,
     constrain: true,
        
     initComponent: function() {

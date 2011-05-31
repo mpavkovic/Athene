@@ -52,8 +52,10 @@ Ext.define('Athene.view.ucenik.Form', {
 			name: 'oib',
 			fieldLabel: 'OIB',
 			allowBlank: false,
+			minLength: 11,
 			maxLength: 11,
-			minLength: 11
+			enforceMaxLength: true,
+			vtype: 'oib'
 		    },
 		    {
 			xtype: 'textfield',
@@ -61,7 +63,9 @@ Ext.define('Athene.view.ucenik.Form', {
 			fieldLabel: 'JMBG',
 			allowBlank: false,
 			maxLength: 13,
-			minLength: 13
+			enforceMaxLength: true,
+			minLength: 13,
+			vtype: 'jmbg'
 		    },
 		    {
 			xtype: 'textfield',

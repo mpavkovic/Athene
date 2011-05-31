@@ -6,7 +6,7 @@ Ext.define('Athene.view.kategorijaocjena.Form', {
     title: 'Nova kategorija ocjena',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 90,
     constrain: true,
        
     initComponent: function() {

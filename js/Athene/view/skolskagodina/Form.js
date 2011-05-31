@@ -6,7 +6,7 @@ Ext.define('Athene.view.skolskagodina.Form', {
     title: 'Nova školska godina',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 240,
     constrain: true,
        
     initComponent: function() {

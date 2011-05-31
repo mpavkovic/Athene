@@ -13,7 +13,7 @@ Ext.define('Athene.view.predmetrazrednogodjeljenja.Form', {
     title: 'Novi Predmet Razrednog Odjeljenja',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 220,
     constrain: true,
        
     initComponent: function() {
