@@ -22,7 +22,7 @@
     ],
     
     init: function() {
-        console.log('PredmetRazrednogOdjeljenja controller initialized.')
+        //console.log('PredmetRazrednogOdjeljenja controller initialized.')
         
         this.control({
             '#predmetrazrednogodjeljenjagrid': {
@@ -39,7 +39,7 @@
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

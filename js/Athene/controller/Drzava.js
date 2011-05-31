@@ -38,7 +38,13 @@ Ext.define('Athene.controller.Drzava', {
     },
     
     onGridRendered: function() {
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getDrzavaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -47,5 +53,9 @@ Ext.define('Athene.controller.Drzava', {
         view.renderTo = '#drzavalist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    refreshData: function() {
+        this.getDrzavaStore().load();
     }
 })

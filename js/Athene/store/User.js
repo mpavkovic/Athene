@@ -15,7 +15,7 @@
     ],
     listeners: {
         load: function() {
-            console.log('Loading data for User store');
+            //console.log('Loading data for User store');
         }
     }
 });

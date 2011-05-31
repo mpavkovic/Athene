@@ -22,7 +22,7 @@ Ext.define('Athene.controller.NastavniSat', {
     ],
     
     init: function() {
-        console.log('Nastavni Sat controller initialized.')
+        //console.log('Nastavni Sat controller initialized.')
         
         this.control({
             '#nastavnisatgrid': {
@@ -45,7 +45,7 @@ Ext.define('Athene.controller.NastavniSat', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

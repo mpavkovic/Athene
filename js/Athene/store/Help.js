@@ -15,7 +15,7 @@ Ext.define('Athene.store.Help', {
     ],
     listeners: {
         load: function() {
-            console.log('Loading data for Help store');
+            //console.log('Loading data for Help store');
         }
     }
 });

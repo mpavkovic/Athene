@@ -40,12 +40,32 @@ Ext.define('Athene.view.nacionalnamanjina.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Nacionalna manjina je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.NacionalnaManjina');
+			// Add new record to store
+			Ext.getStore('NacionalnaManjina').add(r);
+			// Resort
+			Ext.getStore('NacionalnaManjina').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Nacionalna manjina nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

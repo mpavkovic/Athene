@@ -23,7 +23,7 @@ Ext.define('Athene.controller.Razred', {
     ],
     
     init: function() {
-        console.log('Razred controller initialized.')
+        //console.log('Razred controller initialized.')
         
         this.control({
             '#razredgrid': {
@@ -54,7 +54,7 @@ Ext.define('Athene.controller.Razred', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     },
     
@@ -68,12 +68,12 @@ Ext.define('Athene.controller.Razred', {
     },
     
     filter: function(item, newValue, oldValue) {
-        console.log('Filter by ' + newValue);
+        //console.log('Filter by ' + newValue);
         this.getList().store.filter('skolska_godina_id', newValue);
     },
 
     filter: function(item, newValue, oldValue) {
-        console.log('Filter by ' + newValue);
+        //console.log('Filter by ' + newValue);
         this.getList().store.filter('razrednik_id', newValue);
     },
     

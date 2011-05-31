@@ -41,7 +41,13 @@ Ext.define('Athene.controller.Izostanak', {
     },
     
     onGridRendered: function() {
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getIzostanakStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -65,5 +71,9 @@ Ext.define('Athene.controller.Izostanak', {
                 Ext.Msg.alert("Greška", "Nemogu uèitati pomoæ za zatraženu stavku.");
             }
         })
+    },
+	
+    refreshData: function() {
+        this.getIzostanakStore().load();
     }
 })

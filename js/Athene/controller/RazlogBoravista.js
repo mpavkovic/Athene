@@ -22,7 +22,7 @@
     ],
     
     init: function() {
-        console.log('Razlog boravista controller initialized.')
+        //console.log('Razlog boravista controller initialized.')
         
         this.control({
             '#razlogboravistagrid': {
@@ -39,7 +39,7 @@
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

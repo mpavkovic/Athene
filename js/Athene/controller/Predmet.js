@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Predmet', {
     ],
     
     init: function() {
-        console.log('Predmet controller initialized.')
+        //console.log('Predmet controller initialized.')
         
         this.control({
             '#predmetgrid': {
@@ -42,7 +42,7 @@ Ext.define('Athene.controller.Predmet', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

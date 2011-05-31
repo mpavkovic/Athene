@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Poteskoca', {
     ],
     
     init: function() {
-        console.log('Poteskoca controller initialized.')
+        //console.log('Poteskoca controller initialized.')
         
         this.control({
             '#poteskocagrid': {
@@ -39,7 +39,7 @@ Ext.define('Athene.controller.Poteskoca', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

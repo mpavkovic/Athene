@@ -22,7 +22,7 @@
     ],
     
     init: function() {
-        console.log('Vrsta Putnika controller initialized.')
+        //console.log('Vrsta Putnika controller initialized.')
         
         this.control({
             '#vrstaputnikagrid': {
@@ -39,7 +39,7 @@
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

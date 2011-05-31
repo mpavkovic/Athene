@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Ucitelj', {
     ],
     
     init: function() {
-        console.log('Ucitelj controller initialized.');
+        //console.log('Ucitelj controller initialized.');
         
         this.control({
             '#uciteljgrid': {
@@ -36,7 +36,7 @@ Ext.define('Athene.controller.Ucitelj', {
             },
             "form": {
                 submit: function() {
-                    console.log("Submiting form...");
+                    //console.log("Submiting form...");
                 }
             },
 			'#helpUcitelj': {
@@ -46,7 +46,7 @@ Ext.define('Athene.controller.Ucitelj', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     },
 	

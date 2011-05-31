@@ -58,13 +58,7 @@ Ext.define('Athene.view.help.List', {
                             {
                                 icon: 'img/icons/delete.png',
                                 tooltip: 'Izbriši',
-                                iconCls: 'deleteAction',
-                                handler: function(grid, rowIndex, columnIndex) {
-                                    var helpId = Ext.getStore('Help').getAt(rowIndex).data.id;
-                                    Help.delete(helpId, function(provider, response) {
-                                        console.log(provider, response);
-                                    })
-                                }
+                                iconCls: 'deleteAction'
                             }
                         ]
                     }
@@ -85,7 +79,7 @@ Ext.define('Athene.view.help.List', {
                         icon: 'img/icons/add.png',
                         text: 'Dodaj help', 
                         id: 'openHelpForm'
-                    },
+                    }
                     /*'->',
                     {
                         xtype: 'textfield',

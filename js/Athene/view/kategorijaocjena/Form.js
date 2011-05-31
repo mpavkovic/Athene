@@ -40,12 +40,32 @@ Ext.define('Athene.view.kategorijaocjena.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Kategorija ocjene je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.KategorijaOcjena');
+			// Add new record to store
+			Ext.getStore('KategorijaOcjena').add(r);
+			// Resort
+			Ext.getStore('KategorijaOcjena').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Kategorija ocjena nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

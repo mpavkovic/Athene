@@ -59,7 +59,7 @@ Ext.define('Athene.controller.Main', {
         this.control({
             '#logout': {
                 click: function() {
-                    console.log('Log me out!');
+                    //console.log('Log me out!');
                     Ext.Ajax.request({
                         url: 'ext.php',
                         method: 'GET',

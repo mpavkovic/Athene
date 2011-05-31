@@ -26,28 +26,28 @@
 						icon: 'img/icons/ucenici.png',
                         text: 'Učenici',
 						id: 'openUcenikGrid',
-						tooltip: {text:'Popis učenika'},
+						tooltip: {text:'Popis učenika'}
                     },
                     {
                         xtype: 'button',
 						icon: 'img/icons/razredi.png',
                         text: 'Razredi',
 						id: 'openRazredGrid',
-						tooltip: {text:'Popis razreda'},
+						tooltip: {text:'Popis razreda'}
                     },
                     {
                         xtype: 'button',
 						icon: 'img/icons/nastavni_sat.png',
                         text: 'Nastavni sat',
 						id: 'openNastavniSatGrid',
-						tooltip: {text:'Popis razreda'},
+						tooltip: {text:'Popis razreda'}
                     },
                     {
                         xtype: 'button',
 						icon: 'img/icons/help.png',
                         text: 'Pomoć',
 						id: 'openPomocForm',
-						tooltip: {text:'Kako koristiti aplikaciju'},
+						tooltip: {text:'Kako koristiti aplikaciju'}
                     },
 					{
                         xtype: 'tbtext',
@@ -56,7 +56,7 @@
                      {
                         icon: 'img/icons/lock_open.png',
                         text: 'Odjava',
-                        id: 'logout',
+                        id: 'logout'
                      }
                   ]
                }
@@ -93,7 +93,7 @@
                   constrain: true,
                   listeners: {
                      afterrender: function(window) {
-                        console.log('Debug window rendered.');
+                        //console.log('Debug window rendered.');
                         window.alignTo(this, 'br', [1, 5]);
                      }
                   },

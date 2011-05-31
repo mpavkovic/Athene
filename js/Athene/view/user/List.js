@@ -71,7 +71,7 @@ Ext.define('Athene.view.user.List', {
                         renderer: function(value, p, r) {
                             var _groups = r.data.groups;
                             var groups = new Array();
-                            //console.log(r.data.groups);
+                            ////console.log(r.data.groups);
                             for(var i = 0; i < _groups.length; i++) {
                                 groups.push(_groups[i].name);
                             }
@@ -103,13 +103,13 @@ Ext.define('Athene.view.user.List', {
                                 iconCls: 'deleteAction',
                                 handler: function(grid, rowIndex, columnIndex) {
                                     var userId = Ext.getStore('User').getAt(rowIndex).data.id;
-                                    User.delete(userId, function(provider, response) {
-                                        console.log(provider, response);
+                                    /*User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
                                         if(provider.success == true) {
                                             var sm = grid.getSelectionModel();
                                             grid.store.removeAt(rowIndex);
                                         }
-                                    })
+                                    });*/
                                 }
                             }
                         ]
@@ -149,11 +149,10 @@ Ext.define('Athene.view.user.List', {
                     }
                 ]
             }
-        ]
-        
+        ];
+		
         this.callParent(arguments);
     }
 });
 
 Ext.ComponentManager.registerType('userlist', Athene.view.user.List);
-

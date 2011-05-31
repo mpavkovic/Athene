@@ -2,7 +2,6 @@ Ext.define('Athene.view.group.List', {
     extend: 'Ext.window.Window',
     alias: 'widget.grouplist',
     id: 'grouplist',
-    
     title: 'Popis grupa',
     layout: 'fit',
     width: 600,
@@ -54,13 +53,7 @@ Ext.define('Athene.view.group.List', {
                             {
                                 icon: 'img/icons/delete.png',
                                 tooltip: 'Izbriši',
-                                iconCls: 'deleteAction',
-                                handler: function(grid, rowIndex, columnIndex) {
-                                    var mjestoId = Ext.getStore('Group').getAt(rowIndex).data.id;
-                                    Mjesto.delete(mjestoId, function(provider, response) {
-                                        console.log(provider, response);
-                                    })
-                                }
+                                iconCls: 'deleteAction'
                             }
                         ]
                     }
@@ -81,7 +74,7 @@ Ext.define('Athene.view.group.List', {
                         icon: 'img/icons/add.png',
                         text: 'Dodaj grupu', 
                         id: 'openGroupForm'
-                    },
+                    }
                     /*'->',
                     {
                         xtype: 'textfield',
@@ -97,7 +90,7 @@ Ext.define('Athene.view.group.List', {
                     }*/
                 ]
             }
-        ]
+        ];
         
         this.callParent(arguments);
     }

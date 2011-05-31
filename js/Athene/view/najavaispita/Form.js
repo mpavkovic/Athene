@@ -68,12 +68,32 @@ Ext.define('Athene.view.najavaispita.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Najava ispita je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.NajavaIspita');
+			// Add new record to store
+			Ext.getStore('NajavaIspita').add(r);
+			// Resort
+			Ext.getStore('NajavaIspita').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Najava ispita nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

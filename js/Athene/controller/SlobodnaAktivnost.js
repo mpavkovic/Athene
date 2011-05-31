@@ -22,7 +22,7 @@
     ],
     
     init: function() {
-        console.log('Slobodna aktivnost controller initialized.')
+        //console.log('Slobodna aktivnost controller initialized.')
         
         this.control({
             '#slobodnaaktivnostgrid': {
@@ -39,7 +39,7 @@
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

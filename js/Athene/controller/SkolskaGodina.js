@@ -22,7 +22,7 @@ Ext.define('Athene.controller.SkolskaGodina', {
     ],
     
     init: function() {
-        console.log('SkolskaGodina controller initialized.')
+        //console.log('SkolskaGodina controller initialized.')
         
         this.control({
             '#skgodgrid': {
@@ -39,7 +39,7 @@ Ext.define('Athene.controller.SkolskaGodina', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

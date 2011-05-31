@@ -57,7 +57,7 @@ Ext.define('Athene.view.user.Form', {
 			value: '1',
 			listeners: {
 			    render: function(v,a,r) {
-				console.log(v,a,r);
+				//console.log(v,a,r);
 			    }
 			}
 		    }

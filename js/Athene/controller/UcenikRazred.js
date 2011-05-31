@@ -22,7 +22,7 @@ Ext.define('Athene.controller.UcenikRazred', {
     ],
     
     init: function() {
-        console.log('UcenikRazred controller initialized.')
+        //console.log('UcenikRazred controller initialized.')
         
         this.control({
             '#ucenikrazredgrid': {
@@ -50,7 +50,7 @@ Ext.define('Athene.controller.UcenikRazred', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getUcenikRazredStore().load({
             params: {
                 start: 0,
@@ -69,12 +69,12 @@ Ext.define('Athene.controller.UcenikRazred', {
     },
     
     filter: function(field, newValue, oldValue) {
-        //console.log(value)
+        ////console.log(value)
         this.getUcenikRazredStore().clearFilter(false);
         if(newValue != '') {
             this.getUcenikRazredStore().filter('prezime', newValue);
         }
-        //console.log(new RegExp("^" + value, "i"));
+        ////console.log(new RegExp("^" + value, "i"));
     },
     
     refreshData: function() {

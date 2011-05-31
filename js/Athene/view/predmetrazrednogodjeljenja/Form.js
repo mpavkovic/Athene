@@ -2,7 +2,7 @@ var odabir_polugodista = Ext.create('Ext.data.Store', {
     fields: ['abbr','naziv'],
     data : [
         {"abbr":"1", "naziv":"prvo"},
-        {"abbr":"2", "naziv":"drugo"},
+        {"abbr":"2", "naziv":"drugo"}
     ]
 });
 Ext.define('Athene.view.predmetrazrednogodjeljenja.Form', {

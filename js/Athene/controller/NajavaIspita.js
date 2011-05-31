@@ -22,7 +22,7 @@ Ext.define('Athene.controller.NajavaIspita', {
     ],
     
     init: function() {
-        console.log('Najava Ispita controller initialized.')
+        //console.log('Najava Ispita controller initialized.')
         
         this.control({
             '#najavaispitagrid': {
@@ -42,9 +42,14 @@ Ext.define('Athene.controller.NajavaIspita', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        //console.log('Grid is rendered, loading data...');
+        this.getNajavaIspitaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    },  
     
     edit: function(v, r) {
         var view = Ext.widget('najavaispitaform');
@@ -68,5 +73,9 @@ Ext.define('Athene.controller.NajavaIspita', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    
+    refreshData: function() {
+        this.getNajavaIspitaStore().load();
     }
 })

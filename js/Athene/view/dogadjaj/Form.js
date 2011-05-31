@@ -55,12 +55,32 @@ Ext.define('Athene.view.dogadjaj.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Događaj je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Dogadjaj');
+			// Add new record to store
+			Ext.getStore('Dogadjaj').add(r);
+			// Resort
+			Ext.getStore('Dogadjaj').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Događaj nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

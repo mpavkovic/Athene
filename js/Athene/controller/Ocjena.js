@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Ocjena', {
     ],
     
     init: function() {
-        console.log('Ocjena controller initialized.')
+        //console.log('Ocjena controller initialized.')
         
         this.control({
             '#ocjenagrid': {
@@ -42,7 +42,7 @@ Ext.define('Athene.controller.Ocjena', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

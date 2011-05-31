@@ -23,8 +23,8 @@
     <script type="text/javascript" src="js/ckeditor/ckeditor.js"></script>
     
     <!-- Uncomment for production environment -->
-    <!--<script type="text/javascript" src="js/ext/ext-all.js"></script>-->
-    <script type="text/javascript" src="js/ext/ext-all-debug.js"></script>
+    <script type="text/javascript" src="js/ext/ext-all.js"></script>
+    <!---<script type="text/javascript" src="js/ext/ext-all-debug.js"></script>-->
     <!-- Load Croatian locale, used for dates, number formats, etc. -->
     <script type="text/javascript" src="js/ext/locale/ext-lang-hr.js"></script>
     <!-- Load API -->

@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Ucenik', {
     ],
     
     init: function() {
-        console.log('Ucenik controller initialized.')
+        //console.log('Ucenik controller initialized.')
         
         this.control({
             '#ucenikgrid': {
@@ -53,7 +53,7 @@ Ext.define('Athene.controller.Ucenik', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getUcenikStore().load({
             params: {
                 start: 0,
@@ -72,12 +72,12 @@ Ext.define('Athene.controller.Ucenik', {
     },
     
     filter: function(field, newValue, oldValue) {
-        //console.log(value)
+        ////console.log(value)
         this.getUcenikStore().clearFilter(false);
         if(newValue != '') {
             this.getUcenikStore().filter('prezime', newValue);
         }
-        //console.log(new RegExp("^" + value, "i"));
+        ////console.log(new RegExp("^" + value, "i"));
     },
     
     refreshData: function() {

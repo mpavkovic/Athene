@@ -15,7 +15,7 @@ Ext.define('Athene.store.Group', {
     ],
     listeners: {
         load: function() {
-            console.log('Loading data for Group store');
+            //console.log('Loading data for Group store');
         }
     }
 });

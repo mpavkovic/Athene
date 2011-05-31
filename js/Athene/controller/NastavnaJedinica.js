@@ -24,7 +24,7 @@ Ext.define('Athene.controller.NastavnaJedinica', {
     ],
     
     init: function() {
-        console.log('Nastavna Jedinica controller initialized.')
+        //console.log('Nastavna Jedinica controller initialized.')
         
         this.control({
             '#nastavnajedinicagrid': {

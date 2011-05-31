@@ -41,7 +41,13 @@ Ext.define('Athene.controller.Dogadjaj', {
     },
     
     onGridRendered: function() {
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getDogadjajStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -65,5 +71,9 @@ Ext.define('Athene.controller.Dogadjaj', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    
+	refreshData: function() {
+        this.getDogadjajStore().load();
     }
 })

@@ -28,7 +28,7 @@ Ext.define('Athene.controller.User', {
     init: function() {	
         this.control({
             '#usergrid': {
-                render: this.onGridRendered,
+                render: this.onGridRendered
                 //itemdblclick: this.edit
             },
             '#openUserForm': {
@@ -51,7 +51,7 @@ Ext.define('Athene.controller.User', {
 	    /*'textfield': {
 		specialkey: function(field, e) {
 		    if(e.getKey() == e.ENTER) {
-			console.log('Submit here');
+			//console.log('Submit here');
 		    }
 		}
 	    }*/

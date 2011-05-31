@@ -28,7 +28,9 @@ Ext.define('Athene.view.ucenikrazred.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboUcenikRazred',
-                        store: 'Ucenik',
+                        store: new Athene.store.Ucenik({pageSize: 20, queryMode: 'remote'}),
+						pageSize: 20,
+						queryMode: 'remote',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
                         valueField: 'oib',

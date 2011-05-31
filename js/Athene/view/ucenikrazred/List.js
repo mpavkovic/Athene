@@ -38,7 +38,7 @@ Ext.define('Athene.view.ucenikrazred.List', {
                                 tooltip: 'Izmijeni',
                                 iconCls: 'editAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    console.log(Ext.getStore('UcenikRazred').getAt(rowIndex));
+                                    //console.log(Ext.getStore('UcenikRazred').getAt(rowIndex));
                                     var view = Ext.widget('ucenikrazredform');
                                     view.down('form').loadRecord(Ext.getStore('UcenikRazred').getAt(rowIndex));
                                     view.down('#formUcenikRazredSubmit').text = 'Spremi';
@@ -56,7 +56,7 @@ Ext.define('Athene.view.ucenikrazred.List', {
                                 handler: function(grid, rowIndex, columnIndex) {
                                     /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
                                     User.delete(userId, function(provider, response) {
-                                        console.log(provider, response);
+                                        //console.log(provider, response);
                                         if(provider.success == true) {
                                             var sm = grid.getSelectionModel();
                                             grid.store.removeAt(rowIndex);
