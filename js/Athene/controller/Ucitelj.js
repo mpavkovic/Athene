@@ -47,8 +47,13 @@ Ext.define('Athene.controller.Ucitelj', {
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    },
+        this.getUciteljStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    }, 
 	
 	help: function() {
         Ext.Ajax.request({
@@ -63,5 +68,8 @@ Ext.define('Athene.controller.Ucitelj', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    refreshData: function() {
+        this.getUciteljStore().load();
     }
 });

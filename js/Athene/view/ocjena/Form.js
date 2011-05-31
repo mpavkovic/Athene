@@ -38,16 +38,20 @@ Ext.define('Athene.view.ocjena.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboOcjenaOcjena',
+		    
 						fieldLabel: 'Ocjena',
 						store: odabir_ocjene,
 						queryMode: 'local',
 						displayField: 'naziv',
 						valueField: 'abbr',
-						name: 'ocjena',
+						name: 'ocjena'
                     },
                     {
                         xtype: 'combo',
                         id: 'comboOcjenaUcenik',
+			store: new Athene.store.Ucenik({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'Ucenik',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
@@ -57,6 +61,9 @@ Ext.define('Athene.view.ocjena.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboOcjenaPredmetnaCjelina',
+			store: new Athene.store.PredmetnaCjelina({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'PredmetnaCjelina',
                         fieldLabel: 'Predmetna Cjelina',
                         displayField: 'naziv',
@@ -66,6 +73,9 @@ Ext.define('Athene.view.ocjena.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboOcjenaKategorijaOcjena',
+			store: new Athene.store.KategorijaOcjena({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'KategorijaOcjena',
                         fieldLabel: 'Kategorija Ocjena',
                         displayField: 'naziv',
@@ -96,11 +106,31 @@ Ext.define('Athene.view.ocjena.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Ocjena je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Ocjena');
+			// Add new record to store
+			Ext.getStore('Ocjena').add(r);
+			// Resort
+			Ext.getStore('Ocjena').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Ocjena nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

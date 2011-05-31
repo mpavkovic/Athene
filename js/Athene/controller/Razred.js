@@ -55,7 +55,12 @@ Ext.define('Athene.controller.Razred', {
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
+        this.getRazredStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     },
     
 	edit: function(v, r) {
@@ -90,5 +95,8 @@ Ext.define('Athene.controller.Razred', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    refreshData: function() {
+        this.getRazredStore().load();
     }
 })

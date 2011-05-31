@@ -43,8 +43,13 @@ Ext.define('Athene.controller.Predmet', {
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        this.getPredmetStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    },  
     
     edit: function(v, r) {
         var view = Ext.widget('predmetform');
@@ -68,5 +73,8 @@ Ext.define('Athene.controller.Predmet', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    refreshData: function() {
+        this.getPredmetStore().load();
     }
 })

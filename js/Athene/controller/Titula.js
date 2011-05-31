@@ -40,8 +40,13 @@
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        this.gettitulaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    },  
     
     edit: function(v, r) {
         var view = Ext.widget('titulaform');
@@ -50,5 +55,8 @@
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    refreshData: function() {
+        this.getTitulaStore().load();
     }
 })

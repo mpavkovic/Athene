@@ -52,6 +52,42 @@ Ext.define('Athene.view.skola.List', {
                     {
                         text: 'Web sjedište',
                         dataIndex: 'web'
+                    },
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('skolaform');
+                                    view.down('form').loadRecord(Ext.getStore('Skola').getAt(rowIndex));
+                                    view.down('#formSkolaSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Skola').getAt(rowIndex).data.naziv;
+                                    view.renderTo = '#skolalist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -69,6 +105,12 @@ Ext.define('Athene.view.skola.List', {
                         id: 'openSkolaForm'
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'Skola',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

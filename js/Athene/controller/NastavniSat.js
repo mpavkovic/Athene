@@ -46,8 +46,13 @@ Ext.define('Athene.controller.NastavniSat', {
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        this.getNastavniSatStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    },  
     
     edit: function(v, r) {
         var view = Ext.widget('nastavnisatform');
@@ -56,5 +61,8 @@ Ext.define('Athene.controller.NastavniSat', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    refreshData: function() {
+        this.getNastavniSatStore().load();
     }
 })

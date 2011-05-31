@@ -43,11 +43,31 @@ Ext.define('Athene.view.razlogboravista.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Razlog boravišta je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.RazlogBoravista');
+			// Add new record to store
+			Ext.getStore('RazlogBoravista').add(r);
+			// Resort
+			Ext.getStore('RazlogBoravista').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Razlog boravišta nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

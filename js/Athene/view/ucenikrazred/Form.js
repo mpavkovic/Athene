@@ -50,6 +50,9 @@ Ext.define('Athene.view.ucenikrazred.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboUcenikRazredRazred',
+			store: new Athene.store.Razred({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
 						fieldLabel: 'Razred',
 						store: 'Razred',
 						displayField: 'naziv',
@@ -59,6 +62,9 @@ Ext.define('Athene.view.ucenikrazred.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboUcenikRazredGodina',
+			store: new Athene.store.SkolskaGodina({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'SkolskaGodina',
                         fieldLabel: 'Šk. godina',
                         displayField: 'godina',

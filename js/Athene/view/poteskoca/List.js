@@ -21,6 +21,42 @@ Ext.define('Athene.view.poteskoca.List', {
                     {
                         text: 'Naziv',
                         dataIndex: 'naziv'
+                    },
+		    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('poteskocaform');
+                                    view.down('form').loadRecord(Ext.getStore('Poteskoca').getAt(rowIndex));
+                                    view.down('#formPoteskocaSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Poteskoca').getAt(rowIndex).data.naziv;
+                                    view.renderTo = '#poteskocalist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
 					
                 ]
@@ -39,6 +75,12 @@ Ext.define('Athene.view.poteskoca.List', {
                         id: 'openPoteskocaForm'
                     }
                 ]
+            },
+	    {
+                xtype: 'pagingtoolbar',
+                store: 'Poteskoca',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

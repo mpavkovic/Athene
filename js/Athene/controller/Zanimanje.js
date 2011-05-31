@@ -41,9 +41,14 @@ Ext.define('Athene.controller.Zanimanje', {
     },
     
     onGridRendered: function() {
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getZanimanjeStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
-    
     edit: function(v, r) {
         var view = Ext.widget('zanimanjeform');
         view.down('form').loadRecord(r);

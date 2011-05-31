@@ -36,6 +36,9 @@ Ext.define('Athene.view.metodskajedinica.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboMetodskaJedinicaNastavnaJedinica',
+			store: new Athene.store.NastavnaJedinica({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'NastavnaJedinica',
                         fieldLabel: 'Nastavna jedinica',
                         displayField: 'opis',

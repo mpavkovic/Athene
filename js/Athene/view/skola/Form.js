@@ -42,6 +42,9 @@ Ext.define('Athene.view.skola.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboSkola',
+			store: new Athene.store.Mjesto({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'Mjesto',
                         fieldLabel: 'Mjesto',
                         displayField: 'naziv',
@@ -102,11 +105,31 @@ Ext.define('Athene.view.skola.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Škola je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Skola');
+			// Add new record to store
+			Ext.getStore('Skola').add(r);
+			// Resort
+			Ext.getStore('Skola').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Škola nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

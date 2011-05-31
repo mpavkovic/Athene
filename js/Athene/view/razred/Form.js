@@ -106,7 +106,7 @@ Ext.define('Athene.view.razred.Form', {
 			   me.close();
 			}
 		    },
-                    {
+                    /*{
                         text: 'Dodaj',
                         scope: me,
                         handler: function() {
@@ -131,7 +131,33 @@ Ext.define('Athene.view.razred.Form', {
 	                        }
 			    })
                         }
-                    }
+                    }*/
+		    {
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Razred je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Razred');
+			// Add new record to store
+			Ext.getStore('Razred').add(r);
+			// Resort
+			Ext.getStore('Razred').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Razred nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

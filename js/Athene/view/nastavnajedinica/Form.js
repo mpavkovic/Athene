@@ -36,6 +36,9 @@ Ext.define('Athene.view.nastavnajedinica.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNastavnaJedinicaNastavniPlan',
+			store: new Athene.store.NastavniPlan({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'NastavniPlan',
                         fieldLabel: 'Nastavni plan',
                         displayField: 'opis',

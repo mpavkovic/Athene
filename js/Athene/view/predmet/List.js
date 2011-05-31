@@ -41,6 +41,42 @@ Ext.define('Athene.view.predmet.List', {
                     {
                         text: 'Predviđen broj sati',
                         dataIndex: 'previdjen_broj_sati'
+                    },
+		    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('predmetform');
+                                    view.down('form').loadRecord(Ext.getStore('Predmet').getAt(rowIndex));
+                                    view.down('#formPredmetSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Predmet').getAt(rowIndex).data.naziv;
+                                    view.renderTo = '#predmetlist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -58,6 +94,12 @@ Ext.define('Athene.view.predmet.List', {
                         id: 'openPredmetForm'
                     }
                 ]
+            },
+	    {
+                xtype: 'pagingtoolbar',
+                store: 'Predmet',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

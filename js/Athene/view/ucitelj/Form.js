@@ -63,12 +63,31 @@ Ext.define('Athene.view.ucitelj.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        id: 'addUcitelj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			text: 'Dodaj',
+			scope: me,
+			handler: function() {
+			me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Učitelj je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Ucitelj');
+			// Add new record to store
+			Ext.getStore('Ucitelj').add(r);
+			// Resort
+			Ext.getStore('Ucitelj').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Učitelj nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

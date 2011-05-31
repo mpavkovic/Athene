@@ -35,6 +35,9 @@ Ext.define('Athene.view.mjesto.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboMjesto',
+			store: new Athene.store.Drzava({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'Drzava',
                         fieldLabel: 'Država',
                         displayField: 'naziv',
