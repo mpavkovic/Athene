@@ -19,7 +19,7 @@ Ext.define('Athene.view.predmet.Form', {
     title: 'Novi Predmet',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 190,
     constrain: true,
        
     initComponent: function() {

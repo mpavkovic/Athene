@@ -6,7 +6,7 @@ Ext.define('Athene.view.mjesto.Form', {
     title: 'Novo Mjesto',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 130,
     constrain: true,
        
     initComponent: function() {

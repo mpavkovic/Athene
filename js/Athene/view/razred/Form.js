@@ -19,7 +19,7 @@ Ext.define('Athene.view.razred.Form', {
     title: 'Novi razred',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 235,
     constrain: true,
        
     initComponent: function() {
