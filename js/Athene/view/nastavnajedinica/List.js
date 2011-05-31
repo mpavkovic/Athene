@@ -28,6 +28,42 @@ Ext.define('Athene.view.nastavnajedinica.List', {
                         renderer: function(value) {
                             return Ext.getStore('NastavniPlan').getById(value).data.opis;
                         }
+                    },
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('nastavnajedinicaform');
+                                    view.down('form').loadRecord(Ext.getStore('NastavnaJedinica').getAt(rowIndex));
+                                    view.down('#formNastavnaJedinicaSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('NastavnaJedinica').getAt(rowIndex).data.opis;
+                                    view.renderTo = '#nastavnajedinicalist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -45,6 +81,12 @@ Ext.define('Athene.view.nastavnajedinica.List', {
                         id: 'openNastavnaJedinicaForm'
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'NastavnaJedinica',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         
