@@ -42,6 +42,12 @@ Ext.define('Athene.view.drzava.List', {
                         id: 'openDrzavaForm'
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'Drzava',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

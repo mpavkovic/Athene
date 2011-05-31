@@ -4,7 +4,10 @@
     pageSize: 20,
     proxy: {
         type: 'direct',
-        directFn: Mjesto.getAll,
+        api: {
+            read: Mjesto.getAll,
+            update: Mjesto.update
+        },
         reader: {
             root: 'data'
         }

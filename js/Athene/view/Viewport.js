@@ -56,7 +56,7 @@
                      {
                         icon: 'img/icons/lock_open.png',
                         text: 'Odjava',
-                        id: 'logout',
+                        id: 'logout'
                      }
                   ]
                }
@@ -83,36 +83,8 @@
             id: 'workspace',
             items: [
                {
-                  xtype: 'window',
-                  autoShow: true,
-                  title: 'Debug',
-                  height: 200,
-                  width: 500,
-                  layout: 'fit',
-                  id: 'debugWindow',
-                  constrain: true,
-                  listeners: {
-                     afterrender: function(window) {
-                        console.log('Debug window rendered.');
-                        window.alignTo(this, 'br', [1, 5]);
-                     }
-                  },
-                  items: [
-                     {
-                        id: 'debugOutput',
-                        title: false,
-                        autoScroll: true,
-                        bodyStyle: 'padding: 5px',
-                        tpl: '{data}',
-                        tplWriteMode: 'append'
-                     }
-                  ]
-               }/*,
-               {
-                  //region: 'north',
-                  xtype: 'popupmessage',
-                  //style: 'position: absolute; right: 0;'
-               }*/
+                  xtype: 'debugwindow'
+               }
             ]
         }
     ]

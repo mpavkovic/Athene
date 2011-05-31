@@ -41,9 +41,9 @@ Ext.define('Athene.view.mjesto.List', {
                     {
                         text: 'Država',
                         dataIndex: 'drzava_id',
-                        renderer: function(value) {
+                        /*renderer: function(value) {
                             return Ext.getStore('Drzava').getById(value).data.naziv;
-                        }
+                        }*/
                     },
                     {
                         xtype: 'actioncolumn',

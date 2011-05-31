@@ -6,22 +6,36 @@ Ext.app.REMOTING_API = {
     "type":"remoting",
     "actions":{
 		"Ucenik": [{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
-		"Mjesto":[{ "name":"listMjesto", "len":0 }],
         "Menu": [{"name":"side", "len":0}],
         "Razred": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "SkolskaGodina": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Ucitelj":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
-        "Drzava":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "Drzava":[
+            {
+                name: "getAll",
+                len: 1
+            }, {
+                name: "find",
+                len: 1
+            }, {
+                name: "save",
+                len: 0,
+                formHandler: true
+            }
+        ],
         "Mjesto":[
             {
                 "name": "getAll",
-                "len":0
+                "len":1
             }, {
                 "name": "save",
                 "len":0,
                 "formHandler": true
             }, {
                 name: "delete",
+                len: 1
+            }, {
+                name: "update",
                 len: 1
             }
         ],

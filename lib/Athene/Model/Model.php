@@ -58,6 +58,14 @@ class Model {
             }
         }
         
+        if(isset($params->wherePage) && isset($params->page)) {
+            //var_dump();
+            $sq = $this->adapter->select($this->table)->limit($params->start, $params->limit)->where(get_object_vars($params->wherePage))->getPage();
+            echo $sq;
+            $r = $this->adapter->query($sq);
+            var_dump($r);
+        }
+        
         //echo $query;
         if(isset($params->page)) {
             $query->limit($params->start, $params->limit);
@@ -67,6 +75,8 @@ class Model {
         if(isset($params->filter)) {
             $query->filter('prezime', $params->filter[0]->value);
         }
+        
+        
         //echo $query;
         return $this->adapter->query($query);
         
@@ -103,6 +113,14 @@ class Model {
         Debug::getInstance()->log('Count query', $query, __FILE__, __LINE__);
         $r = $this->adapter->query($query);
         return intval($r[0]->total);
+    }
+    
+    public function find($params) {
+        //var_dump($params);
+        $query = $this->adapter->select($this->table)->where($params->findBy, $params->findValue);
+        return $this->adapter->query($query);
+        //echo $query;
+        //echo 'Query ', $query->__toString(); die();
     }
     
 }

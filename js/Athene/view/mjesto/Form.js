@@ -35,11 +35,16 @@ Ext.define('Athene.view.mjesto.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboMjesto',
-                        store: 'Drzava',
+                        store: new Athene.store.Drzava({pageSize:50, queryMode: 'remote'}), // 10.000 - da budemo sigurni
+			//store: 'DrzavaCombo',
+			pageSize: 50,
+			queryMode: 'remote',
                         fieldLabel: 'Država',
                         displayField: 'naziv',
                         valueField: 'id',
-						name: 'drzava_id'
+			name: 'drzava_id',
+			typeAhead: true,
+			forceSelection: true
                     }
                 ],
                 buttons: [
@@ -51,8 +56,18 @@ Ext.define('Athene.view.mjesto.Form', {
 		    },
                     {
                         text: 'Dodaj',
+			id: 'formMjestoSubmit',
                         handler: function() {
-                            this.up('form').getForm().submit();
+			    var form = this.up('form').getForm(); // shorthand
+			    // If record is loaded that means we're editing existing data
+			    if(form.getRecord() !== undefined) {
+				// Update record
+			    } else {
+				var r = Ext.ModelManager.create(form.getFieldValues(), 'Mjesto');
+				console.log(r);
+			    }
+			    //console.log(this.up('form').getForm().getRecord());
+                            //console.log(this.up('form').getForm().getFieldValues());
                         }
                     }
                 ]
