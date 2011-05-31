@@ -6,7 +6,7 @@ Ext.define('Athene.view.ucitelj.Form', {
     title: 'Dodaj učitelja',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 190,
     constrain: true,
        
     initComponent: function() {

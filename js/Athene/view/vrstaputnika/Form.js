@@ -6,7 +6,7 @@ Ext.define('Athene.view.vrstaputnika.Form', {
     title: 'Nova vrsta putnika',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 90,
     constrain: true,
        
     initComponent: function() {

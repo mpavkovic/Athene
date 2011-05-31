@@ -6,7 +6,7 @@ Ext.define('Athene.view.metodskajedinica.Form', {
     title: 'Nova Metodska jedinica',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 165,
     constrain: true,
        
     initComponent: function() {
@@ -50,12 +50,32 @@ Ext.define('Athene.view.metodskajedinica.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Metodska jedinica je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.MetodskaJedinica');
+			// Add new record to store
+			Ext.getStore('MetodskaJedinica').add(r);
+			// Resort
+			Ext.getStore('MetodskaJedinica').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Metodska jedinica nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

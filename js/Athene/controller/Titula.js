@@ -22,7 +22,7 @@
     ],
     
     init: function() {
-        console.log('Titula controller initialized.')
+        //console.log('Titula controller initialized.')
         
         this.control({
             '#titulagrid': {
@@ -39,7 +39,7 @@
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

@@ -38,8 +38,13 @@ Ext.define('Athene.controller.KategorijaOcjena', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getKategorijaOcjenaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -49,5 +54,9 @@ Ext.define('Athene.controller.KategorijaOcjena', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    refreshData: function() {
+        this.getKategorijaOcjenaStore().load();
     }
 })

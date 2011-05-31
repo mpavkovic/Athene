@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Ocjena', {
     ],
     
     init: function() {
-        console.log('Ocjena controller initialized.')
+        //console.log('Ocjena controller initialized.')
         
         this.control({
             '#ocjenagrid': {
@@ -34,12 +34,15 @@ Ext.define('Athene.controller.Ocjena', {
                     var view = Ext.widget('ocjenaform');
                     view.show();
                 }
+            },
+			'#helpOcjena': {
+                click: this.help
             }
         });
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     
@@ -50,5 +53,20 @@ Ext.define('Athene.controller.Ocjena', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/ocjene.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Ocjene');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
 })

@@ -6,7 +6,7 @@ Ext.define('Athene.view.narodnost.Form', {
     title: 'Nova narodnost',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 90,
     constrain: true,
        
     initComponent: function() {
@@ -40,12 +40,32 @@ Ext.define('Athene.view.narodnost.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Narodnost je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Narodnost');
+			// Add new record to store
+			Ext.getStore('Narodnost').add(r);
+			// Resort
+			Ext.getStore('Narodnost').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Narodnost nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

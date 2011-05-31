@@ -39,7 +39,7 @@ Ext.define('Athene.controller.Group', {
 	    /*'textfield': {
 		specialkey: function(field, e) {
 		    if(e.getKey() == e.ENTER) {
-			console.log('Submit here');
+			//console.log('Submit here');
 		    }
 		}
 	    }*/

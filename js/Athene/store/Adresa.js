@@ -1,4 +1,4 @@
-﻿Ext.define('Athene.store.Adresa', {
+Ext.define('Athene.store.Adresa', {
     extend: 'Ext.data.Store',
     model: 'Athene.model.Adresa',
     proxy: {
@@ -8,9 +8,5 @@
             root: 'data'
         }
     },
-    sorters: [
-        {
-            property: 'ucenik_id'
-        }
-    ]
+	totalProperty: 'total'
 });

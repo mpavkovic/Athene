@@ -60,7 +60,7 @@ Ext.define('Athene.controller.Mjesto', {
 	    'textfield': {
 		specialkey: function(field, e) {
 		    if(e.getKey() == e.ENTER) {
-			console.log('Submit here');
+			//console.log('Submit here');
 		    }
 		}
 	    }

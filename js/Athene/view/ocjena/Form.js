@@ -5,7 +5,7 @@ var odabir_ocjene = Ext.create('Ext.data.Store', {
         {"abbr":"2", "naziv":"dovoljan"},
         {"abbr":"3", "naziv":"dobar"},
         {"abbr":"4", "naziv":"vrlo dobar"},
-        {"abbr":"5", "naziv":"odličan"},
+        {"abbr":"5", "naziv":"odličan"}
     ]
 });
 Ext.define('Athene.view.ocjena.Form', {
@@ -44,7 +44,6 @@ Ext.define('Athene.view.ocjena.Form', {
 						displayField: 'naziv',
 						valueField: 'abbr',
 						name: 'ocjena',
-						maxLength: 2
                     },
                     {
                         xtype: 'combo',
@@ -85,7 +84,6 @@ Ext.define('Athene.view.ocjena.Form', {
                         xtype: 'textareafield',
                         name: 'opaska',
                         fieldLabel: 'Opaska',
-                        allowBlank: false,
 						grow: true,
 						anchor: '100%'
                     }

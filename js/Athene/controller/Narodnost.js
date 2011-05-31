@@ -22,7 +22,7 @@ Ext.define('Athene.controller.Narodnost', {
     ],
     
     init: function() {
-        console.log('Narodnost controller initialized.')
+        //console.log('Narodnost controller initialized.')
         
         this.control({
             '#narodnostgrid': {
@@ -39,8 +39,13 @@ Ext.define('Athene.controller.Narodnost', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getNarodnostStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -50,5 +55,9 @@ Ext.define('Athene.controller.Narodnost', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+	
+    refreshData: function() {
+        this.getNarodnostStore().load();
     }
 })

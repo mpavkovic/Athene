@@ -27,39 +27,39 @@ Ext.define('Athene.view.adresa.Form', {
                 items: [
                     {
                         xtype: 'combo',
-                        id: 'comboAdresa',
-                        store: 'Ucenik',
+                        id: 'comboAdresaUcenik',
+                        store: new Athene.store.Ucenik({pageSize: 20, queryMode: 'remote'}),
+						pageSize: 20,
+						queryMode: 'remote',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
-                        valueField: 'id',
-			name: 'ucenik_id',
-			
-			listConfig: {
-			    loadingText: 'Tražim...',
-	                    emptyText: 'Nema rezultata.',
-
-	                    // Custom rendering template for each item
-	                    getInnerTpl: function() {
+                        valueField: 'oib',
+						name: 'ucenik_id',
+						listConfig: {
+							loadingText: 'Tražim...',
+							emptyText: 'Nema rezultata.',
+							// Custom rendering template for each item
+							getInnerTpl: function() {
 	                        return '<div class="search-item">' +
 	                            '<h3>{prezime} {ime}</h3>' +
 	                            'OIB: {oib}' +
 	                        '</div>';
-			    }
-			}
+							}
+						}
                     },
                     {
                         xtype: 'textfield',
                         name: 'tip_adrese',
                         fieldLabel: 'Tip adrese',
                         allowBlank: false,
-			maxLength: 100
+						maxLength: 100
                     },
                     {
                         xtype: 'textfield',
                         name: 'ulica',
                         fieldLabel: 'Ulica',
                         allowBlank: false,
-			maxLength: 100
+						maxLength: 100
                     },
                     {
                         xtype: 'textfield',
@@ -88,26 +88,28 @@ Ext.define('Athene.view.adresa.Form', {
                         name: 'telefon',
                         fieldLabel: 'Telefon',
                         allowBlank: false,
-			maxLength: 30
+						maxLength: 30
                     },
                     {
                         xtype: 'textfield',
                         name: 'mobitel',
                         fieldLabel: 'Mobitel',
                         allowBlank: false,
-			maxLength: 30
+						maxLength: 30
                     },
                     {
                         xtype: 'textfield',
                         name: 'stanuje_s',
                         fieldLabel: 'Stanuje s',
                         allowBlank: false,
-			maxLength: 30
+						maxLength: 30
                     },
                     {
                         xtype: 'combo',
                         id: 'comboAdresaMjesto',
-                        store: 'Mjesto',
+                        store: new Athene.store.Mjesto({pageSize: 20, queryMode: 'remote'}),
+						pageSize: 20,
+						queryMode: 'remote',
                         fieldLabel: 'Mjesto',
                         displayField: 'naziv',
                         valueField: 'id',
@@ -132,12 +134,32 @@ Ext.define('Athene.view.adresa.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Adresa je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Adresa');
+			// Add new record to store
+			Ext.getStore('Adresa').add(r);
+			// Resort
+			Ext.getStore('Adresa').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Adresa nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

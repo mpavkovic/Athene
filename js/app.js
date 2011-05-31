@@ -54,6 +54,7 @@ Ext.application({
 	'NajavaIspita',
 	'Adresa',
 	'Izostanak',
+	'UcenikRazred',
 	'User',
 	'Group',
 	'Help'

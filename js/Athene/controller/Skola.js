@@ -24,7 +24,7 @@
     ],
     
     init: function() {
-        console.log('Skola controller initialized.')
+        //console.log('Skola controller initialized.')
         
         this.control({
             '#skolagrid': {

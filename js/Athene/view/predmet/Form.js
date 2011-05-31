@@ -8,7 +8,7 @@ var popis_razreda = Ext.create('Ext.data.Store', {
         {"abbr":"5", "naziv":"peti"},
         {"abbr":"6", "naziv":"šesti"},
         {"abbr":"7", "naziv":"sedmi"},
-        {"abbr":"8", "naziv":"osmi"},
+        {"abbr":"8", "naziv":"osmi"}
     ]
 });
 Ext.define('Athene.view.predmet.Form', {
@@ -19,7 +19,7 @@ Ext.define('Athene.view.predmet.Form', {
     title: 'Novi Predmet',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 190,
     constrain: true,
        
     initComponent: function() {

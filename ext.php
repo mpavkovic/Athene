@@ -83,7 +83,8 @@ class Menu {
         } else if($node == 'sidemenu/imenik') {
             return array(
                 (object)array('text' => 'Učenici', 'id' => 'sidemenu/imenik/uceniklist', 'leaf' => true, 'cls' => 'file'),
-                (object)array('text' => 'Razredi', 'id' => 'sidemenu/imenik/razredlist', 'leaf' => true, 'cls' => 'file')
+                (object)array('text' => 'Razredi', 'id' => 'sidemenu/imenik/razredlist', 'leaf' => true, 'cls' => 'file'),
+                (object)array('text' => 'Dodaj učenika u razred', 'id' => 'sidemenu/imenik/ucenikrazredlist', 'leaf' => true, 'cls' => 'file')
             );
         } else if($node == 'sidemenu/dnevnik') {
             return array(

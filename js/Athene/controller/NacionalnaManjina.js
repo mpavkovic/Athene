@@ -38,9 +38,14 @@ Ext.define('Athene.controller.NacionalnaManjina', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        //console.log('Grid is rendered, loading data...');
+        this.getNacionalnaManjinaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    },
     
     edit: function(v, r) {
         var view = Ext.widget('nacionalnamanjinaform');
@@ -49,5 +54,9 @@ Ext.define('Athene.controller.NacionalnaManjina', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+
+    refreshData: function() {
+        this.getNacionalnaManjinaStore().load();
     }
 })

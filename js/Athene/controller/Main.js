@@ -18,6 +18,20 @@ if (kontrolni == 10) kontrolni = 0;
     return kontrolni == parseInt(oib.substr(10, 1));
 }
 
+function checkJMBG(jmbg){
+    x = jmbg;
+    
+    if (x.length != 13) return false;
+    
+    a = 7*(x[0]*1+x[6]*1) + 6*(x[1]*1+x[7]*1) + 5*(x[2]*1+x[8]*1) + 4*(x[3]*1+x[9]*1) + 3*(x[4]*1+x[10]*1) + 2*(x[5]*1+x[11]*1);
+    b = a%11;
+    sum = 11 - b;
+      
+    if (sum != x[12]*1) return false;
+	else return true;    
+    
+}
+
 // oib = 18198789796; //valid OIB
 
 // Add override
@@ -186,6 +200,7 @@ Ext.define('Athene.controller.Main', {
         Ext.apply(Ext.form.field.VTypes, {
             
             jmbg:  function(v) {
+		if (checkJMBG(v)==true)
                 return /^[0-9]{13}$/.test(v);
             },
 	    
@@ -201,7 +216,7 @@ Ext.define('Athene.controller.Main', {
             jmbgText: 'Jmbg se sastoji od 13 brojeva',
             oibText: 'OIB nije ispravan.',
             numText: 'Ovo polje dozvoljava samo brojeve',
-            jmbgMask: /[0-9]{11}/i,
+            jmbgMask: /[0-9]/i,
             oibMask: /[0-9]/i,
             numMask: /[0-9]/i
             
@@ -226,7 +241,7 @@ Ext.define('Athene.controller.Main', {
             },
             '#logout': {
                 click: function() {
-                    console.log('Log me out!');
+                    //console.log('Log me out!');
                     Ext.Ajax.request({
                         url: 'ext.php',
                         method: 'GET',

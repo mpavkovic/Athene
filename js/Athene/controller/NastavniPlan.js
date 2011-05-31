@@ -22,7 +22,7 @@ Ext.define('Athene.controller.NastavniPlan', {
     ],
     
     init: function() {
-        console.log('Nastavni Plan controller initialized.')
+        //console.log('Nastavni Plan controller initialized.')
         
         this.control({
             '#nastavniplangrid': {
@@ -39,7 +39,7 @@ Ext.define('Athene.controller.NastavniPlan', {
     },
     
     onGridRendered: function() {
-        console.log('Grid is rendered, loading data...');
+        //console.log('Grid is rendered, loading data...');
         this.getList().store.load();
     }, 
     

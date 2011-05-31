@@ -40,21 +40,14 @@ Ext.define('Athene.controller.DodijeljenaPoteskoca', {
     },
     
     onGridRendered: function() {
-        this.getPoteskocaStore().load({
-            scope: this,
-            callback: function(records, operation, success) {
-                if(success) {
-                    this.getDodijeljenaPoteskocaStore().load();
-                } else {
-                    Ext.widget('notification').popup({
-                        message: 'Nemogu učitati dodijeljene poteskoce!',
-                        icon: 'img/icons/exclamation.png'
-                    });
-                    this.getWindow().close();
-                }
+        //console.log('Grid is rendered, loading data...');
+        this.getDodijeljenaPoteskocaStore().load({
+            params: {
+                start: 0,
+                limit: 20
             }
         });
-    }, 
+    },
     
     edit: function(v, r) {
         var view = Ext.widget('dodijeljenapoteskocaform');
@@ -62,5 +55,9 @@ Ext.define('Athene.controller.DodijeljenaPoteskoca', {
         view.renderTo = '#dodijeljenapoteskocalist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+	
+    refreshData: function() {
+        this.getDodijeljenaPoteskocaStore().load();
     }
 })

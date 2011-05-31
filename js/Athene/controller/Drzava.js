@@ -55,5 +55,9 @@ Ext.define('Athene.controller.Drzava', {
         view.down('form').loadRecord(r);
         view.renderTo = '#drzavalist';
         view.show();
+    },
+
+    refreshData: function() {
+        this.getDrzavaStore().load();
     }
 })

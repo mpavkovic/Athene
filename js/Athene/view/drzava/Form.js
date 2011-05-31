@@ -6,7 +6,7 @@ Ext.define('Athene.view.drzava.Form', {
     title: 'Nova država',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 130,
     constrain: true,
        
     initComponent: function() {
@@ -47,12 +47,32 @@ Ext.define('Athene.view.drzava.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Država je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Drzava');
+			// Add new record to store
+			Ext.getStore('Drzava').add(r);
+			// Resort
+			Ext.getStore('Drzava').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Država nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

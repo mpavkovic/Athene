@@ -7,17 +7,11 @@
     ],
     
     stores: [
-        'Adresa',
-        'Mjesto',
-        'RazlogBoravista',
-        'Ucenik'
+        'Adresa'
     ],
     
     models: [
-        'Adresa',
-        'Mjesto',
-        'RazlogBoravista',
-        'Ucenik'
+        'Adresa'
     ],
     
     refs: [
@@ -38,16 +32,22 @@
                 click: function() {
                     var view = Ext.widget('adresaform');
                     view.show();
-                },
+                }
             },
-			'#helpAdresaList': {
-                click: this.help
+            '#refreshAdresaList': {
+                click: this.refreshData
             }
         });
     },
     
     onGridRendered: function() {
-        this.getList().store.load();
+        //console.log('Grid is rendered, loading data...');
+        this.getAdresaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -57,19 +57,8 @@
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
     },
-
-    help: function() {
-        Ext.Ajax.request({
-            url: 'help/adresalist.html',
-            success: function(response) {
-                var view = Ext.widget('helpwindow');
-                view.update(response.responseText);
-                view.setTitle(view.title + 'Popis adresa (učenika)');
-                view.show();
-            },
-            failure: function() {
-                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
-            }
-        })
+    
+    refreshData: function() {
+        this.getAdresaStore().load();
     }
 })

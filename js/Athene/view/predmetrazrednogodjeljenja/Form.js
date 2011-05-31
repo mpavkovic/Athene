@@ -2,7 +2,7 @@ var odabir_polugodista = Ext.create('Ext.data.Store', {
     fields: ['abbr','naziv'],
     data : [
         {"abbr":"1", "naziv":"prvo"},
-        {"abbr":"2", "naziv":"drugo"},
+        {"abbr":"2", "naziv":"drugo"}
     ]
 });
 Ext.define('Athene.view.predmetrazrednogodjeljenja.Form', {
@@ -13,7 +13,7 @@ Ext.define('Athene.view.predmetrazrednogodjeljenja.Form', {
     title: 'Novi Predmet Razrednog Odjeljenja',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 220,
     constrain: true,
        
     initComponent: function() {

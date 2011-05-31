@@ -6,7 +6,7 @@ Ext.define('Athene.view.dodijeljenapoteskoca.Form', {
     title: 'Nova dodijeljena poteškoća',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 240,
     constrain: true,
        
     initComponent: function() {
@@ -27,17 +27,32 @@ Ext.define('Athene.view.dodijeljenapoteskoca.Form', {
                 items: [
                     {
                         xtype: 'combo',
-                        id: 'comboDodijeljenaPoteskocaUcenik',
-                        store: 'Ucenik',
+                        id: 'comboDodPoteskocaUcenik',
+                        store: new Athene.store.Ucenik({pageSize: 20, queryMode: 'remote'}),
+						pageSize: 20,
+						queryMode: 'remote',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
                         valueField: 'oib',
-						name: 'ucenik_id'
+						name: 'ucenik_id',
+						listConfig: {
+							loadingText: 'Tražim...',
+							emptyText: 'Nema rezultata.',
+							// Custom rendering template for each item
+							getInnerTpl: function() {
+	                        return '<div class="search-item">' +
+	                            '<h3>{prezime} {ime}</h3>' +
+	                            'OIB: {oib}' +
+	                        '</div>';
+							}
+						}
                     },
                     {
                         xtype: 'combo',
                         id: 'comboDodijeljenaPoteskocaVrstaPoteskoce',
-                        store: 'Poteskoca',
+                        store: new Athene.store.Poteskoca({pageSize: 20, queryMode: 'remote'}),
+						pageSize: 20,
+						queryMode: 'remote',
                         fieldLabel: 'Vrsta poteškoće',
                         displayField: 'naziv',
                         valueField: 'id',
@@ -64,14 +79,14 @@ Ext.define('Athene.view.dodijeljenapoteskoca.Form', {
                         name: 'klasa',
                         fieldLabel: 'Klasa',
                         allowBlank: false,
-			maxLength: 200
+						maxLength: 200
                     },
                     {
                         xtype: 'textfield',
                         name: 'urudzbeni_broj',
                         fieldLabel: 'Uruđbeni broj',
                         allowBlank: false,
-			maxLength: 200
+						maxLength: 200
                     }
                 ],
                 buttons: [
@@ -83,12 +98,32 @@ Ext.define('Athene.view.dodijeljenapoteskoca.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Dodijeljena poteškoća je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.DodijeljenaPoteskoca');
+			// Add new record to store
+			Ext.getStore('DodijeljenaPoteskoca').add(r);
+			// Resort
+			Ext.getStore('DodijeljenaPoteskoca').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Dodijeljena poteskoca nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

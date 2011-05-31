@@ -8,7 +8,7 @@
         {"abbr":"5", "naziv":"peti"},
         {"abbr":"6", "naziv":"šesti"},
         {"abbr":"7", "naziv":"sedmi"},
-        {"abbr":"8", "naziv":"osmi"},
+        {"abbr":"8", "naziv":"osmi"}
     ]
 });
 Ext.define('Athene.view.razred.Form', {
@@ -19,7 +19,7 @@ Ext.define('Athene.view.razred.Form', {
     title: 'Novi razred',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 235,
     constrain: true,
        
     initComponent: function() {
@@ -114,10 +114,10 @@ Ext.define('Athene.view.razred.Form', {
 				success: function(form, action) {    
 				    Ext.widget('notification').popup('Razredno odjeljenje uspješno dodano.');
 				    var RazredRecord = Ext.data.Record.create(['id', 'naziv', 'razred', 'skolska_godina_id', 'razrednik_id', 'klasa', 'urudzbeni_broj']);
-				    //console.log(form);
+				    ////console.log(form);
 				    //var r = new RazredRecord();
 				    //me.down('form').getForm().updateRecord(r);
-				    //console.log(r);
+				    ////console.log(r);
 				    //Ext.getStore('Razred').add(r);
 				    //ds.PartnersCombo.add(myrec);
 				    //me.down('form').getForm().reset();

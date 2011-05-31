@@ -9,6 +9,14 @@ Ext.define('Athene.view.dogadjaj.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+	
+	tools: [
+        {
+            type: 'help',
+            id: 'helpDogadjaji',
+            qtip: 'Pomoć'
+        }
+    ],
     
     initComponent: function() {
         this.items = [
@@ -21,7 +29,7 @@ Ext.define('Athene.view.dogadjaj.List', {
                     {
                         text: 'Naziv',
                         dataIndex: 'naziv',
-			maxLength: 200
+						maxLength: 200
                     },
                     {
                         text: 'Opis',
@@ -30,7 +38,43 @@ Ext.define('Athene.view.dogadjaj.List', {
 					{
 						text: 'Datum',
 						dataIndex: 'datum'
-					}
+					},
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('dogadjajform');
+                                    view.down('form').loadRecord(Ext.getStore('Dogadjaj').getAt(rowIndex));
+                                    view.down('#formDogadjajSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Dogadjaj').getAt(rowIndex).data.naziv;
+                                    view.renderTo = '#dogadjajlist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
+                    }
                 ]
             }
         ];
@@ -47,6 +91,12 @@ Ext.define('Athene.view.dogadjaj.List', {
                         id: 'openDogadjajForm'
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'Dogadjaj',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

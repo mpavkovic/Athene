@@ -6,7 +6,7 @@ Ext.define('Athene.view.zanimanje.Form', {
     title: 'Novo zanimanje',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 140,
     constrain: true,
        
     initComponent: function() {

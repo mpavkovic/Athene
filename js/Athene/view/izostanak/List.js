@@ -9,6 +9,14 @@ Ext.define('Athene.view.izostanak.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+	
+	tools: [
+        {
+            type: 'help',
+            id: 'helpIzostanak',
+            qtip: 'Pomoć'
+        }
+    ],
     
     initComponent: function() {
         this.items = [
@@ -37,6 +45,42 @@ Ext.define('Athene.view.izostanak.List', {
                     {
                         text: 'Opravdanje',
                         dataIndex: 'opravdanje'
+                    },
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('izostanakform');
+                                    view.down('form').loadRecord(Ext.getStore('Izostanak').getAt(rowIndex));
+                                    view.down('#formIzostanakSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('Izostanak').getAt(rowIndex).data.ucenik_id;
+                                    view.renderTo = '#izostanaklist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -62,7 +106,7 @@ Ext.define('Athene.view.izostanak.List', {
 			    items: [
 				{
 				    text: 'Dodaj predmet',
-				    id: 'openAdresaForm'
+				    id: 'openIzostanakForm'
 				},
 				{
 				    text: 'Popis predmeta'
@@ -71,6 +115,12 @@ Ext.define('Athene.view.izostanak.List', {
 			}
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'Izostanak',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         
