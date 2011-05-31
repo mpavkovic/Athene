@@ -6,7 +6,7 @@ Ext.define('Athene.view.nastavniplan.Form', {
     title: 'Novi nastavni plan',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 140,
     constrain: true,
        
     initComponent: function() {

@@ -6,7 +6,7 @@ Ext.define('Athene.view.dodijeljenapoteskoca.Form', {
     title: 'Nova dodijeljena poteškoća',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 240,
     constrain: true,
        
     initComponent: function() {

@@ -6,7 +6,7 @@ Ext.define('Athene.view.dogadjaj.Form', {
     title: 'Novi dogadjaj',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 200,
     constrain: true,
        
     initComponent: function() {

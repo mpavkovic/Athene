@@ -6,7 +6,7 @@ Ext.define('Athene.view.razlogboravista.Form', {
     title: 'Novi razlog boravista',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 150,
     constrain: true,
        
     initComponent: function() {

@@ -6,7 +6,7 @@ Ext.define('Athene.view.drzava.Form', {
     title: 'Nova država',
     layout: 'fit',
     width: 300,
-    height: 260,
+    height: 130,
     constrain: true,
        
     initComponent: function() {
