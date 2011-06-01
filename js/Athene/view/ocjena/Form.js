@@ -15,7 +15,7 @@ Ext.define('Athene.view.ocjena.Form', {
     
     title: 'Nova Ocjena',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 280,
     constrain: true,
        

@@ -5,7 +5,7 @@ Ext.define('Athene.view.najavaispita.Form', {
     
     title: 'Nova Najava Ispita',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 210,
     constrain: true,
        

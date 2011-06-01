@@ -5,7 +5,7 @@ Ext.define('Athene.view.izostanak.Form', {
     
     title: 'Novi izostanak',
     layout: 'fit',
-    width: 320,
+    width: 400,
     height: 310,
     constrain: true,
        

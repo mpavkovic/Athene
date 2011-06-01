@@ -5,7 +5,7 @@ Ext.define('Athene.view.nastavnajedinica.Form', {
     
     title: 'Nova Nastavna jedinica',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 170,
     constrain: true,
        

@@ -5,7 +5,7 @@ Ext.define('Athene.view.skola.Form', {
     
     title: 'Nova Škola',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 315,
     constrain: true,
        

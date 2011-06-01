@@ -5,7 +5,7 @@ Ext.define('Athene.view.metodskajedinica.Form', {
     
     title: 'Nova Metodska jedinica',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 165,
     constrain: true,
        

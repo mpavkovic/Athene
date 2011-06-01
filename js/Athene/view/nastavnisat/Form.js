@@ -5,7 +5,7 @@ Ext.define('Athene.view.nastavnisat.Form', {
     
     title: 'Novi Nastavni Sat',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 340,
     constrain: true,
        

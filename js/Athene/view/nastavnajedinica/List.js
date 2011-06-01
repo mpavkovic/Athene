@@ -24,10 +24,7 @@ Ext.define('Athene.view.nastavnajedinica.List', {
                     },
                     {
                         text: 'Nastavni plan',
-                        dataIndex: 'nastavni_plan_id',
-                        renderer: function(value) {
-                            return Ext.getStore('NastavniPlan').getById(value).data.opis;
-                        }
+                        dataIndex: 'nastavni_plan_id'
                     },
                     {
                         xtype: 'actioncolumn',

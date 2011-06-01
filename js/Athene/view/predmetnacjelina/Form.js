@@ -5,7 +5,7 @@ Ext.define('Athene.view.predmetnacjelina.Form', {
     
     title: 'Nova Predmetna Cjelina',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 130,
     constrain: true,
        

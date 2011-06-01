@@ -40,7 +40,7 @@
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.gettitulaStore().load({
+        this.getTitulaStore().load({
             params: {
                 start: 0,
                 limit: 20
