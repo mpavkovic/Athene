@@ -75,13 +75,49 @@ Ext.define('Athene.view.skolskagodina.List', {
                             return '#error';
                         }
                     },
-                    {
+                    /*{
                         xtype: 'actioncolumn',
                         width: 20,
                         items: [
                             {
                                 icon: 'img/icons/blackboard_drawing.png',
                                 tooltip: 'Nastavni plan'
+                            }
+                        ]
+                    }*/
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('skolskagodinaform');
+                                    view.down('form').loadRecord(Ext.getStore('SkolskaGodina').getAt(rowIndex));
+                                    view.down('#formSkolskaGodinaSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('SkolskaGodina').getAt(rowIndex).data.godina;
+                                    view.renderTo = '#skolskagodinalist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
                             }
                         ]
                     }
@@ -101,6 +137,12 @@ Ext.define('Athene.view.skolskagodina.List', {
                         id: 'openSkGodForm'
                     }
                 ]
+            },
+            {
+                xtype: 'pagingtoolbar',
+                store: 'SkolskaGodina',
+                dock: 'bottom',
+                displayInfo: true
             }
         ]
         

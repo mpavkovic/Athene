@@ -5,7 +5,7 @@ Ext.define('Athene.view.predmetnacjelina.Form', {
     
     title: 'Nova Predmetna Cjelina',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 130,
     constrain: true,
        
@@ -35,6 +35,9 @@ Ext.define('Athene.view.predmetnacjelina.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboPredmetnaCjelina',
+			store: new Athene.store.PredmetnaCjelina({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'Predmet',
                         fieldLabel: 'Predmet',
                         displayField: 'naziv',
@@ -50,11 +53,31 @@ Ext.define('Athene.view.predmetnacjelina.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Predmetna cjelina je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.PredmetnaCjelina');
+			// Add new record to store
+			Ext.getStore('PredmetnaCjelina').add(r);
+			// Resort
+			Ext.getStore('PredmetnaCjelina').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Predmetna cjelina nije dodana (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

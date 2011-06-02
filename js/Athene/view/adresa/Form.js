@@ -5,7 +5,7 @@ Ext.define('Athene.view.adresa.Form', {
     
     title: 'Nova Adresa',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 370,
     constrain: true,
        

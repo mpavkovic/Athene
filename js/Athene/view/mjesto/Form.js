@@ -5,7 +5,7 @@ Ext.define('Athene.view.mjesto.Form', {
     
     title: 'Novo Mjesto',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 130,
     constrain: true,
        
@@ -35,10 +35,10 @@ Ext.define('Athene.view.mjesto.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboMjesto',
-                        store: new Athene.store.Drzava({pageSize:50, queryMode: 'remote'}), // 10.000 - da budemo sigurni
-			//store: 'DrzavaCombo',
-			pageSize: 50,
+			store: new Athene.store.Drzava({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
 			queryMode: 'remote',
+                        store: 'Drzava',
                         fieldLabel: 'Država',
                         displayField: 'naziv',
                         valueField: 'id',

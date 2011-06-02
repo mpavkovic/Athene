@@ -5,7 +5,7 @@ Ext.define('Athene.view.nastavnisat.Form', {
     
     title: 'Novi Nastavni Sat',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 340,
     constrain: true,
        
@@ -28,6 +28,9 @@ Ext.define('Athene.view.nastavnisat.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNastavniSatUcitelj',
+			store: new Athene.store.Ucitelj({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'Ucitelj',
                         fieldLabel: 'Učitelj',
                         displayField: 'prezime',
@@ -53,6 +56,9 @@ Ext.define('Athene.view.nastavnisat.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNastavniSatMetodskaJedinica',
+			store: new Athene.store.MetodskaJedinica({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'MetodskaJedinica',
                         fieldLabel: 'Metodska Jedinica',
                         displayField: 'opis',
@@ -62,6 +68,9 @@ Ext.define('Athene.view.nastavnisat.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNastavniSatKategorijaPredRazOdj',
+			store: new Athene.store.PredmetRazrednogOdjeljenja({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'PredmetRazrednogOdjeljenja',
                         fieldLabel: 'Predmet razrednog odjeljenja',
                         displayField: 'predmet_id',
@@ -86,11 +95,31 @@ Ext.define('Athene.view.nastavnisat.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Nastavni sat je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.NastavniSat');
+			// Add new record to store
+			Ext.getStore('NastavniSat').add(r);
+			// Resort
+			Ext.getStore('NastavniSat').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Nastavni sat nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

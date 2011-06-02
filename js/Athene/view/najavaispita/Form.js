@@ -5,7 +5,7 @@ Ext.define('Athene.view.najavaispita.Form', {
     
     title: 'Nova Najava Ispita',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 210,
     constrain: true,
        
@@ -36,6 +36,9 @@ Ext.define('Athene.view.najavaispita.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNajavaIspitaPredRazOdj',
+			store: new Athene.store.PredmetRazrednogOdjeljenja({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'PredmetRazrednogOdjeljenja',
                         fieldLabel: 'Predmet razrednog odjeljenja',
                         displayField: 'predmet_id',
@@ -45,6 +48,9 @@ Ext.define('Athene.view.najavaispita.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNajavaIspitaNajavaIspita',
+			store: new Athene.store.NastavniSat({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'NastavniSat',
                         fieldLabel: 'Nastavni sat',
                         displayField: 'opis',
@@ -54,6 +60,9 @@ Ext.define('Athene.view.najavaispita.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNajavaIspitaKategorijaOcjena',
+			store: new Athene.store.KategorijaOcjena({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'KategorijaOcjena',
                         fieldLabel: 'Kategorija Ocjena',
                         displayField: 'naziv',

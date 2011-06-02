@@ -41,18 +41,11 @@ Ext.define('Athene.controller.NastavnaJedinica', {
     },
     
     onGridRendered: function() {
-        this.getNastavniPlanStore().load({
-            scope: this,
-            callback: function(records, operation, success) {
-                if(success) {
-                    this.getNastavnaJedinicaStore().load();
-                } else {
-                    Ext.widget('notification').popup({
-                        message: 'Nemogu učitati nastavnu jedinicu!',
-                        icon: 'img/icons/exclamation.png'
-                    });
-                    this.getWindow().close();
-                }
+        //console.log('Grid is rendered, loading data...');
+        this.getNastavnaJedinicaStore().load({
+            params: {
+                start: 0,
+                limit: 20
             }
         });
     }, 
@@ -64,5 +57,9 @@ Ext.define('Athene.controller.NastavnaJedinica', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    
+    refreshData: function() {
+        this.getNastavnaJedinicaStore().load();
     }
 })

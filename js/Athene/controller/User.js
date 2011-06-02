@@ -59,8 +59,13 @@ Ext.define('Athene.controller.User', {
     },
     
     onGridRendered: function() {
-        this.getUserStore().load();
-		
+        //console.log('Grid is rendered, loading data...');
+        this.getUserStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     },
     
     filterGrid: function(item, newValue, oldValue) {
@@ -91,5 +96,8 @@ Ext.define('Athene.controller.User', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    refreshData: function() {
+        this.getUserStore().load();
     }
 })

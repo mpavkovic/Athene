@@ -73,7 +73,7 @@ Ext.define('Athene.view.user.Form', {
 		    {
 			xtype: 'tbfill'
 		    },
-                    {
+                    /*{
                         text: 'Dodaj',
 			id: 'formUserSubmit',
 			scope: me,
@@ -91,7 +91,33 @@ Ext.define('Athene.view.user.Form', {
 	                        }
 			    })
                         }
-                    }
+                    }*/
+		    {
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Korisnik je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.User');
+			// Add new record to store
+			Ext.getStore('User').add(r);
+			// Resort
+			Ext.getStore('User').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Korisnik nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

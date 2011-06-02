@@ -5,7 +5,7 @@ Ext.define('Athene.view.nastavnajedinica.Form', {
     
     title: 'Nova Nastavna jedinica',
     layout: 'fit',
-    width: 300,
+    width: 400,
     height: 170,
     constrain: true,
        
@@ -36,6 +36,9 @@ Ext.define('Athene.view.nastavnajedinica.Form', {
                     {
                         xtype: 'combo',
                         id: 'comboNastavnaJedinicaNastavniPlan',
+			store: new Athene.store.NastavniPlan({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'NastavniPlan',
                         fieldLabel: 'Nastavni plan',
                         displayField: 'opis',
@@ -50,12 +53,32 @@ Ext.define('Athene.view.nastavnajedinica.Form', {
 			   me.close();
 			}
 		    },
-                    {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+            {
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Nastavna jedinica je uspjeöno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.NastavnaJedinica');
+			// Add new record to store
+			Ext.getStore('NastavnaJedinica').add(r);
+			// Resort
+			Ext.getStore('NastavnaJedinica').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Nastavna jedinica nije dodana (gre≈°ka)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }
         ];

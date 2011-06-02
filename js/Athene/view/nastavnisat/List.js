@@ -41,6 +41,42 @@ Ext.define('Athene.view.nastavnisat.List', {
                     {
                         text: 'Napomena',
                         dataIndex: 'napomena'
+                    },
+                    {
+                        xtype: 'actioncolumn',
+                        width: 20,
+                        items: [
+                            {
+                                icon: 'img/icons/application_form_edit.png',
+                                tooltip: 'Izmijeni',
+                                iconCls: 'editAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    var view = Ext.widget('nastavnisatform');
+                                    view.down('form').loadRecord(Ext.getStore('NastavniSat').getAt(rowIndex));
+                                    view.down('#formNastavniSatSubmit').text = 'Spremi';
+                                    view.title = 'Izmijeni: ' + Ext.getStore('NastavniSat').getAt(rowIndex).data.opis;
+                                    view.renderTo = '#nastavnisatlist';
+                                    view.modal = true; // Make window modal so the list is inacesible
+                                    view.show();
+                                }
+                            },
+                            '-',
+                            {
+                                icon: 'img/icons/delete.png',
+                                tooltip: 'Izbriši',
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
+                                    User.delete(userId, function(provider, response) {
+                                        //console.log(provider, response);
+                                        if(provider.success == true) {
+                                            var sm = grid.getSelectionModel();
+                                            grid.store.removeAt(rowIndex);
+                                        }
+                                    })*/
+                                }
+                            }
+                        ]
                     }
                 ]
             }
@@ -57,8 +93,15 @@ Ext.define('Athene.view.nastavnisat.List', {
                         text: 'Dodaj nastavni sat', 
                         id: 'openNastavniSatForm'
                     }
+                    
                 ]
-            }
+            },
+            {
+                        xtype: 'pagingtoolbar',
+                        store: 'NastavniSat',
+                        dock: 'bottom',
+                        displayInfo: true
+                    }
         ]
         
         this.callParent(arguments);

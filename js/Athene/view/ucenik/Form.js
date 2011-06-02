@@ -92,6 +92,9 @@ Ext.define('Athene.view.ucenik.Form', {
 		    {
 			xtype: 'combo',
 			id: 'comboUcenikMjestoRod',
+			store: new Athene.store.Mjesto({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
 			store: 'Mjesto',
 			fieldLabel: 'Mjesto rođenja',
 			displayField: 'naziv',
@@ -121,6 +124,9 @@ Ext.define('Athene.view.ucenik.Form', {
 		    {
 			xtype: 'combo',
 			id: 'comboUcenikNarodnost',
+			store: new Athene.store.Narodnost({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
 			store: 'Narodnost',
 			fieldLabel: 'Narodnost',
 			displayField: 'naziv',
@@ -130,6 +136,9 @@ Ext.define('Athene.view.ucenik.Form', {
 		    {
 			xtype: 'combo',
 			id: 'comboUcenikNacionalnaManj',
+			store: new Athene.store.NacionalnaManjina({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
 			store: 'NacionalnaManjina',
 			fieldLabel: 'Nacionalna Manjina',
 			displayField: 'naziv',
@@ -179,6 +188,9 @@ Ext.define('Athene.view.ucenik.Form', {
 											{
 												xtype: 'combo',
 												id: 'comboUcenikOtacZani',
+												store: new Athene.store.Zanimanje({pageSize: 20, queryMode: 'remote'}),
+												pageSize: 20,
+												queryMode: 'remote',
 												store: 'Zanimanje',
 												fieldLabel: 'Zanimanje oca',
 												displayField: 'naziv',
@@ -188,6 +200,9 @@ Ext.define('Athene.view.ucenik.Form', {
 											{
 												xtype: 'combo',
 												id: 'comboUcenikMajkaZani',
+												store: new Athene.store.Zanimanje({pageSize: 20, queryMode: 'remote'}),
+												pageSize: 20,
+												queryMode: 'remote',
 												store: 'Zanimanje',
 												fieldLabel: 'Zanimanje majke',
 												displayField: 'naziv',
@@ -263,6 +278,9 @@ Ext.define('Athene.view.ucenik.Form', {
 											{
 												xtype: 'combo',
 												id: 'comboUcenikVrstaPutnika',
+												store: new Athene.store.VrstaPutnika({pageSize: 20, queryMode: 'remote'}),
+												pageSize: 20,
+												queryMode: 'remote',
 												store: 'VrstaPutnika',
 												fieldLabel: 'Vrsta putnika',
 												displayField: 'naziv',
@@ -280,11 +298,31 @@ Ext.define('Athene.view.ucenik.Form', {
 			}
 		    },
                     {
-                        text: 'Dodaj',
-                        handler: function() {
-                            this.up('form').getForm().submit();
-                        }
-                    }
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Učenik je uspješno dodana',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Ucenik');
+			// Add new record to store
+			Ext.getStore('Ucenik').add(r);
+			// Resort
+			Ext.getStore('Ucenik').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Učenik nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
+			}
                 ]
             }]
 	    }

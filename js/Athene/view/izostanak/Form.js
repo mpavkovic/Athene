@@ -5,7 +5,7 @@ Ext.define('Athene.view.izostanak.Form', {
     
     title: 'Novi izostanak',
     layout: 'fit',
-    width: 320,
+    width: 400,
     height: 310,
     constrain: true,
        
@@ -27,6 +27,9 @@ Ext.define('Athene.view.izostanak.Form', {
                 items: [{
 		    xtype: 'combo',
 		    id: 'comboRazred',
+		    store: new Athene.store.Razred({pageSize: 20, queryMode: 'remote'}),
+                    pageSize: 20,
+                    queryMode: 'remote',
 		    store: 'Razred',
 		    fieldLabel: 'Razred',
 		    displayField: 'naziv',
@@ -36,6 +39,9 @@ Ext.define('Athene.view.izostanak.Form', {
 		{
                         xtype: 'combo',
                         id: 'comboIzostanakUcenik',
+			store: new Athene.store.Ucenik({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'Ucenik',
                         fieldLabel: 'Učenik',
                         displayField: 'prezime',
@@ -58,6 +64,9 @@ Ext.define('Athene.view.izostanak.Form', {
 		    {
                         xtype: 'combo',
                         id: 'comboIzostanakPredRazOdj',
+			store: new Athene.store.PredmetRazrednogOdjeljenja({pageSize: 20, queryMode: 'remote'}),
+			pageSize: 20,
+			queryMode: 'remote',
                         store: 'PredmetRazrednogOdjeljenja',
                         fieldLabel: 'Predmet razrednog odjeljenja',
                         displayField: 'predmet_id',

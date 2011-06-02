@@ -40,8 +40,13 @@ Ext.define('Athene.controller.Poteskoca', {
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
-    }, 
+        this.getPoteskocaStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
+    },  
     
     edit: function(v, r) {
         var view = Ext.widget('poteskocaform');
@@ -50,5 +55,8 @@ Ext.define('Athene.controller.Poteskoca', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    refreshData: function() {
+        this.getPoteskocaStore().load();
     }
 })

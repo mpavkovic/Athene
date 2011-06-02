@@ -40,7 +40,12 @@ Ext.define('Athene.controller.NastavniPlan', {
     
     onGridRendered: function() {
         //console.log('Grid is rendered, loading data...');
-        this.getList().store.load();
+        this.getNastavniPlanStore().load({
+            params: {
+                start: 0,
+                limit: 20
+            }
+        });
     }, 
     
     edit: function(v, r) {
@@ -50,5 +55,8 @@ Ext.define('Athene.controller.NastavniPlan', {
         view.plain = true;
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },
+    refreshData: function() {
+        this.getNastavniPlanStore().load();
     }
 })
