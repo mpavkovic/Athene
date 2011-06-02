@@ -58,6 +58,7 @@ class Mysql extends Database {
     public function query($query) {
         Debug::getInstance()->log('Query', $query, __FILE__, __LINE__);
         $return = array();
+        //var_dump($query);
         foreach($this->conn->query($query, \PDO::FETCH_ASSOC) as $r) {
             $return[] = (object)$r;
         }

@@ -4,6 +4,7 @@ namespace Athene\Model;
 
 use Sirius\Storage\Database\Mysql;
 use Athene\Debug;
+use Athene\Error;
 
 class Model {
     
@@ -32,6 +33,16 @@ class Model {
         }
     }
     
+    public function create($params) {
+        if(isset($this->primaryKey)) {
+            $this->primaryKey = 'id';
+        }
+        $pkVal = $params->{$this->primaryKey};
+        unset($params->{$this->primaryKey});
+        
+        return $this->adapter->insert($this->table, get_object_vars($params));
+    }
+    
     public function save() {
         /*if($this->fields['id']) {
             $query = $this->adapter->update();
@@ -40,10 +51,16 @@ class Model {
         return $this->adapter->insert($this->table, $this->fields);
     }
     
+    public function read($params = null) {
+        return $this->getAll($params);
+    }
+    
     public function getAll($params = null) {
         //var_dump($params); die();
         //$selectFiedls = array('*')
         $query = $this->adapter->select($this->table);
+        
+        //echo $query;
         
         /*$query = $this->adapter->select(array(
                     'table' => $this->table,
@@ -58,13 +75,15 @@ class Model {
             }
         }
         
-        if(isset($params->wherePage) && isset($params->page)) {
+        //echo $query;
+        
+        /*if(isset($params->wherePage) && isset($params->page)) {
             //var_dump();
             $sq = $this->adapter->select($this->table)->limit($params->start, $params->limit)->where(get_object_vars($params->wherePage))->getPage();
             echo $sq;
             $r = $this->adapter->query($sq);
-            var_dump($r);
-        }
+            //var_dump($r);
+        }*/
         
         //echo $query;
         if(isset($params->page)) {
@@ -78,7 +97,7 @@ class Model {
         
         
         //echo $query;
-        return $this->adapter->query($query);
+        return $this->adapter->query($query->__toString());
         
         
         /*$query = "SELECT * FROM " . $this->table;
@@ -121,6 +140,44 @@ class Model {
         return $this->adapter->query($query);
         //echo $query;
         //echo 'Query ', $query->__toString(); die();
+    }
+    
+    // Delete record
+    public function destroy($params) {
+        if(isset($this->primaryKey)) {
+            $q = "DELETE FROM " . $this->table . " WHERE " . $this->primaryKey . ' = ' . $params->{$this->primaryKey};;
+            return $this->adapter->query($q);
+        }
+    }
+    
+    public function del($params) {
+        //echo 'DELETE: '; var_dump($params);
+        if(isset($this->primaryKey)) {
+            $q = "DELETE FROM " . $this->table . " WHERE " . $this->primaryKey . ' = ' . $params->{$this->primaryKey};;
+            return $this->adapter->query($q);
+        }
+    }
+    
+    public function update($params) {
+        if(isset($this->primaryKey)) {
+            $this->primaryKey = 'id';
+        }
+        $pkVal = $params->{$this->primaryKey};
+        unset($params->{$this->primaryKey});
+    
+        $query = 'UPDATE ' . $this->table . ' SET ';
+        $sets = array();
+        foreach(get_object_vars($params) as $k=>$v) {
+            $sets[] = $k . ' = \'' . $v . '\'';
+        }
+        //var_dump($query . implode(',', $sets));
+        $query .= implode(',', $sets) . ' WHERE ' . $this->primaryKey . ' = \'' . $pkVal . '\'';
+        $r = $this->adapter->exec($query);
+        if($r > 0) {
+            return true;
+        }
+        $error = new Error('Radnja neuspjela.', '32');
+        return $error;
     }
     
 }

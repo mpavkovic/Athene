@@ -27,5 +27,19 @@ Ext.define('Athene.model.Ucenik', {
         'vrsta_putnika_id',
         'otac_zanimanje_id',
         'majka_zanimanje_id'
-    ]
+    ],
+    
+    proxy: {
+        type: 'direct',
+        api: {
+            create: Ucenik.create,
+            read: Ucenik.read,
+            update: Ucenik.update,
+            destroy: Ucenik.destroy
+        },
+        reader: {
+            root: 'data'
+        }
+    }
+    
 });

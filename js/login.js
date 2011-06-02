@@ -1,5 +1,23 @@
 Ext.onReady(function() {
     
+    function doLogin(form) {
+        if (form.isValid()) {
+            form.submit({
+                success: function() {
+                    // Reload
+                    window.location.reload();
+                },
+                failure: function(form, action) {
+                    obj = Ext.JSON.decode(action.response.responseText);
+                    Ext.Msg.alert('Greška', obj.errors.reason, function() {
+                        form.reset();
+                        form.findField('username').focus();
+                    });
+                }
+            })
+        }
+    }
+    
     Ext.create('Ext.form.Panel', {
         url: 'login.php',
         title: 'Prijava',
@@ -17,16 +35,38 @@ Ext.onReady(function() {
                 name: 'username',
                 allowBlank: false,
                 maskRe: /[a-zA-Z0-9_]/i,
+                maxLength: 20,
+                enforceMaxLength: true,
                 msgTarget: 'under',
-                regex: /[a-zA-Z0-9_]{6,20}/i,
-                regexText: 'Korisničko ime nije validno!'
-            },
+                regex: /[a-zA-Z0-9_]/i,
+                regexText: 'Korisničko ime nije validno!',
+                listeners: {
+                    specialkey: function(field, e) {
+                        if(e.getKey() == e.ENTER) {    
+                            var form = field.up('form').getForm();
+                            doLogin(form);
+                        }
+                    },
+                    render: function(el) {
+                        el.focus();
+                    }
+                }
+	    },
             {
                 fieldLabel: 'Lozinka',
                 inputType: 'password',
                 name: 'password',
                 allowBlank: false,
-                msgTarget: 'under'
+                msgTarget: 'under',
+                listeners: {
+                    specialkey: function(field, e) {
+                        console.log('bla');
+                        if(e.getKey() == e.ENTER) {    
+                            var form = field.up('form').getForm();
+                            doLogin(form);
+                        }
+                    }
+                }
             },
             {
                 fieldLabel: 'Zapamti me',
@@ -40,21 +80,7 @@ Ext.onReady(function() {
                 disabled: true,
                 handler: function() {
                     var form = this.up('form').getForm();
-                    if (form.isValid()) {
-                        form.submit({
-                            success: function() {
-                                // Reload
-                                window.location.reload();
-                            },
-                            failure: function(form, action) {
-                                obj = Ext.JSON.decode(action.response.responseText);
-                                Ext.Msg.alert('Greška', obj.errors.reason, function() {
-                                    form.reset();
-                                    form.findField('username').focus();
-                                });
-                            }
-                        })
-                    }
+                    doLogin(form);
                 }
             }
         ],

@@ -191,7 +191,12 @@ Ext.define('Athene.controller.Main', {
     views: [
         'Debug',
         'Viewport',
-        'PopupMessage'
+        'PopupMessage',
+        'Tip'
+    ],
+    
+    models: [
+        'Tip'
     ],
     
     
@@ -223,25 +228,11 @@ Ext.define('Athene.controller.Main', {
         });
         
         this.control({
-            'viewport': {
-                render: function() {
-                    console.log('Slijedi jebanje keve.');
-                    var store = Ext.getStore('Drzava');
-                    store.load({
-                        params: {
-                            wherePage: {
-                                id: 62
-                            }
-                        },
-                        callback: function() {
-                            console.log('Keva izjebana.');
-                        }
-                    })
-                }
-            },
+            /*'viewport': {
+                render: this.showTip
+            },*/
             '#logout': {
                 click: function() {
-                    //console.log('Log me out!');
                     Ext.Ajax.request({
                         url: 'ext.php',
                         method: 'GET',
@@ -252,7 +243,7 @@ Ext.define('Athene.controller.Main', {
                     window.location.reload();
                 }
             },
-			'#openPomocForm': {
+	    '#openPomocForm': {
                 click: this.help
             }
         });
@@ -271,6 +262,14 @@ Ext.define('Athene.controller.Main', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    
+    showTip: function() {
+        if(SHOW_TIPS) {
+            console.log(this.getTipModel());
+            var tip = this.getTipModel().get('random');
+            console.log(tip);
+        }
     }
     
 });

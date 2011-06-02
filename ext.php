@@ -173,7 +173,7 @@ if(isset($_POST) && !empty($_POST)) {
             } else {
                 $return = call_user_func(array($actionClass, $jr->method));
             }
-            if(is_bool($return)) {
+            if(is_bool($return) || is_int($return)) {
                 $rreturn = new \stdClass();
                 if($return === true) {
                     $rreturn->success = true;
@@ -202,7 +202,8 @@ if(isset($_POST) && !empty($_POST)) {
         } else {
             $return = call_user_func(array($actionClass, $jsonRequest->method));
         }
-        if(is_bool($return)) {
+        //var_dump($return);
+        if(is_bool($return) || is_int($return)) {
             $rreturn = new \stdClass();
             if($return === true) {
                 $rreturn->success = true;

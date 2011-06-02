@@ -7,8 +7,7 @@ Ext.define('Athene.controller.Drzava', {
     ],
     
     stores: [
-        'Drzava',
-        'DrzavaCombo'
+        'Drzava'
     ],
     
     models: [

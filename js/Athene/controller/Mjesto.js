@@ -68,7 +68,7 @@ Ext.define('Athene.controller.Mjesto', {
     },
     
     onGridRendered: function() {
-        Ext.widget('debugwindow').log('Mjesto grid rendered.');
+        //Ext.widget('debugwindow').log('Mjesto grid rendered.');
         this.getMjestoStore().load({
             params: {
                 start: 0,

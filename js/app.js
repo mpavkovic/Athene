@@ -1,4 +1,4 @@
-var debugMode = true;
+var debugMode = false;
 
 // Register namespace
 Ext.ns('Athene'); // ns is shorthand for namespace
@@ -98,5 +98,5 @@ Ext.onReady(function() {
     }
     
     // Setup CKEDITOR
-    CKEDITOR.config.toolbar = 'Basic';
+    //CKEDITOR.config.toolbar = 'Basic';
 });

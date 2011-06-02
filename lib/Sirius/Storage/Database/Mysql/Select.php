@@ -106,11 +106,11 @@ class Select extends Statement {
             $query .= ' AS ' . $this->alias;
         }
         
-        if($this->getPage) {
+        /*if($this->getPage) {
             $selectFields = 'floor(count(id)/' . $this->limitCount . ') as page';
             unset($this->limitCount);
             unset($this->limitOffset);
-        }
+        }*/
         
         // JOINs
         if(!empty($this->joins)) {
@@ -157,6 +157,7 @@ class Select extends Statement {
         //var_dump($this->wheres);
         if(!empty($this->wheres)) {
             $query .= ' WHERE ';
+            $whereCount = 0;
             foreach($this->wheres as $where) {
                 if($whereCount > 0) {
                     $query .= ' AND ';

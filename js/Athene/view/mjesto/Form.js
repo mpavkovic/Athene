@@ -59,13 +59,15 @@ Ext.define('Athene.view.mjesto.Form', {
 			id: 'formMjestoSubmit',
                         handler: function() {
 			    var form = this.up('form').getForm(); // shorthand
+			    console.log(form.getFieldValues());
 			    // If record is loaded that means we're editing existing data
-			    if(form.getRecord() !== undefined) {
+			    //if(form.getRecord() !== undefined) {
 				// Update record
-			    } else {
-				var r = Ext.ModelManager.create(form.getFieldValues(), 'Mjesto');
+			    //} else {
+				var r = Ext.ModelManager.create(form.getFieldValues(), 'Athene.model.Mjesto');
 				console.log(r);
-			    }
+				r.save();
+			    //}
 			    //console.log(this.up('form').getForm().getRecord());
                             //console.log(this.up('form').getForm().getFieldValues());
                         }

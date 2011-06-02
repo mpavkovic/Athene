@@ -74,7 +74,29 @@
                   xtype: 'sidemenu',
                   border: false // hide the unneccesary border
                }
-            ]
+            ],
+            listeners: {
+               collapse: function(panel) {
+                  Ext.WindowManager.each(function() {
+                     //console.log(this.maximized);
+                     if(this.maximized) {
+                        //console.log('maxed');
+                        this.maximized = false;
+                        this.maximize();
+                     }
+                  });
+               },
+               expand: function(panel) {
+                  Ext.WindowManager.each(function() {
+                     //console.log(this.maximized);
+                     if(this.maximized) {
+                        //console.log('maxed');
+                        this.maximized = false;
+                        this.maximize();
+                     }
+                  });
+               }
+            }
         },
         {
             region: 'center',

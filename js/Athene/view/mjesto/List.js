@@ -40,7 +40,7 @@ Ext.define('Athene.view.mjesto.List', {
                     },
                     {
                         text: 'Država',
-                        dataIndex: 'drzava_id'
+                        dataIndex: 'drzava'
                     },
                     {
                         xtype: 'actioncolumn',
@@ -64,7 +64,14 @@ Ext.define('Athene.view.mjesto.List', {
                             {
                                 icon: 'img/icons/delete.png',
                                 tooltip: 'Izbriši',
-                                iconCls: 'deleteAction'
+                                iconCls: 'deleteAction',
+                                handler: function(grid, rowIndex, columnIndex) {
+                                    grid.store.getAt(rowIndex).destroy({
+                                        success: function() {
+                                            console.log('Deleted');
+                                        }
+                                    });
+                                }
                             }
                         ]
                     }

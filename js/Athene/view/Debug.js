@@ -2,7 +2,7 @@ Ext.define('Athene.view.Debug', {
     extend: 'Ext.window.Window',
     alias: 'widget.debugwindow',
     
-    autoShow: true,
+    //autoShow: true,
     title: 'Debug',
     height: 200,
     width: 500,
@@ -34,3 +34,7 @@ Ext.define('Athene.view.Debug', {
 });
 
 Ext.ComponentManager.registerType('debugwindow', Athene.view.Debug);
+
+if(debug == true) {
+    Ext.widget('debugwindow').show();
+}

@@ -18,6 +18,10 @@ Ext.define('Athene.controller.Ucenik', {
         {
             ref: 'list',
             selector: '#ucenikgrid'
+        },
+        {
+            ref: 'searchField',
+            selector: '#listUcenikSearch'
         }
     ],
     
@@ -46,9 +50,14 @@ Ext.define('Athene.controller.Ucenik', {
             '#refreshUcenikList': {
                 click: this.refreshData
             },
-			'#helpUcenik': {
+	    '#helpUcenik': {
                 click: this.help
-            }
+            },
+            '#listUcenikClearFilter': {
+		click: function() {
+		    this.getSearchField().reset();
+		}
+	    }
         });
     },
     
