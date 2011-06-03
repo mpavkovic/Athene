@@ -1,3 +1,10 @@
+var odabir_da_ne = Ext.create('Ext.data.Store', {
+    fields: ['abbr','naziv'],
+    data : [
+        {"abbr":"1", "naziv":"Da"},
+        {"abbr":"0", "naziv":"Ne"}
+    ]
+});
 Ext.define('Athene.view.izostanak.Form', {
     extend: 'Ext.window.Window',
     alias: 'widget.izostanakform',
@@ -108,12 +115,32 @@ Ext.define('Athene.view.izostanak.Form', {
 			    me.close();
 			}
 		    },
-		    {
-		        text: 'Dodaj',
-		        handler: function() {
-			    this.up('form').getForm().submit();
+			{
+				text: 'Dodaj',
+				scope: me,
+				handler: function() {
+					me.down('form').getForm().submit({
+			success: function(form, action) {    
+			Ext.widget('notification').popup({
+			message: 'Izostanak je uspješno dodan',
+			icon: 'img/icons/accept.png'
+			});
+			// Create a new record from form data
+			var r = Ext.ModelManager.create(form.getValues(), 'Athene.model.Izostanak');
+			// Add new record to store
+			Ext.getStore('Izostanak').add(r);
+			// Resort
+			Ext.getStore('Izostanak').sort();
+			},
+					failure: function(form, action) {
+			Ext.widget('notification').popup({
+			message: 'Izostanak nije dodan (greška)',
+			icon: 'img/icons/exclamation.png'
+			});
+					}
+			})
+				}
 			}
-	            }
 		]
             }
         ];

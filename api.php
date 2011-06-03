@@ -42,7 +42,21 @@ Ext.app.REMOTING_API = {
                 len: 1
             }
         ],
-        "Razred": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "Razred": [
+            {
+                name: "read",
+                len: 1
+            }, {
+                name: "create",
+                len: 1
+            }, {
+                name: "update",
+                len: 1
+            }, {
+                name: "destroy",
+                len: 1
+            }
+        ],
         "SkolskaGodina": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Ucitelj":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
         "Drzava":[

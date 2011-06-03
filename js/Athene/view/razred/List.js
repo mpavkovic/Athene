@@ -9,12 +9,13 @@ Ext.define('Athene.view.razred.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+    closeAction: 'hide',
     
     initComponent: function() {
         this.items = [
             {
                 xtype: 'grid',
-                id: 'razredgrid',
+                itemId: 'grid',
                 store: 'Razred',
                 forceFit: true,
                 columns: [
@@ -54,12 +55,20 @@ Ext.define('Athene.view.razred.List', {
                                 tooltip: 'Izmijeni',
                                 iconCls: 'editAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    var view = Ext.widget('razredform');
-                                    view.down('form').loadRecord(Ext.getStore('Razred').getAt(rowIndex));
-                                    view.down('#formRazredSubmit').text = 'Spremi';
-                                    view.title = 'Izmijeni: ' + Ext.getStore('Razred').getAt(rowIndex).data.id;
-                                    view.renderTo = '#razredlist';
-                                    view.modal = true; // Make window modal so the list is inacesible
+                                    var view;
+                                    if(Ext.WindowManager.get('razredform')) {
+                                        view = Ext.WindowManager.get('razredform');
+                                    } else {
+                                        view = Ext.widget('razredform');
+                                        Ext.getCmp('workspace').add(view);
+                                    }
+                                    view.down('form').loadRecord(grid.store.getAt(rowIndex));
+                                    var button = view.down('button[action=save]');
+                                    if(button) {
+                                        button.setText('Spremi');
+                                        button.action = 'update';
+                                    }
+                                    view.setTitle('Izmijeni: ' + grid.store.getAt(rowIndex).data.naziv);
                                     view.show();
                                 }
                             },
@@ -69,14 +78,12 @@ Ext.define('Athene.view.razred.List', {
                                 tooltip: 'Izbriši',
                                 iconCls: 'deleteAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
-                                    User.delete(userId, function(provider, response) {
-                                        //console.log(provider, response);
-                                        if(provider.success == true) {
-                                            var sm = grid.getSelectionModel();
-                                            grid.store.removeAt(rowIndex);
+                                    grid.store.getAt(rowIndex).destroy({
+                                        success: function() {
+                                            Ext.widget('notification').popup('Razred usješno izbrisan!');
+                                            grid.store.load();
                                         }
-                                    })*/
+                                    });
                                 }
                             }
                         ]
@@ -93,8 +100,13 @@ Ext.define('Athene.view.razred.List', {
                     {
                         xtype: 'button',
                         icon: 'img/icons/add.png',
-                        text: 'Dodaj razred', 
-                        id: 'openRazredForm'
+                        text: 'Dodaj izbornik', 
+                        itemId: 'openForm'
+                    }, {
+                        xtype: 'button',
+                        icon: 'img/icons/refresh.png',
+                        text: 'Osvježi',
+                        itemId: 'refresh'
                     },
                     '->',
                     {
@@ -118,5 +130,5 @@ Ext.define('Athene.view.razred.List', {
         this.callParent(arguments);
     }
 });
-// Register custom xtype so we can use it in menu
+// Register custom xtype so we can use it in razred
 Ext.ComponentManager.registerType('razredlist', Athene.view.razred.List);

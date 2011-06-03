@@ -2,101 +2,103 @@ Ext.define('Athene.controller.Razred', {
     extend: 'Ext.app.Controller',
     
     views: [
-        'razred.List',
-        'Help',
-		'razred.Form'
+	'razred.List',
+	'razred.Form'
     ],
     
     stores: [
-        'Razred'
+	'Razred'
     ],
     
     models: [
-        'Razred'
-    ],
-    
-    refs: [
-        {
-            ref: 'list',
-            selector: '#razredgrid'
-        }
+	'Razred'
     ],
     
     init: function() {
-        //console.log('Razred controller initialized.')
         
         this.control({
-            '#razredgrid': {
+            '#grid': {
                 render: this.onGridRendered,
                 itemdblclick: this.edit
             },
-            '#openRazredForm': {
-                click: function() {
-                    var view = Ext.widget('razredform');
-                    view.show();
-                }
-            },
-            '#openRazredGrid': {
-                click: function() {
-                    Ext.widget('razredlist').show();
-                }
-            },
-            '#filterRazredBySkGod': {
-                change: this.filter
-            },
-            '#filterRazredByRazrednik': {
-                change: this.filter
-            },
-            '#helpRazredList': {
-                click: this.help
-            }
-        });
-    },
-    
-    onGridRendered: function() {
-        //console.log('Grid is rendered, loading data...');
-        this.getRazredStore().load({
-            params: {
-                start: 0,
-                limit: 20
-            }
-        });
-    },
-    
-	edit: function(v, r) {
-        var view = Ext.widget('razredform');
-        view.down('form').loadRecord(r);
-        view.renderTo = '#razredlist';
-        view.plain = true;
-        view.modal = true; // Make window modal so the list is inacesible
-        view.show();
-    },
-    
-    filter: function(item, newValue, oldValue) {
-        //console.log('Filter by ' + newValue);
-        this.getList().store.filter('skolska_godina_id', newValue);
-    },
-
-    filter: function(item, newValue, oldValue) {
-        //console.log('Filter by ' + newValue);
-        this.getList().store.filter('razrednik_id', newValue);
-    },
-    
-    help: function() {
-        Ext.Ajax.request({
-            url: 'help/razredlist.html',
-            success: function(response) {
-                var view = Ext.widget('helpwindow');
-                view.update(response.responseText);
-                view.setTitle(view.title + 'Popis razreda');
-                view.show();
-            },
-            failure: function() {
-                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
-            }
+	    '#openForm': {
+		click: this.openForm
+	    },
+	    'button[action]': {
+		click: this.submitForm
+	    },
+	    '#refresh': {
+		click: function() {
+		    this.getRazredStore().load();
+		}
+	    }
         })
     },
-    refreshData: function() {
-        this.getRazredStore().load();
+    
+    onGridRendered: function(grid) {
+        grid.store.load();
+    },
+    
+    edit: function(v, r) {  
+	var view;
+	if(Ext.WindowManager.get('razredform')) {
+	    view = Ext.WindowManager.get('razredform');
+	} else {
+	    view = Ext.widget('razredform');
+	    Ext.getCmp('workspace').add(view);
+	}
+	view.down('form').loadRecord(r);
+	var button = view.down('button[action=save]');
+	if(button) {
+	    button.setText('Spremi');
+	    button.action = 'update';
+	}
+	view.setTitle('Izmijeni: ' + r.data.naziv);
+	view.show();  
+    },
+    
+    openForm: function() {
+	var view;
+	if(Ext.WindowManager.get('razredform')) {
+	    view = Ext.WindowManager.get('razredform');
+	    view.down('form').getForm().reset();
+	    var button = view.down('button[action=update]');
+	    if(button) {
+		button.setText('Dodaj');
+		button.action = 'save';
+	    }
+	    view.setTitle('Novi razred');
+	} else {
+	    view = Ext.widget('razredform');
+	    Ext.getCmp('workspace').add(view);
+	}
+	view.show();
+    },
+    
+    submitForm: function(button) {
+	var form = button.up('window').down('form').getForm(); // shorthand
+	if(form.isValid()) {
+	    if(button.action == 'save') {
+	        var Razred = this.getRazredModel();
+		var razred = new Razred(form.getValues());
+		razred.save({
+		    success: function() {
+			Ext.widget('notification').popup('Izbornik dodan.');
+			this.getRazredStore().load();
+		    }
+		});
+	    } else if(button.action == 'update') {
+		var razred = form.getRecord();
+		razred.set(form.getValues());
+		razred.save({
+		    success: function() {
+			Ext.widget('notification').popup('Izbornik spremljen.');
+			this.getRazredStore().load();
+		    }
+		});
+	    }
+	    button.up('window').close();
+	}
     }
-})
+    
+});
