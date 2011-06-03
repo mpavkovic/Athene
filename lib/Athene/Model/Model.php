@@ -8,20 +8,22 @@ use Athene\Error;
 
 class Model {
     
-    private static $EXT_FIELDS = array('extTID', 'extAction', 'extMethod', 'extType', 'extUpload');
+    //private static $EXT_FIELDS = array('extTID', 'extAction', 'extMethod', 'extType', 'extUpload');
     
-    protected $adapter;
+    //protected $adapter;
     
     protected $fields;
     
-    protected $table;
+    //protected $table;
     
-    protected $primaryKey = 'id';
+    //protected $primaryKey = 'id';
     
-    protected $foreignKeys = array();
+    //protected $foreignKeys = array();
     
-    public function __construct($fields = null) {
-        $this->adapter = Mysql::getInstance();
+    protected $fieldOrder = array();
+    
+    public function __construct($values = null) {
+        /*$this->adapter = Mysql::getInstance();
         if(isset($fields)) {
             // TODO: Clear ext values
             foreach($fields as $k=>$v) {
@@ -30,7 +32,20 @@ class Model {
                 }
             }
             $this->fields = $fields;
-        }
+        }*/
+        
+        // Init first
+        $this->init();
+        var_dump($this->fields);
+        
+    }
+    
+    protected function setField($name, $properties) {
+        
+    }
+    
+    public function __set($property, $value) {
+        var_dump($property, $value);
     }
     
     public function create($params) {

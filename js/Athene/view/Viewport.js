@@ -44,6 +44,14 @@
                     },
                     {
                         xtype: 'button',
+                        text: 'Export',
+			id: 'export',
+			handler: function() {
+                           window.location = 'export/export.csv';
+                        }
+                    },
+                    {
+                        xtype: 'button',
 						icon: 'img/icons/help.png',
                         text: 'Pomoć',
 						id: 'openPomocForm',

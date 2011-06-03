@@ -2,9 +2,28 @@
 
 namespace Athene\Model;
 
+use Athene\Model\Field\Integer as IntegerField;
+use Athene\Model\Field\Text as TextField;
+use Athene\Model\Field\Boolean as BooleanField;
+
 class Menu extends Model {
     
     protected $table = 'athene_menu';
+    
+    public function init() {
+        
+        //$this->fields->id = new IntegerField();
+        $this->setField('id', new IntegerField());
+        
+        //var_dump($this->fields);
+        $this->fields->label = new TextField(array('maxLength' => 100));
+        $this->fields->extId = new TextField(array('maxLength' => 100, 'mapping' => 'ext_id'));
+        $this->fields->extCls = new TextField(array('maxLength' => 100, 'mapping' => 'ext_cls', 'required' => false));
+        $this->fields->extLeaf = new BooleanField(array('mapping' => 'ext_leaf', 'default' => false));
+        $this->fields->extExpanded = new BooleanField(array('mapping' => 'ext_expanded', 'default' => false));
+        //$this->fields->parent = new ForeignKey('Menu');
+        
+    }
     
     public function sidemenu($params) {
         //var_dump($params);
