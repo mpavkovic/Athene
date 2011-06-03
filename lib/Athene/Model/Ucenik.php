@@ -6,6 +6,8 @@ class Ucenik extends Model {
     
     protected $table = 'osz_ucenik';
     
+    protected $primaryKey = 'oib';
+    
     protected $foreignKeys = array(
         array(
             'key' => 'mjesto_rodjenja_id',

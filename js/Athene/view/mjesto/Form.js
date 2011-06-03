@@ -42,7 +42,9 @@ Ext.define('Athene.view.mjesto.Form', {
                         fieldLabel: 'Država',
                         displayField: 'naziv',
                         valueField: 'id',
-						name: 'drzava_id'
+			name: 'drzava_id',
+			typeAhead: true,
+			forceSelection: true
                     }
                 ],
                 buttons: [
@@ -54,8 +56,20 @@ Ext.define('Athene.view.mjesto.Form', {
 		    },
                     {
                         text: 'Dodaj',
+			id: 'formMjestoSubmit',
                         handler: function() {
-                            this.up('form').getForm().submit();
+			    var form = this.up('form').getForm(); // shorthand
+			    console.log(form.getFieldValues());
+			    // If record is loaded that means we're editing existing data
+			    //if(form.getRecord() !== undefined) {
+				// Update record
+			    //} else {
+				var r = Ext.ModelManager.create(form.getFieldValues(), 'Athene.model.Mjesto');
+				console.log(r);
+				r.save();
+			    //}
+			    //console.log(this.up('form').getForm().getRecord());
+                            //console.log(this.up('form').getForm().getFieldValues());
                         }
                     }
                 ]

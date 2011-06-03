@@ -68,6 +68,7 @@ Ext.define('Athene.controller.Mjesto', {
     },
     
     onGridRendered: function() {
+        //Ext.widget('debugwindow').log('Mjesto grid rendered.');
         this.getMjestoStore().load({
             params: {
                 start: 0,
@@ -82,14 +83,20 @@ Ext.define('Athene.controller.Mjesto', {
     },
     
     edit: function(v, r) {
-        var view = Ext.widget('mjestoform');
-        view.down('form').loadRecord(r);
-	view.down('#formMjestoSubmit').text = 'Spremi';
-	view.title = 'Izmijeni: ' + r.data.naziv;
-        view.renderTo = '#mjestolist';
-        view.plain = true;
-        view.modal = true; // Make window modal so the list is inacesible
-        view.show();
+        
+        var view = Ext.widget('mjestoform', {
+            title: 'Izmijeni: ' + r.data.naziv,
+            modal: true
+        });
+        view.down('form').getForm().findField('drzava_id').store.load({
+            callback: function() {
+                view.down('form').loadRecord(r);
+                view.down('#formMjestoSubmit').text = 'Spremi';
+                view.renderTo = '#mjestolist';
+                view.show();        
+            }
+        });
+        
     },
     
     help: function() {

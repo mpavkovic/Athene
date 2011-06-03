@@ -3,14 +3,20 @@ Ext.define('Athene.view.menu.Side', {
     alias: 'widget.sidemenu',
     expandAll: true,
     store: Ext.create('Ext.data.TreeStore', {
-        model: 'MenuItem',
+        //model: 'Athene.model.MenuItem',
         proxy: {
-            type: 'ajax',
-            url: 'ext.php'
+            type: 'direct',
+            directFn: Menu.sidemenu,
+            //type: 'ajax',
+            //url: 'ext.php',
+            reader: {
+                root: 'data'
+            }
         },
         root: {
             text: 'Izbornik',
-            id: 'sidemenu',
+            //id: 'data',
+            //id: 'sidemenu',
             expanded: true
         },
         folderSort: true,

@@ -5,22 +5,71 @@ Ext.app.REMOTING_API = {
     "url":"ext.php",
     "type":"remoting",
     "actions":{
-		"Ucenik": [{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
-        "Menu": [{"name":"side", "len":0}],
-        "Razred": [{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
-        "SkolskaGodina": [{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
-        "Ucitelj":[{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
-        "Drzava":[{"name":"getAll", "len":1}, { "name": "save", "len":0, "formHandler": true}],
+		"Ucenik": [
+            {
+                name: "read",
+                len: 1
+            }, {
+                name: "create",
+                len: 1
+            }, {
+                name: "update",
+                len: 1
+            }, {
+                name: "destroy",
+                len: 1
+            }
+        ],
+        "Menu": [
+            {
+                name: "read",
+                len: 1
+            },
+            {
+                name: "create",
+                len: 1
+            },
+            {
+                name: "update",
+                len: 1
+            },
+            {
+                name: "destroy",
+                len: 1
+            },
+            {
+                name: "sidemenu",
+                len: 1
+            }
+        ],
+        "Razred": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "SkolskaGodina": [{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "Ucitelj":[{"name":"getAll", "len":0}, { "name": "save", "len":0, "formHandler": true}],
+        "Drzava":[
+            {
+                name: "getAll",
+                len: 1
+            }, {
+                name: "find",
+                len: 1
+            }, {
+                name: "save",
+                len: 0,
+                formHandler: true
+            }
+        ],
         "Mjesto":[
             {
                 "name": "getAll",
                 "len":1
             }, {
-                "name": "save",
-                "len":0,
-                "formHandler": true
+                name: "save",
+                len: 1,
             }, {
-                name: "delete",
+                name: "del",
+                len: 1
+            }, {
+                name: "update",
                 len: 1
             }
         ],
@@ -77,7 +126,14 @@ Ext.app.REMOTING_API = {
             name: "save",
             len: 0,
             formHandler: true
-        }]
+        }],
+        
+        "Tip": [
+            {
+                name: "read",
+                len: 1
+            }
+        ]
     }
 };';
 

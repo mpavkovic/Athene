@@ -33,14 +33,170 @@ function checkJMBG(jmbg){
 }
 
 // oib = 18198789796; //valid OIB
+
+// Add override
+/*Ext.override(Ext.form.field.ComboBox, {
+    setValue: function(v) {
+        //console.log('Setting combo value to ', v, this);
+        //begin patch
+        // Store not loaded yet? Set value when it *is* loaded.
+        // Defer the setValue call until after the next load.
+        if (this.store.getCount() == 0) {
+            console.log('Load store...');
+            /*this.store.on('load',
+                this.setValue.createDelegate(this, [v]), null, {single: true});*
+            this.store* /
+            this.store.load({
+                callback: function() {
+                    console.log('kolbek mater ti jebem');
+                    this.setValue(v);
+                },
+                scope: this
+            })
+            return;
+        }
+        var text = v;
+        if(this.valueField){
+            console.log('valueField is set');
+            var r = this.findRecord(this.valueField, v);
+            console.log('jebote r', r);
+            if(r){
+                console.log('Imam r');
+                text = r.data[this.displayField];
+            }else if(this.valueNotFoundText !== undefined){
+                console.log('neam r, iam vnft')
+                text = this.valueNotFoundText;
+            }
+        }
+        this.lastSelectionText = text;
+        if(this.hiddenField){
+            this.hiddenField.value = v;
+        }
+        console.log(text);
+        Ext.form.ComboBox.superclass.setValue.call(this, text);
+        this.value = v;
+        
+        
+        /*else {
+            var r = this.store.findRecord(this.valueField, v);
+            
+            if(this.valueField){
+            var r = this.findRecord(this.valueField, v);
+            console.log(r);
+            if(r){
+                //text = r.data[this.displayField];
+                Ext.form.ComboBox.superclass.setValue.call(this, r);
+                this.value = v;
+            }else if(this.valueNotFoundText !== undefined){
+                text = this.valueNotFoundText;
+            }
+        }*/
+        /*this.lastSelectionText = text;
+        if(this.hiddenField){
+            this.hiddenField.value = v;
+        }
+        Ext.form.ComboBox.superclass.setValue.call(this, text);*/
+        //this.value = v;
+        
+            /*console.log(r);
+            if(r === null) {
+                console.log('nema');
+                this.store.nextPage({
+                    callback: function() {
+                        //console.log(this.store.data);
+                        this.setValue(v);
+                    },
+                    scope: this
+                });
+            } else {
+                console.log('ima');
+                //this.store.clearFilter();
+                //this.clearValue();
+                Ext.form.ComboBox.superclass.setValue.call(this, v);
+                this.value = v;
+            }* /
+        }
+        
+        // Try to find the record in the store, if not, do remote lookup
+        /*if(v !== undefined) {
+            this.store.remoteFind({
+                params: {
+                    findBy: this.valueField,
+                    findValue: v
+                },
+                callback: function(data) {
+                    
+                    //this.valueNotFoundText = data.naziv;
+                    //this.value = data.naziv;
+                    //console.log(data, this);
+                    //return;
+                    
+                    this.store.loadRecords([data]);
+                    Ext.form.ComboBox.superclass.setValue.call(this, v);
+                },
+                scope: this
+            });
+        } else {
+            console.log('kurac pička sisa');
+            this.value = v;
+        }*/
+        
+//end patch
+        /*console.log(this.valueField, v);
+        console.log(this.store.data);
+        var r = this.store.findRecord(this.valueField, v);
+        if(r === null) {
+            console.log('Load next page...');
+            var _p = {
+                    //start: ((this.store.currentPage+1)*this.store.pageSize)-this.store.pageSize,
+                    page: this.store.currentPage+1
+                    //limit: this.store.pageSize
+                };
+            console.log(_p);
+            this.store.load({
+                params: _p,
+                callback: function() {
+                    console.log('Loaded next page.');
+                    this.setValue(v);
+                },
+                scope: this
+            })
+        }
+        console.log(r);
+        /*var text = v;
+        if(this.valueField){
+            var r = this.findRecord(this.valueField, v);
+            console.log(r);
+            if(r){
+                //text = r.data[this.displayField];
+                Ext.form.ComboBox.superclass.setValue.call(this, r);
+                this.value = v;
+            }else if(this.valueNotFoundText !== undefined){
+                text = this.valueNotFoundText;
+            }
+        }*/
+        /*this.lastSelectionText = text;
+        if(this.hiddenField){
+            this.hiddenField.value = v;
+        }
+        Ext.form.ComboBox.superclass.setValue.call(this, text);* /
+        //this.value = v;* /
+    }
+});*/
  
 
 Ext.define('Athene.controller.Main', {
     extend: 'Ext.app.Controller',
     
     views: [
+        'Debug',
         'Viewport',
-        'PopupMessage'
+        'PopupMessage',
+        'Tip'
+    ],
+    
+    models: [
+        'Tip'
     ],
     
     
@@ -55,11 +211,11 @@ Ext.define('Athene.controller.Main', {
 	    
             oib:  function(v) {
 		if (checkOIB(v)==true)
-		    return /^[0-9]{11}$/.test(v);
+		    return /^[0-9]{11}$/.test(v)
             },
 	    
             num: function(v){
-                return /^[0-9]+$/.test(v);
+                return /^[0-9]+$/.test(v)
             },
             
             jmbgText: 'Jmbg se sastoji od 13 brojeva',
@@ -72,9 +228,11 @@ Ext.define('Athene.controller.Main', {
         });
         
         this.control({
+            /*'viewport': {
+                render: this.showTip
+            },*/
             '#logout': {
                 click: function() {
-                    //console.log('Log me out!');
                     Ext.Ajax.request({
                         url: 'ext.php',
                         method: 'GET',
@@ -85,7 +243,7 @@ Ext.define('Athene.controller.Main', {
                     window.location.reload();
                 }
             },
-			'#openPomocForm': {
+	    '#openPomocForm': {
                 click: this.help
             }
         });
@@ -104,6 +262,14 @@ Ext.define('Athene.controller.Main', {
                 Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
             }
         })
+    },
+    
+    showTip: function() {
+        if(SHOW_TIPS) {
+            console.log(this.getTipModel());
+            var tip = this.getTipModel().get('random');
+            console.log(tip);
+        }
     }
     
 });

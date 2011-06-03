@@ -11,18 +11,21 @@ body {
 }
 
 .helpwindow {
-     background-color: white;
-     padding: 5px;
+    background-color: white;
+    padding: 5px;
 }
 
 .helpwindow h2 {
-     font-size: 16px;
+    font-size: 16px;
 }
 
 body.login h1 {
-    background:transparent url(../img/osz_logo.png) no-repeat;
+    /*background:transparent url(../img/osz_logo.png) no-repeat;
     height: 170px;
-    width: 150px;
+    width: 150px;*/
+    background:transparent url(../img/logo.png) no-repeat;
+    height: 75px;
+    width: 307px;
     margin: 100px auto 0;
     text-indent: -3000px;
     white-space: nowrap;

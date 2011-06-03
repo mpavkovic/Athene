@@ -115,14 +115,12 @@ Ext.define('Athene.view.ucenik.List', {
                                 tooltip: 'Izbriši',
                                 iconCls: 'deleteAction',
                                 handler: function(grid, rowIndex, columnIndex) {
-                                    /*var userId = Ext.getStore('User').getAt(rowIndex).data.id;
-                                    User.delete(userId, function(provider, response) {
-                                        //console.log(provider, response);
-                                        if(provider.success == true) {
-                                            var sm = grid.getSelectionModel();
+                                    grid.store.getAt(rowIndex).destroy({
+                                        success: function() {
+                                            Ext.widget('notification').popup('Učenik izbrisan.');
                                             grid.store.removeAt(rowIndex);
                                         }
-                                    })*/
+                                    });
                                 }
                             }
                         ]
@@ -154,6 +152,11 @@ Ext.define('Athene.view.ucenik.List', {
                         emptyText: 'traži...',
                         id: 'listUcenikSearch',
                         fieldLabel: false
+                    },
+                    {
+                        xtype: 'button',
+                        icon: 'img/icons/cancel.png',
+                        id: 'listUcenikClearFilter'
                     }
                 ]
             },

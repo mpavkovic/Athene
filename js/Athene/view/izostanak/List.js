@@ -9,8 +9,9 @@ Ext.define('Athene.view.izostanak.List', {
     height: 300,
     maximizable: true,
     constrain: true,
+    closeAction: 'hide',
 	
-	tools: [
+    tools: [
         {
             type: 'help',
             id: 'helpIzostanak',

@@ -15,6 +15,10 @@ class Select extends Statement {
     
     private $filters = array();
     
+    private $wheres;
+    
+    private $getPage = true;
+    
     public function __construct($params) {
         
         if(is_array($params)) {
@@ -29,6 +33,11 @@ class Select extends Statement {
             $this->table = $params;
         }
         
+    }
+    
+    public function getPage() {
+        $this->getPage = true;
+        return $this;
     }
     
     public function limit($a, $b = null) {
@@ -50,6 +59,25 @@ class Select extends Statement {
         
         $this->joins[] = $params;
 
+        return $this;
+    }
+    
+    public function where($field, $value = null) {
+        // Avoid notice
+        if(!isset($this->wheres)) {
+            $this->wheres = array();
+        }
+        
+        if(is_array($field)) {
+            //$this->wheres[] = $field;
+            foreach($field as $k=>$v) {
+                $this->wheres[] = array($k, $v);
+            }
+            return $this;
+        }
+        
+        $this->wheres[] = array($field, $value);
+        
         return $this;
     }
     
@@ -77,6 +105,12 @@ class Select extends Statement {
         if(isset($this->alias)) {
             $query .= ' AS ' . $this->alias;
         }
+        
+        /*if($this->getPage) {
+            $selectFields = 'floor(count(id)/' . $this->limitCount . ') as page';
+            unset($this->limitCount);
+            unset($this->limitOffset);
+        }*/
         
         // JOINs
         if(!empty($this->joins)) {
@@ -119,6 +153,25 @@ class Select extends Statement {
             }
         }
         
+        // WHEREs
+        //var_dump($this->wheres);
+        if(!empty($this->wheres)) {
+            $query .= ' WHERE ';
+            $whereCount = 0;
+            foreach($this->wheres as $where) {
+                if($whereCount > 0) {
+                    $query .= ' AND ';
+                }
+                if(count($where) == 2) {
+                    if(!is_int($where[1])) {
+                        $where[1] = '\'' . mysql_escape_string($where[1]) . '\'';
+                    }
+                    $query .= $where[0] . ' = ' . $where[1];
+                    $whereCount++;
+                }
+            }
+        }
+        
         // LIMIT
         if(isset($this->limitCount)) {
             $query .= ' LIMIT ';
@@ -128,7 +181,10 @@ class Select extends Statement {
             $query .= $this->limitCount;
         }
         
+        
         $query = str_replace('{select_fields}', $selectFields, $query);
+        
+        //var_dump($query);
         
         return $query;
     }
