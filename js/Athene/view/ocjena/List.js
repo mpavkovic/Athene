@@ -1,3 +1,60 @@
+Ext.require([
+    'Ext.grid.*',
+    'Ext.data.*',
+    'Ext.util.*',
+    'Ext.Action'
+]);
+var EditAction = Ext.create('Ext.Action', {
+	icon: 'img/icons/application_form_edit.png',
+	text: 'Izmjeni',
+	handler: function(widget, event) {
+		var rec = grid.getSelectionModel().getSelection()[0];
+		if (rec) {
+			alert("Sell " + rec.get('ucenik_id'));
+		} else {
+			alert('Please select a company from the grid');
+		}
+	}
+});
+var DeleteAction = Ext.create('Ext.Action', {
+	icon: 'img/icons/delete.png',
+	text: 'Brisanje',
+	handler: function(widget, event) {
+		var rec = grid.getSelectionModel().getSelection()[0];
+		if (rec) {
+			alert("Buy " + rec.get('ucenik_id'));
+		} else {
+			alert('Please select a company from the grid');
+		}
+	}
+});
+
+var contextMenu = Ext.create('Ext.menu.Menu', {
+	items: [
+		EditAction,
+		DeleteAction
+	]
+});
+
+Ext.Loader.setConfig({enabled: true});
+Ext.Loader.setPath('Ext.ux', '../Athene/js/ext/examples/ux');
+Ext.require([
+    'Ext.data.*',
+    'Ext.grid.*',
+    'Ext.util.*',
+    'Ext.ux.ProgressBarPager'
+]);
+
+ // custom renderer function
+function ocjena(val){
+	if(val >= 3){
+		return '<span style="color:green;">' + val + '</span>';
+	}else if(val < 3){
+		return '<span style="color:red;">' + val + '</span>';
+	}
+	return val;
+}
+
 Ext.define('Athene.view.ocjena.List', {
     extend: 'Ext.window.Window',
     alias: 'widget.ocjenalist',
@@ -14,7 +71,7 @@ Ext.define('Athene.view.ocjena.List', {
         {
             type: 'help',
             id: 'helpOcjena',
-            qtip: 'Pomo�'
+            qtip: 'Pomoć'
         }
     ],
     
@@ -24,14 +81,25 @@ Ext.define('Athene.view.ocjena.List', {
                 xtype: 'grid',
                 id: 'ocjenagrid',
                 store: 'Ocjena',
+				viewConfig: {
+					stripeRows: true,
+					listeners: {
+						itemcontextmenu: function(view, rec, node, index, e) {
+							e.stopEvent();
+							contextMenu.showAt(e.getXY());
+							return false;
+						}
+					}
+				},
                 forceFit: true,
                 columns: [
                     {
                         text: 'Ocjena',
+						renderer: ocjena,
                         dataIndex: 'ocjena'
                     },
                     {
-                        text: 'Ucenik',
+                        text: 'Učenik',
                         dataIndex: 'ucenik_id'
                     },
                     {
@@ -107,7 +175,8 @@ Ext.define('Athene.view.ocjena.List', {
                 xtype: 'pagingtoolbar',
                 store: 'Ocjena',
                 dock: 'bottom',
-                displayInfo: true
+                displayInfo: true,
+				plugins: Ext.create('Ext.ux.ProgressBarPager', {})
             }
         ]
         

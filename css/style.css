@@ -33,6 +33,10 @@ div.debugMessage {
     padding: 5px 0;
 }
 
+#logout{
+	float: right;
+}
+
 
 /* OLD */
 h1.title {

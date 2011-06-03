@@ -62,6 +62,34 @@ Ext.define('Athene.view.ucenik.List', {
                         text: 'Spol',
                         dataIndex: 'spol'
                     },
+					{
+						xtype: 'menu',
+						 items: [
+								{
+									text: 'I like Ext',
+									checked: true
+								}, '-', {
+									text: 'Open With',
+									menu: {
+										items: [{
+											text: 'Notepad ++'
+										}, {
+											text: 'GIMP 2.0'
+										}, {
+											text: 'Firefox'
+										}]
+									}
+								}, '-', {
+									text: 'Cut'
+								}, {
+									text: 'Copy'
+								}, {
+									text: 'Delete'
+								}, '-', {
+									text: 'Rename'
+								}
+							]
+					},
                     {
                         xtype: 'actioncolumn',
                         width: 20,
