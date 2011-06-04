@@ -9,18 +9,15 @@
          // Header
          {
             region: 'north',
-            //height: 100
+            height: 35, 
             border: 0,
+			layout: 'fit',
             padding: '0 0 5px 0',
             items: [
                {
                   xtype: 'toolbar',
-                  items: ['->',
-					{
-						xtype: 'tbtext',
-						margin: '0px 5px 0px 10px',
-						html: '<b>Najčešće korišteno:</b>'
-					},
+				  addFill: true,
+                  items: [
                     {
                         xtype: 'button',
 						icon: 'img/icons/ucenici.png',
@@ -42,6 +39,7 @@
 						id: 'openNastavniSatGrid',
 						tooltip: {text:'Popis razreda'}
                     },
+					{xtype: 'tbfill'},
                     {
                         xtype: 'button',
 						icon: 'img/icons/help.png',
@@ -49,6 +47,7 @@
 						id: 'openPomocForm',
 						tooltip: {text:'Kako koristiti aplikaciju'}
                     },
+					'-',
 					{
                         xtype: 'tbtext',
                         html: 'Ulogirani ste kao: <b>' + USERNAME + '</b>'

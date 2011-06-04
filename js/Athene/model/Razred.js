@@ -1,5 +1,17 @@
 Ext.define('Athene.model.Razred', {
     extend: 'Ext.data.Model',
+    proxy: {
+        type: 'direct',
+        api: {
+            create: Razred.create,
+            read: Razred.read,
+            update: Razred.update,
+            destroy: Razred.destroy
+        },
+        reader: {
+            root: 'data'
+        }
+    },
     fields: [
         'id',
         'naziv',

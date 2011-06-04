@@ -1,3 +1,32 @@
+Ext.require([
+    'Ext.form.*'
+]);
+Ext.apply(Ext.form.field.VTypes, {
+        daterange: function(val, field) {
+            var date = field.parseDate(val);
+
+            if (!date) {
+                return false;
+            }
+            if (field.startDateField && (!this.dateRangeMax || (date.getTime() != this.dateRangeMax.getTime()))) {
+                var start = field.up('form').down('#' + field.startDateField);
+                start.setMaxValue(date);
+                start.validate();
+                this.dateRangeMax = date;
+            }
+            else if (field.endDateField && (!this.dateRangeMin || (date.getTime() != this.dateRangeMin.getTime()))) {
+                var end = field.up('form').down('#' + field.endDateField);
+                end.setMinValue(date);
+                end.validate();
+                this.dateRangeMin = date;
+            }
+			
+            return true;
+        },
+
+        daterangeText: 'Start date must be less than end date', 
+});
+
 var odabir_da_ne = Ext.create('Ext.data.Store', {
     fields: ['abbr','naziv'],
     data : [
@@ -13,6 +42,7 @@ var odabir_spol = Ext.create('Ext.data.Store', {
         {"abbr":"Z", "naziv":"Žensko"}
     ]
 });
+
 Ext.define('Athene.view.ucenik.Form', {
     extend: 'Ext.window.Window',
     alias: 'widget.ucenikform',
@@ -233,12 +263,18 @@ Ext.define('Athene.view.ucenik.Form', {
 												name: 'smb_datum_od',
 												fieldLabel: 'SMB datum od',
 												format: 'd.m.Y.',
+												id: 'startdt',
+												vtype: 'daterange',
+												endDateField: 'enddt',
 												submitFormat: 'Y-m-d',
 												allowBlank: false
 											},
 											{
 												xtype: 'datefield',
 												name: 'smb_datum_do',
+												id: 'enddt',
+												vtype: 'daterange',
+												startDateField: 'startdt',
 												fieldLabel: 'SMB datum do',
 												format: 'd.m.Y.',
 												submitFormat: 'Y-m-d'
