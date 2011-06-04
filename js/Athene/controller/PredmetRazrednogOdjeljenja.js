@@ -7,11 +7,15 @@
     ],
     
     stores: [
-        'PredmetRazrednogOdjeljenja'
+        'PredmetRazrednogOdjeljenja',
+        'Razred',
+        'Predmet'
     ],
     
     models: [
-        'PredmetRazrednogOdjeljenja'
+        'PredmetRazrednogOdjeljenja',
+        'Razred',
+        'Predmet'
     ],
     
     refs: [
@@ -50,11 +54,23 @@
     
     edit: function(v, r) {
         var view = Ext.widget('predmetrazrednogodjeljenjaform');
-        view.down('form').loadRecord(r);
-        view.renderTo = '#predmetrazrednogodjeljenjalist';
-        view.plain = true;
-        view.modal = true; // Make window modal so the list is inacesible
-        view.show();
+        view.down('form').getForm().findField('predmet_id').store.load({
+            callback: function() {
+                view.down('form').loadRecord(r);
+                view.down('#formPredmetRazrednogOdjeljenjaSubmit').text = 'Spremi';
+                view.renderTo = '#predmetrazrednogodjeljenjalist';
+                view.show();        
+            }
+        })
+        
+        view.down('form').getForm().findField('razrednoo_djeljenje_id').store.load({
+            callback: function() {
+                view.down('form').loadRecord(r);
+                view.down('#formPredmetRazrednogOdjeljenjaSubmit').text = 'Spremi';
+                view.renderTo = '#predmetrazrednogodjeljenjalist';
+                view.show();        
+            }
+        });
     },
     refreshData: function() {
         this.getPredmetRazrednogOdjeljenjaStore().load();

@@ -28,7 +28,7 @@ Ext.define('Athene.view.adresa.List', {
                 columns: [
                     {
                         text: 'Učenik',
-                        dataIndex: 'ucenik_id'
+                        dataIndex: 'ucenik'
                     },
                     {
                         text: 'Tip adrese',
@@ -64,7 +64,7 @@ Ext.define('Athene.view.adresa.List', {
                     },
                     {
                         text: 'Mjesto',
-                        dataIndex: 'mjesto_id'
+                        dataIndex: 'mjesto'
                     },
                     {
                         text: 'Razlog boravišta',
