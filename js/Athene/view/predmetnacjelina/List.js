@@ -24,7 +24,7 @@ Ext.define('Athene.view.predmetnacjelina.List', {
                     },
                     {
                         text: 'Predmet',
-                        dataIndex: 'predmet_id'
+                        dataIndex: 'predmet'
                     },
                     {
                         xtype: 'actioncolumn',

@@ -7,11 +7,15 @@
     ],
     
     stores: [
-        'Adresa'
+        'Adresa',
+        'Ucenik',
+        'Mjesto'
     ],
     
     models: [
-        'Adresa'
+        'Adresa',
+        'Ucenik',
+        'Mjesto'
     ],
     
     refs: [
@@ -50,12 +54,33 @@
         });
     }, 
     
-    edit: function(v, r) {
+    /*edit: function(v, r) {
         var view = Ext.widget('adresaform');
         view.down('form').loadRecord(r);
         view.renderTo = '#adresalist';
         view.modal = true; // Make window modal so the list is inacesible
         view.show();
+    },*/
+    edit: function(v, r) {
+        
+        var view = Ext.widget('adresaform')
+        view.down('form').getForm().findField('ucenik_id').store.load({
+            callback: function() {
+                view.down('form').loadRecord(r);
+                view.down('#formAdresaSubmit').text = 'Spremi';
+                view.renderTo = '#adresalist';
+                view.show();        
+            }
+        }),
+        view.down('form').getForm().findField('mjesto_id').store.load({
+            callback: function() {
+                view.down('form').loadRecord(r);
+                view.down('#formAdresaSubmit').text = 'Spremi';
+                view.renderTo = '#adresalist';
+                view.show();        
+            }
+        });
+        
     },
     
     refreshData: function() {

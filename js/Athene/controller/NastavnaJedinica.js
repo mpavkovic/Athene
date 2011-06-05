@@ -51,12 +51,15 @@ Ext.define('Athene.controller.NastavnaJedinica', {
     }, 
     
     edit: function(v, r) {
-        var view = Ext.widget('nastavnajedinicaform');
-        view.down('form').loadRecord(r);
-        view.renderTo = '#nastavnajedinicalist';
-        view.plain = true;
-        view.modal = true; // Make window modal so the list is inacesible
-        view.show();
+        var view = Ext.widget('predmetnacjelinaform');
+        view.down('form').getForm().findField('nastavni_plan_id').store.load({
+            callback: function() {
+                view.down('form').loadRecord(r);
+                view.down('#formNastavnaJedinicaSubmit').text = 'Spremi';
+                view.renderTo = '#nastavnajedinicalist';
+                view.show();        
+            }
+        });
     },
     
     refreshData: function() {

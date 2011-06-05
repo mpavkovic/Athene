@@ -20,11 +20,11 @@ Ext.define('Athene.view.predmetrazrednogodjeljenja.List', {
                 columns: [
                     {
                         text: 'Razredno odjeljenje',
-                        dataIndex: 'razredno_odjeljenje_id'
+                        dataIndex: 'razredno_odjeljenje'
                     },
                     {
                         text: 'Predmet',
-                        dataIndex: 'predmet_id'
+                        dataIndex: 'predmet'
                     },
                     {
                         text: 'Učitelj',

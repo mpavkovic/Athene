@@ -1,4 +1,4 @@
-CREATE TABLE  `oszamet`.`debug` (
+CREATE TABLE  `zamet`.`debug` (
 `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `time` DATETIME NOT NULL ,
 `title` VARCHAR( 200 ) NOT NULL ,
