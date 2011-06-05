@@ -5,6 +5,9 @@ namespace Athene\Model;
 use Athene\Model\Field\Integer as IntegerField;
 use Athene\Model\Field\Text as TextField;
 use Athene\Model\Field\Boolean as BooleanField;
+use Athene\Model\Field\Reference as ReferenceField;
+
+use Sirius\Storage\Storage;
 
 class Menu extends Model {
     
@@ -12,26 +15,24 @@ class Menu extends Model {
     
     public function init() {
         
-        //$this->fields->id = new IntegerField();
-        $this->setField('id', new IntegerField());
-        
-        //var_dump($this->fields);
-        $this->fields->label = new TextField(array('maxLength' => 100));
-        $this->fields->extId = new TextField(array('maxLength' => 100, 'mapping' => 'ext_id'));
-        $this->fields->extCls = new TextField(array('maxLength' => 100, 'mapping' => 'ext_cls', 'required' => false));
-        $this->fields->extLeaf = new BooleanField(array('mapping' => 'ext_leaf', 'default' => false));
-        $this->fields->extExpanded = new BooleanField(array('mapping' => 'ext_expanded', 'default' => false));
-        //$this->fields->parent = new ForeignKey('Menu');
+        $this->setField('id', new IntegerField(array('primaryKey' => true, 'autoIncrement' => true)));
+        $this->setField('label', new TextField(array('maxLength' => 100, 'required' => true)));
+        $this->setField('extId', new TextField(array('maxLength' => 100, 'mapping' => 'ext_id', 'required' => true)));
+        $this->setField('extCls', new TextField(array('maxLength' => 100, 'mapping' => 'ext_cls')));
+        $this->setField('extLeaf', new BooleanField(array('mapping' => 'ext_leaf', 'default' => false)));
+        $this->setField('extExpanded', new BooleanField(array('mapping' => 'ext_expanded', 'default' => false)));
+        $this->setField('parent', new ReferenceField(array('model' => 'Menu')));
         
     }
     
     public function sidemenu($params) {
         //var_dump($params);
+        $database = Storage::getStorage('database');
         
         if($params->node != 'root') {
             $query = "SELECT id FROM athene_menu WHERE ext_id = '" . substr($params->node, strrpos($params->node, '/')+1) . "'";
             //echo $query;
-            $r = $this->adapter->query($query);
+            $r = $database->query($query);
             $parent = $r[0]->id;
         }
         
@@ -48,7 +49,7 @@ class Menu extends Model {
             $query .= " AND parent = 0";
         }
         
-        $result = $this->adapter->query($query);
+        $result = $database->query($query);
         
         $return = array();
         

@@ -1,6 +1,10 @@
 <?php
 
-namespace Athene;
+//namespace Athene;
+use Sirius\Ext\Request as ExtRequest;
+use Sirius\Ext\Router;
+use Sirius\Autoload;
+use Sirius\Storage\Storage;
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -10,16 +14,50 @@ include('lib/Sirius/Autoload.php');
 
 session_start();
 
-$autoload = new \Sirius\Autoload(APP_PATH . '/lib');
-$database = new \Sirius\Storage\Database\Mysql(array(
+function onError($code, $message, $file, $line) {
+    $extResponse = Router::getInstance()->getResponse();
+    //$extResponse->setData(false, 'success');
+    //$extResponse->setData($message, 'message');
+    $extResponse->type = 'exception';
+    $extResponse->message = $message;
+    $extResponse->file = $file;
+    $extResponse->line = $line;
+    $extResponse->trace = debug_backtrace();
+    Router::getInstance()->sendResponse($extResponse);
+    die();
+}
+
+function onException(\Exception $exception) {
+    $extResponse = Router::getInstance()->getResponse();
+    $extResponse->type = 'exception';
+    $extResponse->message = $exception->getMessage();
+    $extResponse->file = $exception->getFile();
+    $extResponse->line = $exception->getLine();
+    //$extResponse->trace = debug_backtrace();
+    Router::getInstance()->sendResponse($extResponse);
+    die();
+}
+
+set_error_handler('onError');
+set_exception_handler('onException');
+
+$autoload = new Autoload(APP_PATH . '/lib');
+$database = Storage::create('database', 'Database\\Mysql', array(
     'host'  => DB_HOST,
     'user'  => DB_USER,
     'password'  => DB_PASS,
     'database'  => DB_NAME
 ));
 
+/*$database = new \Sirius\Storage\Database\Mysql(array(
+    'host'  => DB_HOST,
+    'user'  => DB_USER,
+    'password'  => DB_PASS,
+    'database'  => DB_NAME
+));*/
+
 // Debugger
-$debug = Debug::getInstance();
+/*$debug = Debug::getInstance();
 
 ob_start();
 
@@ -220,12 +258,17 @@ if(isset($_POST) && !empty($_POST)) {
             //var_dump($jsonRequest->data[0]-);
             /*if(isset($jsonRequest->data[0]->page)) {
                 $response->total = $actionClass->count();
-            }*/
+            }* /
         }
         $responses[] = $response;
         //$responses[] = new JsonResponse($jsonRequest->action, $jsonRequest->method, $return, $jsonRequest->tid);
     }
     echo implode(',', $responses);
+}*/
+
+if(isset($HTTP_RAW_POST_DATA)) {
+    $extRequest = new ExtRequest($HTTP_RAW_POST_DATA);
+    $r = Router::getInstance()->route($extRequest);
 }
 
 ?>

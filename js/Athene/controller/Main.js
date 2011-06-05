@@ -228,9 +228,9 @@ Ext.define('Athene.controller.Main', {
         });
         
         this.control({
-            /*'viewport': {
-                render: this.showTip
-            },*/
+            'viewport': {
+                render: this.viewportReady
+            },
             '#logout': {
                 click: function() {
                     Ext.Ajax.request({
@@ -269,6 +269,14 @@ Ext.define('Athene.controller.Main', {
             console.log(this.getTipModel());
             var tip = this.getTipModel().get('random');
             console.log(tip);
+        }
+    },
+    
+    viewportReady: function() {
+        if(debugMode) {
+            //var debugViewClass = this.getDebugView();
+            var debugView = new (this.getDebugView())(); //new debugViewClass();
+            debugView.show();
         }
     }
     

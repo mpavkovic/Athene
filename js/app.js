@@ -1,4 +1,4 @@
-var debugMode = false;
+var debugMode = true;
 
 // Register namespace
 Ext.ns('Athene'); // ns is shorthand for namespace
@@ -78,12 +78,12 @@ Ext.onReady(function() {
     Ext.direct.Manager.addProvider(Ext.app.REMOTING_API);
     
     if(debugMode == true) {
-	Ext.Direct.addProvider({
+	/*Ext.Direct.addProvider({
 	    type: 'polling',
 	    url: 'debug.php'
-	});
+	});*/
 	
-	Ext.Direct.on('debug', function(e) {
+	/*Ext.Direct.on('debug', function(e) {
 	    var debugData = '';
 	    for(var i=0; i < e.data.length; i++) {
 		debugData += '<div class="debugMessage"><b>' + e.data[i].title + '</b> (' + e.data[i].time + ')<br />' + e.data[i].message + '</div>';
@@ -94,6 +94,15 @@ Ext.onReady(function() {
 		});
 	        //Ext.getCmp('debugOutput').body.scroll('b', 100000, true);
 	    }
+	});*/
+	Ext.Direct.on('exception', function(e) {
+	    Ext.getCmp('debugOutput').update({
+		title: 'Exception',
+		message: e.message,
+		file: e.file,
+		line: e.line,
+		trace: e.trace
+	    });
 	});
     }
     

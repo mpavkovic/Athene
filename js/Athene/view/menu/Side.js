@@ -23,7 +23,14 @@ Ext.define('Athene.view.menu.Side', {
         sorters: [{
             property: 'text',
             direction: 'ASC'
-        }]
+        }]/*,
+        listeners: {
+            load: function(store, records, success) {
+                if(!success) {
+                    console.log('Jebo te ćaća!');
+                }
+            }
+        }*/
     }),
     useArrows: true
 });

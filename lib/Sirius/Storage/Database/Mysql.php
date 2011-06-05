@@ -3,6 +3,8 @@
 namespace Sirius\Storage\Database;
 
 use Athene\Debug;
+use Athene\Model\Model;
+use Sirius\Storage\Database\Mysql\Insert;
 
 class Mysql extends Database {
     
@@ -75,6 +77,17 @@ class Mysql extends Database {
     
     public function select($params) {
         return new Mysql\Select($params);
+    }
+    
+    
+    public function save(Model $model) {
+        var_dump($model->getFields(true));
+        $insert = new Insert($model->table, $model->getFields(true));
+        echo $insert;
+    }
+    
+    public function get(Model $model) {
+        var_dump($model);
     }
     
 }

@@ -2,50 +2,103 @@
 
 namespace Athene\Model;
 
-use Sirius\Storage\Database\Mysql;
-use Athene\Debug;
-use Athene\Error;
+use Athene\Model\Field\Field;
+use Sirius\Storage\Storage;
 
-class Model {
-    
-    //private static $EXT_FIELDS = array('extTID', 'extAction', 'extMethod', 'extType', 'extUpload');
-    
-    //protected $adapter;
+abstract class Model {
     
     protected $fields;
     
-    //protected $table;
-    
-    //protected $primaryKey = 'id';
-    
-    //protected $foreignKeys = array();
-    
     protected $fieldOrder = array();
     
+    protected $requiredFields = array();
+    
+    protected $mappings = array();
+    
+    protected $records = array();
+    
     public function __construct($values = null) {
-        /*$this->adapter = Mysql::getInstance();
-        if(isset($fields)) {
-            // TODO: Clear ext values
-            foreach($fields as $k=>$v) {
-                if(in_array($k, self::$EXT_FIELDS)) {
-                    unset($fields[$k]);
-                }
-            }
-            $this->fields = $fields;
-        }*/
+        
+        $this->fields = new \stdClass(); // Prevent E_STRICT errors
         
         // Init first
         $this->init();
-        var_dump($this->fields);
+        
+        //var_dump($this->fields);
+        if(is_array($values)) {
+            /*echo 'VALUES: <pre>'; var_dump($values); echo '</pre>';
+            if(is_array($values[0])) { // MULTIPLE RECORDS
+                echo 'MULTIPLE RECORDS';
+            }*/
+            
+            // Check if all required fields are set
+            if($this->requiredFields != array_intersect(array_keys($values), $this->requiredFields)) {
+                throw new \Exception('Not all required fields are set!');
+            }
+            
+            foreach($values as $k=>$v) {
+                /*if(is_int($k)) {
+                    throw new \Exception('Values should be either ')
+                }*/
+                if(!isset($this->fields->$k)) {
+                    if(!isset($this->mappings[$k])) {
+                        throw new \Exception('Unknown field ' . $k);
+                    } else {
+                        $k = $this->mappings[$k];
+                    }
+                }
+                $this->fields->$k->setValue($v);
+            }
+        }
         
     }
     
-    protected function setField($name, $properties) {
+    public function addRecord($data) {
         
+    }
+    
+    protected function setField($name, Field $field) {
+        if(!in_array($name ,$this->fieldOrder)) {
+            $this->fieldOrder[] = $name;
+        }
+        $this->fields->$name = $field;
+        if($field->isRequired()) {
+            $this->requiredFields[] = $name;
+        }
+        if($field->isMapped()) {
+            $this->mappings[$field->mapping] = $name;
+        }
+    }
+    
+    public function __toString() {
+        $asString = '';
+        foreach($this->fields as $name=>$field) {
+            $asString .= $name . ':' . $field . '|';
+        }
+        return substr($asString, 0, -1);
     }
     
     public function __set($property, $value) {
         var_dump($property, $value);
+    }
+    
+    public function __get($property) {
+        if(in_array($property, array('table'))) {
+            return $this->$property;
+        }
+    }
+    
+    public function getFields($mapped = false) {
+        $fieldsAssoc = array();
+        foreach($this->fields as $name=>$field) {
+            if($field->hasValue()) {
+                if($mapped && $field->isMapped()) {
+                    $name = $field->mapping;
+                }
+                $fieldsAssoc[$name] = $field->getValue();
+            }
+        }
+        return $fieldsAssoc;
     }
     
     public function create($params) {
@@ -73,7 +126,8 @@ class Model {
     public function getAll($params = null) {
         //var_dump($params); die();
         //$selectFiedls = array('*')
-        $query = $this->adapter->select($this->table);
+        $database = Storage::getStorage('database');
+        $query = $database->select($this->table);
         
         //echo $query;
         
@@ -112,7 +166,7 @@ class Model {
         
         
         //echo $query;
-        return $this->adapter->query($query->__toString());
+        return $database->query($query->__toString());
         
         
         /*$query = "SELECT * FROM " . $this->table;

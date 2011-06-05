@@ -18,4 +18,8 @@ class Ucenik extends Model {
         )
     );
     
+    public function init() {
+        
+    }
+    
 }

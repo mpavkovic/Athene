@@ -11,35 +11,35 @@
             region: 'north',
             height: 35, 
             border: 0,
-			layout: 'fit',
+	    layout: 'fit',
             padding: '0 0 5px 0',
             items: [
                {
                   xtype: 'toolbar',
-				  addFill: true,
+		  addFill: true,
                   items: [
                     {
                         xtype: 'button',
-						icon: 'img/icons/ucenici.png',
+			icon: 'img/icons/ucenici.png',
                         text: 'Učenici',
-						id: 'openUcenikGrid',
-						tooltip: {text:'Popis učenika'}
+			id: 'openUcenikGrid',
+			tooltip: {text:'Popis učenika'}
                     },
                     {
                         xtype: 'button',
-						icon: 'img/icons/razredi.png',
+			icon: 'img/icons/razredi.png',
                         text: 'Razredi',
-						id: 'openRazredGrid',
-						tooltip: {text:'Popis razreda'}
+			id: 'openRazredGrid',
+			tooltip: {text:'Popis razreda'}
                     },
                     {
                         xtype: 'button',
-						icon: 'img/icons/nastavni_sat.png',
+			icon: 'img/icons/nastavni_sat.png',
                         text: 'Nastavni sat',
-						id: 'openNastavniSatGrid',
-						tooltip: {text:'Popis razreda'}
+			id: 'openNastavniSatGrid',
+			tooltip: {text:'Popis razreda'}
                     },
-					{xtype: 'tbfill'},
+		     {xtype: 'tbfill'},
                     {
                         xtype: 'button',
                         text: 'Export',

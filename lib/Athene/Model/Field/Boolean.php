@@ -8,4 +8,8 @@ class Boolean extends Field {
         
     }
     
+    public function setValue($value) {
+        $this->value = (bool)$value;
+    }
+    
 }

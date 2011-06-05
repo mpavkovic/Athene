@@ -2,6 +2,10 @@ body {
     background: url(../img/bg.jpg);
 }
 
+pre {
+    white-space: pre-wrap;
+}
+
 .x-border-layout-ct, .workspace {
     background-color: transparent;
 }
@@ -36,9 +40,14 @@ div.debugMessage {
     padding: 5px 0;
 }
 
-#logout{
-	float: right;
+div.debugMessage span.file, div.debugMessage span.line {
+    color: red;
 }
+    
+
+/*#logout{
+	float: right;
+}*/
 
 
 /* OLD */

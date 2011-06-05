@@ -8,7 +8,8 @@ Ext.define('Athene.controller.Menu', {
     ],
     
     stores: [
-	'Menu'
+	'Menu',
+	'MenuCombo'
     ],
     
     models: [

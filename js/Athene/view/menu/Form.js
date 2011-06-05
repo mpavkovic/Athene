@@ -61,7 +61,7 @@ Ext.define('Athene.view.menu.Form', {
                         xtype: 'combobox',
                         name: 'parent',
                         fieldLabel: 'Parent',
-                        store: new Athene.store.Menu({autoLoad: true}),
+                        store: 'MenuCombo',
                         displayField: 'label',
                         valueField: 'id',
                         forceSelection: true,
