@@ -6,4 +6,7 @@ class Izostanak extends Model {
     
     protected $table = 'osz_izostanak';
     
+    public function init() {
+        
+    }
 }

@@ -17,4 +17,8 @@ class Razred extends Model {
         )
     );
     
+    public function init() {
+        
+    }
+    
 }

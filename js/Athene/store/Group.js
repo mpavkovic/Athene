@@ -1,13 +1,6 @@
 Ext.define('Athene.store.Group', {
     extend: 'Ext.data.Store',
     model: 'Athene.model.Group',
-    proxy: {
-        type: 'direct',
-        directFn: Group.getAll,
-        reader: {
-            root: 'data'
-        }
-    },
     sorters: [
         {
             property: 'name'

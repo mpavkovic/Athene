@@ -12,6 +12,7 @@ Ext.define('Athene.view.Debug', {
     listeners: {
         afterrender: function(window) {
             window.alignTo(this, 'br', [1, 5]);
+            MessageBus.on('log', this.log);
         }
     },
     items: [
@@ -21,18 +22,17 @@ Ext.define('Athene.view.Debug', {
             title: false,
             autoScroll: true,
             bodyStyle: 'padding: 5px',
-            tpl: '<div class="debugMessage"><b>{title}</b> - {message}<br />in file <span class="file">{file}</span> on line <span class="line">{line}</span><br />Trace: <pre>{trace}</pre></div>',
-            tplWriteMode: 'append',
-            listeners: {
-                
-            }
+            tpl: new Ext.XTemplate('<div class="debugMessage"><b>{title}</b> - {message}<tpl if="file"><br />in file <span class="file">{file}</span> on line <span class="line">{line}</span></tpl><tpl if="trace"><br />Trace: <pre>{trace}</pre></tpl></div>'),
+            tplWriteMode: 'append'  
         }
     ],
-    log: function(message) {
-        console.log(this.down('#debugOutput'));
+    log: function(m) {
+        //console.log(this.down('#debugOutput'));
         Ext.getCmp('debugOutput').update({
-            data: message
+            message: m,
+            title: 'Log'
         });
+        //console.log('Something happened', message);
     },
     dockedItems: [
         {

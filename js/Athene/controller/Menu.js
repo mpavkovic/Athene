@@ -30,9 +30,8 @@ Ext.define('Athene.controller.Menu', {
 			    if(Ext.ComponentManager.isRegistered(_win)) {
 				view = Ext.widget(_win);
 				Ext.getCmp('workspace').add(view);
-				console.log(view);
 				view.show();
-				//Ext.widget('notification').popup('Otvoren prozor ' + _win);
+				MessageBus.fireEvent('log', 'Test message');
 			    } else {
 				console.error('Widget ' + _win + ' is not registered!');
 			    }
@@ -56,7 +55,10 @@ Ext.define('Athene.controller.Menu', {
 		click: function() {
 		    this.getMenuStore().load();
 		}
-	    }
+	    }/*,
+	    '#openHelp': {
+		click: this.help('menulist.html')
+	    }*/
         })
     },
     
@@ -126,6 +128,21 @@ Ext.define('Athene.controller.Menu', {
 	    }
 	    button.up('window').close();
 	}
+    },
+    
+    help: function() {
+        Ext.Ajax.request({
+            url: 'help/menulist.html',
+            success: function(response) {
+                var view = Ext.widget('helpwindow');
+                view.update(response.responseText);
+                view.setTitle(view.title + 'Popis izbornika');
+                view.show();
+            },
+            failure: function() {
+                Ext.Msg.alert("Greška", "Nemogu učitati pomoć za zatraženu stavku.");
+            }
+        })
     }
     
 });

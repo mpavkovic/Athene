@@ -12,6 +12,14 @@ Ext.define('Athene.view.menu.List', {
     maximizable: true,
     constrain: true,
     closeAction: 'hide',
+    
+    tools: [
+        {
+            type: 'help',
+            id: 'openHelp',
+            qtip: 'Pomoć'
+        }
+    ],
        
     initComponent: function() {
         this.items = [

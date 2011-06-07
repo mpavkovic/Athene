@@ -198,9 +198,11 @@ Ext.define('Athene.controller.Main', {
     models: [
         'Tip'
     ],
-    
-    
+       
     init: function() {
+        
+        console.log('Load MessageBus');
+        Ext.syncRequire('Athene.MessageBus');
         
         Ext.apply(Ext.form.field.VTypes, {
             
@@ -229,7 +231,7 @@ Ext.define('Athene.controller.Main', {
         
         this.control({
             'viewport': {
-                render: this.viewportReady
+                afterrender: this.viewportReady
             },
             '#logout': {
                 click: function() {
@@ -273,8 +275,8 @@ Ext.define('Athene.controller.Main', {
     },
     
     viewportReady: function() {
+        console.log('Viewport rendered');
         if(debugMode) {
-            //var debugViewClass = this.getDebugView();
             var debugView = new (this.getDebugView())(); //new debugViewClass();
             debugView.show();
         }

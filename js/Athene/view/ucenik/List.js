@@ -10,7 +10,7 @@ Ext.define('Athene.view.ucenik.List', {
     maximizable: true,
     constrain: true,
 	
-	tools: [
+    tools: [
         {
             type: 'help',
             id: 'helpUcenik',
@@ -25,6 +25,9 @@ Ext.define('Athene.view.ucenik.List', {
                 id: 'ucenikgrid',
                 store: 'Ucenik',
                 forceFit: true,
+                viewConfig: {
+                    loadingText: 'Učitavanje...'
+                },
                 columns: [
                     {
                         text: 'OIB',
@@ -62,34 +65,6 @@ Ext.define('Athene.view.ucenik.List', {
                         text: 'Spol',
                         dataIndex: 'spol'
                     },
-					{
-						xtype: 'menu',
-						 items: [
-								{
-									text: 'I like Ext',
-									checked: true
-								}, '-', {
-									text: 'Open With',
-									menu: {
-										items: [{
-											text: 'Notepad ++'
-										}, {
-											text: 'GIMP 2.0'
-										}, {
-											text: 'Firefox'
-										}]
-									}
-								}, '-', {
-									text: 'Cut'
-								}, {
-									text: 'Copy'
-								}, {
-									text: 'Delete'
-								}, '-', {
-									text: 'Rename'
-								}
-							]
-					},
                     {
                         xtype: 'actioncolumn',
                         width: 20,
@@ -147,6 +122,11 @@ Ext.define('Athene.view.ucenik.List', {
                         id: 'refreshUcenikList'
                     },
                     '->',
+                    {
+                        xtype: 'combo',
+                        store: 'SkolskaGodina',
+                        fieldLabel: 'Školska godina'
+                    },
                     {
                         xtype: 'textfield',
                         emptyText: 'traži...',

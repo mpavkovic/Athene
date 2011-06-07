@@ -125,12 +125,17 @@ Ext.app.REMOTING_API = {
         }],
         
         "Group": [{
-            name: "getAll",
-            len: 0
+            name: "create",
+            len: 1,
         },{
-            name: "save",
-            len: 0,
-            formHandler: true
+            name: "read",
+            len: 1
+        },{
+            name: "update",
+            len: 1
+        },{
+            name: "destroy",
+            len: 1
         }],
         
         "Help": [{

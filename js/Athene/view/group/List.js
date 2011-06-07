@@ -10,6 +10,7 @@ Ext.define('Athene.view.group.List', {
     minHeight: 300,
     maximizable: true,
     constrain: true,
+    closeAction: 'hide',
     
     tools: [
         {
@@ -24,7 +25,7 @@ Ext.define('Athene.view.group.List', {
             {
                 xtype: 'grid',
                 id: 'groupgrid',
-                store: 'User',
+                store: 'Group',
                 forceFit: true,
                 columns: [
                     {

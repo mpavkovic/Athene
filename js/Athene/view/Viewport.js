@@ -20,21 +20,21 @@
                   items: [
                     {
                         xtype: 'button',
-			icon: 'img/icons/ucenici.png',
+			icon: 'img/icons/group.png',
                         text: 'Učenici',
 			id: 'openUcenikGrid',
 			tooltip: {text:'Popis učenika'}
                     },
                     {
                         xtype: 'button',
-			icon: 'img/icons/razredi.png',
+			icon: 'img/icons/book.png',
                         text: 'Razredi',
 			id: 'openRazredGrid',
 			tooltip: {text:'Popis razreda'}
                     },
                     {
                         xtype: 'button',
-			icon: 'img/icons/nastavni_sat.png',
+			icon: 'img/icons/time_add.png',
                         text: 'Nastavni sat',
 			id: 'openNastavniSatGrid',
 			tooltip: {text:'Popis razreda'}
@@ -42,6 +42,7 @@
 		     {xtype: 'tbfill'},
                     {
                         xtype: 'button',
+                        icon: 'img/icons/export_excel.png',
                         text: 'Export',
 			id: 'export',
 			handler: function() {

@@ -6,4 +6,8 @@ class Group extends Model {
     
     protected $table = 'auth_group';
     
+    public function init() {
+        
+    }
+    
 }
